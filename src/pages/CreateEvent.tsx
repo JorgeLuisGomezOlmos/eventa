@@ -139,7 +139,7 @@ function CreateEvent() {
                   Esto nos ayudará a entender mejor tu evento.
                 </p>
 
-                <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-2">
                   {eventTypes.map((event) => (
                     <EventTypeCard
                       key={event.value}
