@@ -460,7 +460,7 @@ function Recommendation() {
             
               <div className="rounded-2xl border border-white/20 bg-brandDark/80 p-4 shadow-2xl backdrop-blur-sm">
                     
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center justify-between gap-3">
                     
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-wider text-white/50">

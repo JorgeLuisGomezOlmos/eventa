@@ -4,6 +4,7 @@ import Recommendation from "./pages/Recommendation";
 import HomePage from "./pages/HomePage";
 import MainLayout from "./components/layout/MainLayout";
 import { EventProvider } from "./context/EventContext";
+import Quotation from "./pages/Quotation";
 
 function App() {
   return (
@@ -21,6 +22,11 @@ function App() {
         <Route
           path="/recomendacion"
           element={<Recommendation />}
+        />
+
+        <Route
+          path="/cotizacion"
+          element={<Quotation />}
         />
 
       </Routes>
