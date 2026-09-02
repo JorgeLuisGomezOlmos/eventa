@@ -113,29 +113,63 @@ export function calculateRecommendation(
     }
   }
 
-  // ================= REFRESCOS =================
+  // ================= BEBIDAS SIN ALCOHOL =================
 
-  if (event.preferences.softDrinks) {
-    const softDrinkProduct = products.find(
-      (product) => product.category === "softDrinks"
+  if (
+    event.preferences.softDrinks &&
+    event.selectedSoftDrinkIds.length > 0
+  ) {
+    const selectedSoftDrinks = products.filter(
+      (product) =>
+        product.category === "softDrinks" &&
+        event.selectedSoftDrinkIds.includes(product.id)
     );
-
-    if (softDrinkProduct) {
-      // Aproximadamente 1 paquete por cada 8 personas
-      const packs = Math.ceil(
-        (event.guests / 8) * durationFactor
-      );
-
+  
+    // Cantidad total recomendada de paquetes
+    // Esta fórmula es provisional y después la validaremos
+    // con datos reales.
+    const packsNeeded = Math.ceil(
+      (event.guests / 8) * durationFactor
+    );
+  
+    // Dividimos inicialmente la recomendación
+    // entre las bebidas seleccionadas.
+    const quantityPerDrink = Math.floor(
+      packsNeeded / selectedSoftDrinks.length
+    );
+  
+    // Si la división no es exacta,
+    // repartimos el sobrante entre los primeros productos.
+    const remainder =
+      packsNeeded % selectedSoftDrinks.length;
+  
+    selectedSoftDrinks.forEach((drink, index) => {
+      const quantity =
+        quantityPerDrink +
+        (index < remainder ? 1 : 0);
+  
       recommendedProducts.push({
-        id: softDrinkProduct.id,
-        name: softDrinkProduct.name,
-        category: "softDrinks",
-        quantity: packs,
-        unit: softDrinkProduct.unit,
-        unitPrice: softDrinkProduct.price,
-        total: packs * softDrinkProduct.price,
+        id: drink.id,
+  
+        name: drink.name,
+  
+        description: drink.description,
+  
+        image: drink.image,
+  
+        category: drink.category,
+  
+        quantity,
+  
+        recommendedQuantity: quantity,
+  
+        unit: drink.unit,
+  
+        unitPrice: drink.price,
+  
+        total: quantity * drink.price,
       });
-    }
+    });
   }
 
   const total = recommendedProducts.reduce(

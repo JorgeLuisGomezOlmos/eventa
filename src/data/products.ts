@@ -100,14 +100,30 @@ export const products: Product[] = [
   // =========================
 
   {
-    id: "soft-drink-pack",
+    id: "Jarrito-pina-2l",
 
-    name: "Paquete de refrescos",
+    name: "Jarritos Pina 2L",
 
-    description:
-      "Variedad de bebidas sin alcohol",
+    description: "Refresco · Caja con 8 piezas",
 
     category: "softDrinks",
+
+    image: "/images/products/jarrito-pina.png",
+
+    unit: "paquete",
+
+    price: 180,
+  },
+  {
+    id: "Jarrito-limon-2l",
+
+    name: "Jarritos Toronja 2L",
+
+    description: "Refresco · Caja con 8 piezas",
+
+    category: "softDrinks",
+
+    image: "/images/products/jarrito-toronja.png",
 
     unit: "paquete",
 

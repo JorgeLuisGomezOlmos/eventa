@@ -32,9 +32,14 @@ import ProductSelectionModal from "../components/event/ProductSelectionModal";
 function CreateEvent() {
 
   const [isBeerModalOpen, setIsBeerModalOpen] = useState(false);
+  const [isSoftDrinkModalOpen, setIsSoftDrinkModalOpen] = useState(false);
 
   const beerProducts = products.filter(
   (product) => product.category === "beer"
+);
+
+  const softDrinkProducts = products.filter(
+  (product) => product.category === "softDrinks"
 );
 
   const navigate = useNavigate();
@@ -398,19 +403,22 @@ function CreateEvent() {
                     />
                   </button>
 
-                  {/* BEBIDAS */}
+                  {/* BEBIDAS SIN ALCOHOL*/}
 
                   <button
                     type="button"
-                    onClick={() =>
+                    onClick={() => {
+                      // Activamos la categoría
                       updateEventData({
                         preferences: {
                           ...eventData.preferences,
-                          softDrinks:
-                            !eventData.preferences.softDrinks,
+                          softDrinks: true,
                         },
-                      })
-                    }
+                      });
+                    
+                      // Abrimos el catálogo
+                      setIsSoftDrinkModalOpen(true);
+                    }}
                     className={`flex w-full items-center justify-between rounded-2xl border-2 p-5 text-left transition ${
                       eventData.preferences.softDrinks
                         ? "border-primary bg-primary/5"
@@ -433,13 +441,30 @@ function CreateEvent() {
                       </div>
                     </div>
 
-                    <div
-                      className={`h-6 w-6 rounded-full border-2 ${
-                        eventData.preferences.softDrinks
-                          ? "border-primary bg-primary"
-                          : "border-zinc-300"
-                      }`}
-                    />
+                    <div className="flex items-center gap-3">
+
+                      {/* CANTIDAD DE BEBIDAS SELECCIONADAS */}
+                                      
+                      {eventData.selectedSoftDrinkIds.length > 0 && (
+                        <span className="hidden text-xs font-bold text-primary sm:block">
+                          {eventData.selectedSoftDrinkIds.length} seleccionada
+                          {eventData.selectedSoftDrinkIds.length !== 1
+                            ? "s"
+                            : ""}
+                        </span>
+                      )}
+                    
+                      {/* INDICADOR */}
+                    
+                      <div
+                        className={`h-6 w-6 rounded-full border-2 transition-colors duration-300 ${
+                          eventData.preferences.softDrinks
+                            ? "border-primary bg-primary"
+                            : "border-zinc-300"
+                        }`}
+                      />
+                    
+                    </div>
                   </button>
 
                 </div>
@@ -478,23 +503,41 @@ function CreateEvent() {
     </section>
 
     <ProductSelectionModal
-    isOpen={isBeerModalOpen}
-    onClose={() => setIsBeerModalOpen(false)}
-    title="Elige tus cervezas"
-    subtitle="Puedes seleccionar una o varias opciones para tu evento."
-    products={beerProducts}
-    selectedIds={eventData.selectedBeerIds}
-    onConfirm={(selectedIds) => {
-      updateEventData({
-        preferences: {
-          ...eventData.preferences,
-          beer: selectedIds.length > 0,
-        },
+      isOpen={isBeerModalOpen}
+      onClose={() => setIsBeerModalOpen(false)}
+      title="Elige tus cervezas"
+      subtitle="Puedes seleccionar una o varias opciones para tu evento."
+      products={beerProducts}
+      selectedIds={eventData.selectedBeerIds}
+      onConfirm={(selectedIds) => {
+        updateEventData({
+          preferences: {
+            ...eventData.preferences,
+            beer: selectedIds.length > 0,
+          },
 
-        selectedBeerIds: selectedIds,
-      });
-    }}
-  />
+          selectedBeerIds: selectedIds,
+        });
+      }}
+    />
+
+    <ProductSelectionModal
+      isOpen={isSoftDrinkModalOpen}
+      onClose={() => setIsSoftDrinkModalOpen(false)}
+      title="Elige tus bebidas"
+      subtitle="Selecciona las bebidas sin alcohol que quieres para tu evento."
+      products={softDrinkProducts}
+      selectedIds={eventData.selectedSoftDrinkIds}
+      onConfirm={(selectedIds) => {
+        updateEventData({
+          preferences: {
+            ...eventData.preferences,
+            softDrinks: selectedIds.length > 0,
+          },
+          selectedSoftDrinkIds: selectedIds,
+        });
+      }}
+    />
     </>
     
   );
