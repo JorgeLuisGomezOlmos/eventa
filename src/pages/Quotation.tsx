@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   Pencil,
   ArrowRight,
+  Clock,
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
@@ -22,6 +23,33 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
   function Quotation() {
 
   const { eventData } = useEvent();
+
+  const getEventName = () => {
+    const names: Record<string, string> = {
+      cumpleanos: "Cumpleaños",
+      boda: "Boda",
+      reunion: "Reunión o fiesta",
+      corporativo: "Evento corporativo",
+      otro: "Otro evento",
+    };
+  
+    return names[eventData.eventType] || "Tu evento";
+  };
+
+
+  const formatDate = (date: string) => {
+    if (!date) {
+      return "Por definir";
+    }
+  
+    return new Date(
+      `${date}T12:00:00`
+    ).toLocaleDateString("es-MX", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  };
 
 
   /* ============================= */
@@ -143,103 +171,161 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
 
             <Card className="rounded-3xl">
 
+              {/* ========================= */}
+              {/* HEADER */}
+              {/* ========================= */}
+            
               <div className="flex items-start justify-between gap-4">
-
+            
                 <div>
-                  <div className="flex items-center gap-2">
-
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <CalendarDays size={20} />
+                  <div className="flex items-center gap-3">
+            
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <CalendarDays size={21} />
                     </div>
-
+            
                     <div>
+            
                       <p className="text-xs font-bold uppercase tracking-wider text-zinc-400">
                         Información
                       </p>
-
-                      <h2 className="font-bold text-brandDark">
+            
+                      <h2 className="mt-0.5 font-bold text-brandDark">
                         Detalles del evento
                       </h2>
-
+            
                     </div>
-
+            
                   </div>
-
                 </div>
-
-                <button
-                  type="button"
+            
+                {/* EDITAR */}
+            
+                <Link
+                  to="/crear-evento"
                   className="flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold text-zinc-500 transition hover:bg-zinc-100 hover:text-primary"
                 >
                   <Pencil size={15} />
+            
                   Editar
-                </button>
-
+                </Link>
+            
               </div>
-
+            
+            
+              {/* ========================= */}
+              {/* NOMBRE DEL EVENTO */}
+              {/* ========================= */}
+            
+              <div className="mt-6 rounded-2xl bg-primary/5 p-4">
+            
+                <p className="text-[10px] font-bold uppercase tracking-wider text-primary">
+                  Tipo de evento
+                </p>
+            
+                <p className="mt-1 text-lg font-extrabold text-brandDark">
+                  {getEventName()}
+                </p>
+            
+              </div>
+            
+            
+              {/* ========================= */}
               {/* DATOS */}
-
-              <div className="mt-6 grid gap-4 sm:grid-cols-3">
-
-                {/* Fecha */}
-
+              {/* ========================= */}
+            
+              <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            
+                {/* FECHA */}
+            
                 <div className="rounded-2xl bg-zinc-50 p-4">
-
+            
                   <CalendarDays
                     size={18}
                     className="text-primary"
                   />
-
+            
                   <p className="mt-3 text-xs text-zinc-400">
                     Fecha
                   </p>
-
-                  <p className="mt-1 font-bold text-brandDark">
-                    20 Septiembre 2026
+            
+                  <p className="mt-1 text-sm font-bold text-brandDark">
+                    {formatDate(eventData.date)}
                   </p>
-
+            
                 </div>
-
-                {/* Invitados */}
-
+            
+            
+                {/* INVITADOS */}
+            
                 <div className="rounded-2xl bg-zinc-50 p-4">
-
+            
                   <Users
                     size={18}
                     className="text-primary"
                   />
-
+            
                   <p className="mt-3 text-xs text-zinc-400">
                     Invitados
                   </p>
-
-                  <p className="mt-1 font-bold text-brandDark">
-                    100 personas
+            
+                  <p className="mt-1 text-sm font-bold text-brandDark">
+                    {eventData.guests > 0
+                      ? `${eventData.guests} personas`
+                      : "Por definir"}
                   </p>
-
+            
                 </div>
-
-                {/* Ubicación */}
-
+            
+            
+                {/* DURACIÓN */}
+            
                 <div className="rounded-2xl bg-zinc-50 p-4">
-
-                  <MapPin
+            
+                  <Clock
                     size={18}
                     className="text-primary"
                   />
-
+            
                   <p className="mt-3 text-xs text-zinc-400">
+                    Duración
+                  </p>
+            
+                  <p className="mt-1 text-sm font-bold text-brandDark">
+                    {eventData.duration > 0
+                      ? `${eventData.duration} horas`
+                      : "Por definir"}
+                  </p>
+            
+                </div>
+            
+              </div>
+            
+            
+              {/* ========================= */}
+              {/* UBICACIÓN */}
+              {/* ========================= */}
+            
+              <div className="mt-3 flex items-center gap-3 rounded-2xl bg-zinc-50 p-4">
+            
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <MapPin size={18} />
+                </div>
+            
+                <div className="min-w-0">
+            
+                  <p className="text-xs text-zinc-400">
                     Ubicación
                   </p>
-
-                  <p className="mt-1 font-bold text-brandDark">
-                    Monterrey
+            
+                  <p className="mt-1 text-sm font-bold text-brandDark">
+                    Por definir
                   </p>
-
+            
                 </div>
-
+            
               </div>
-
+            
             </Card>
 
             {/* ========================= */}
