@@ -49,7 +49,7 @@ function Recommendation() {
   }, []);
 
   const navigate = useNavigate();
-  const { eventData } = useEvent();
+  const { eventData, setEventData } = useEvent();
 
   const recommendation = useMemo(() => {
     return calculateRecommendation(eventData);
@@ -97,31 +97,68 @@ function Recommendation() {
   };
 
   const [quantities, setQuantities] = useState<
-    Record<string, number>
-  >(() => {
-    const initialQuantities: Record<string, number> = {};
-  
-    recommendation.products.forEach((product) => {
-      initialQuantities[product.id] =
-        product.quantity;
-    });
-  
-    return initialQuantities;
+  Record<string, number>
+>(() => {
+  const initialQuantities: Record<string, number> = {};
+
+  recommendation.products.forEach((product) => {
+    initialQuantities[product.id] =
+      eventData.productQuantities[product.id] ??
+      product.quantity;
   });
 
-  const updateQuantity = (
-    productId: string,
-    change: number
-  ) => {
-    setQuantities((prev) => ({
+  return initialQuantities;
+});
+
+
+useEffect(() => {
+  const initialQuantities: Record<string, number> = {};
+
+  recommendation.products.forEach((product) => {
+    initialQuantities[product.id] =
+      eventData.productQuantities[product.id] ??
+      product.quantity;
+  });
+
+  setQuantities(initialQuantities);
+
+  setEventData((currentEvent) => ({
+    ...currentEvent,
+    productQuantities: initialQuantities,
+  }));
+
+  // Solo queremos sincronizar cuando cambian
+  // los productos recomendados
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [
+  eventData.selectedBeerIds,
+  eventData.selectedSoftDrinkIds,
+]);
+
+
+const updateQuantity = (
+  productId: string,
+  change: number
+) => {
+  setQuantities((prev) => {
+    const newQuantity = Math.max(
+      0,
+      (prev[productId] || 0) + change
+    );
+
+    const updatedQuantities = {
       ...prev,
-  
-      [productId]: Math.max(
-        0,
-        (prev[productId] || 0) + change
-      ),
+      [productId]: newQuantity,
+    };
+
+    setEventData((currentEvent) => ({
+      ...currentEvent,
+      productQuantities: updatedQuantities,
     }));
-  };
+
+    return updatedQuantities;
+  });
+};
 
   const getProductTotal = (productId: string) => {
     const product = recommendation.products.find(

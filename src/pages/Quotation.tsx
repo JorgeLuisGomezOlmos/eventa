@@ -15,31 +15,57 @@ import { Link } from "react-router-dom";
 import Container from "../components/layout/Container";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
+import { useMemo } from "react";
+import { useEvent } from "../context/EventContext";
+import { calculateRecommendation } from "../utils/recommendationCalculator";
 
-const quotationProducts = [
-  {
-    id: 1,
-    name: "Cerveza XX Lager",
-    description: "Cartón de 20 piezas · 200 ml",
-    quantity: 10,
-    unitPrice: 420,
-    image: "/images/products/xx-lager.png",
-  },
-  {
-    id: 2,
-    name: "Cerveza Indio",
-    description: "Cartón de 20 piezas · 200 ml",
-    quantity: 8,
-    unitPrice: 400,
-    image: "/images/products/indio.png",
-  },
-];
+  function Quotation() {
 
-function Quotation() {
+  const { eventData } = useEvent();
+
+
+  /* ============================= */
+  /* RECOMENDACIÓN REAL DEL EVENTO */
+  /* ============================= */
+
+  const recommendation = useMemo(() => {
+    return calculateRecommendation(eventData);
+  }, [eventData]);
+
+
+  /* ============================= */
+  /* PRODUCTOS PARA COTIZACIÓN */
+  /* ============================= */
+
+  const quotationProducts = recommendation.products.map(
+    (product) => ({
+
+      ...product,
+
+      // Usamos la cantidad modificada por el usuario.
+      // Si no existe, usamos la cantidad recomendada.
+      quantity:
+        eventData.productQuantities[product.id] ??
+        product.quantity,
+
+    })
+  );
+
+
+  /* ============================= */
+  /* SUBTOTAL */
+  /* ============================= */
+
   const subtotal = quotationProducts.reduce(
-    (total, product) => total + product.quantity * product.unitPrice,
+    (total, product) =>
+      total + product.quantity * product.unitPrice,
     0
   );
+
+
+  /* ============================= */
+  /* TOTAL DE PRODUCTOS */
+  /* ============================= */
 
   const totalProducts = quotationProducts.reduce(
     (total, product) => total + product.quantity,

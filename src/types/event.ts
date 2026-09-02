@@ -27,4 +27,7 @@ export interface EventData {
 
   // 🥤 Para el futuro
   selectedSoftDrinkIds: string[];
+
+  // 📦 Cantidad seleccionada de cada producto
+  productQuantities: Record<string, number>;
 }

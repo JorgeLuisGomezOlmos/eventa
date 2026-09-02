@@ -25,6 +25,8 @@ const initialEventData: EventData = {
   selectedBeerIds: [],
 
   selectedSoftDrinkIds: [],
+
+  productQuantities: {},
 };
 
 const EventContext = createContext<EventContextType | undefined>(
