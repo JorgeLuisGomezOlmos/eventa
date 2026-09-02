@@ -5,6 +5,7 @@ import {
   Cake,
   Heart,
   Users,
+  Crown,
   BriefcaseBusiness,
   PartyPopper,
   ArrowLeft,
@@ -73,6 +74,12 @@ function CreateEvent() {
       description: "Para tu empresa o equipo.",
       icon: BriefcaseBusiness,
     },
+    {
+      value: "xv_anos",
+      title: "XV años",
+      description: "Para una celebración unica",
+      icon: Crown,
+    },
   ];
 
   const nextStep = () => {
@@ -139,7 +146,7 @@ function CreateEvent() {
                   Esto nos ayudará a entender mejor tu evento.
                 </p>
 
-                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-2">
+                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
                   {eventTypes.map((event) => (
                     <EventTypeCard
                       key={event.value}

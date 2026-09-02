@@ -234,7 +234,7 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
               {/* DATOS */}
               {/* ========================= */}
             
-              <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
             
                 {/* FECHA */}
             
@@ -306,7 +306,7 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
               {/* UBICACIÓN */}
               {/* ========================= */}
             
-              <div className="mt-3 flex items-center gap-3 rounded-2xl bg-zinc-50 p-4">
+              {/* <div className="mt-3 flex items-center gap-3 rounded-2xl bg-zinc-50 p-4">
             
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <MapPin size={18} />
@@ -324,7 +324,7 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
             
                 </div>
             
-              </div>
+              </div> */}
             
             </Card>
 
@@ -355,7 +355,7 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
                 </div>
 
                 <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary">
-                  {totalProducts} cartones
+                  {totalProducts} productos
                 </span>
 
               </div>

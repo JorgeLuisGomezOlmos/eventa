@@ -3,6 +3,7 @@ export type EventType =
   | "boda"
   | "reunion"
   | "corporativo"
+  | "xv_anos"
   | "otro";
 
 export interface EventPreferences {

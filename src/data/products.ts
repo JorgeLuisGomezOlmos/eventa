@@ -58,6 +58,23 @@ export const products: Product[] = [
 
     unitsPerPackage: 20,
   },
+  {
+    id: "tecate-200",
+    name: "Tecate",
+
+    description:
+      "Cerveza de 200 ml · Cartón de 20 piezas",
+
+    category: "beer",
+
+    image: "/images/products/tecate.png",
+
+    unit: "cartón",
+
+    price: 155,
+
+    unitsPerPackage: 20,
+  },
 
   // =========================
   // 🧊 HIELO
