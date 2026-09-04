@@ -1,6 +1,5 @@
 import {
   CalendarDays,
-  MapPin,
   Users,
   FileText,
   Package,
