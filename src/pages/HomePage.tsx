@@ -3,7 +3,6 @@ import {
   ArrowRight,
   Beer,
   Snowflake,
-  GlassWater,
   PartyPopper,
   ClipboardList,
   Sparkles,

@@ -100,6 +100,48 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
     0
   );
 
+
+  const handleWhatsAppQuotation = () => {
+  const phoneNumber = "5573270076";
+
+  let message = `Hola, quiero solicitar una cotización para mi evento.\n\n`;
+
+  message += `🎉 Tipo de evento: ${getEventName()}\n`;
+  message += `👥 Invitados: ${eventData.guests} personas\n`;
+  message += `📅 Fecha: ${formatDate(eventData.date)}\n`;
+  message += `⏱️ Duración: ${eventData.duration} horas\n\n`;
+
+  message += `🛒 PRODUCTOS\n\n`;
+
+  quotationProducts.forEach((product) => {
+    const productTotal = product.quantity * product.unitPrice;
+
+    const unitLabel =
+      product.quantity !== 1
+        ? product.unit === "cartón"
+          ? "cartones"
+          : `${product.unit}s`
+        : product.unit;
+
+    message += `• ${product.name}\n`;
+    message += `  ${product.quantity} ${unitLabel} × $${product.unitPrice.toLocaleString(
+      "es-MX"
+    )} = $${productTotal.toLocaleString("es-MX")}\n\n`;
+  });
+
+  message += `💰 TOTAL ESTIMADO: $${subtotal.toLocaleString(
+    "es-MX"
+  )} MXN\n\n`;
+
+  message += `Quedo atento para confirmar disponibilidad y recibir la cotización final.`;
+
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+    message
+  )}`;
+
+  window.open(whatsappUrl, "_blank");
+};
+
   return (
     <main className="min-h-screen bg-zinc-50 py-8 sm:py-12">
       <Container>
@@ -400,7 +442,9 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
                         </p>
 
                         <p className="mt-2 text-xs font-semibold text-primary">
-                          {product.quantity} cartones × $
+                          {product.quantity}{" "}
+                          {product.quantity !== 1 ? product.unit === "cartón" ? "cartones" : `${product.unit}s` : product.unit}{" "}
+                          × $
                           {product.unitPrice.toLocaleString("es-MX")}
                         </p>
 
@@ -513,7 +557,11 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
 
                 {/* BOTÓN */}
 
-                <Button className="mt-6 w-full">
+                <Button
+                  type="button"
+                  onClick={handleWhatsAppQuotation}
+                  className="mt-6 w-full"
+                >
                   Solicitar cotización
                   <ArrowRight size={18} className="ml-2" />
                 </Button>
