@@ -90,6 +90,8 @@ export const products: Product[] = [
 
     category: "ice",
 
+    image: "/images/products/bolsa-hielo.png",
+
     unit: "bolsa",
 
     price: 45,

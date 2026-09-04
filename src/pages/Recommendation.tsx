@@ -181,6 +181,33 @@ const updateQuantity = (
   0
 );
 
+const beerProducts = recommendation.products.filter(
+  (product) => product.category === "beer"
+);
+
+const softDrinkProducts = recommendation.products.filter(
+  (product) => product.category === "softDrinks"
+);
+
+const iceProducts = recommendation.products.filter(
+  (product) => product.category === "ice"
+);
+
+const totalRecommendedBeer = beerProducts.reduce(
+  (total, product) => total + product.recommendedQuantity,
+  0
+);
+
+const totalRecommendedSoftDrinks = softDrinkProducts.reduce(
+  (total, product) => total + product.recommendedQuantity,
+  0
+);
+
+const totalRecommendedIce = iceProducts.reduce(
+  (total, product) => total + product.recommendedQuantity,
+  0
+);
+
   return (
     <section className="min-h-screen bg-background py-10 lg:py-16">
       <Container>
@@ -301,194 +328,770 @@ const updateQuantity = (
                 Puedes revisar y modificar las cantidades antes de solicitar
                 una cotización.
               </p>
-            </div>
-
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
-              {recommendation.products.map((product) => {
-                const Icon = getProductIcon(product.category);
-
-                return (
-                  <Card
-                    key={product.id}
-                    className="group relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-                  >
-                    {/* ============================= */}
-                    {/* IMAGEN DEL PRODUCTO */}
-                    {/* ============================= */}
-                  
-                    <div className="relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br from-zinc-100 via-white to-primary/10 p-4 sm:h-48">
-                  
-                    {/* Decoración */}
-                  
-                    <div className="absolute -left-10 -top-10 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
-                  
-                    <div className="absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-primary/20 blur-2xl" />
-                  
-                    {/* Badge superior */}
-                  
-                    <div className="absolute left-3 top-3 z-20 flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-primary shadow-sm backdrop-blur">
-                      <Sparkles size={11} />
-                      Recomendado
-                    </div>
-                  
-                    {/* Imagen */}
-                  
-                    {product.image ? (
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="relative z-10 h-full max-w-full object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-2"
-                      />
-                    ) : (
-                      <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-3xl bg-white text-primary shadow-lg">
-                        <Icon size={38} />
-                      </div>
-                    )}
-                  
-                    {/* Sombra debajo del producto */}
-                  
-                    <div className="absolute bottom-5 h-3 w-24 rounded-[100%] bg-black/10 blur-md" />
-                  
-                    {/* ============================= */}
-                    {/* RECOMENDACIÓN INFERIOR */}
-                    {/* ============================= */}
-                  
-                    <div className="absolute bottom-2 left-2 right-2 z-20 flex items-center justify-between rounded-xl border border-white/40 bg-white/20 px-3 py-2 shadow-lg backdrop-blur-none">
-                  
-                      <div>
-                        <p className="text-[8px] font-bold uppercase tracking-wider text-zinc-400">
-                          Recomendado
-                        </p>
-                  
-                        <p className="text-[10px] font-medium text-zinc-600">
-                          Para tu evento
-                        </p>
-                      </div>
-                  
-                      <div className="text-right">
-                        <p className="text-lg font-extrabold leading-none text-primary">
-                          {product.recommendedQuantity}
-                        </p>
-                  
-                        <p className="mt-0.5 text-[8px] font-bold uppercase text-primary/70">
-                          {product.unit}
-                          {product.recommendedQuantity !== 1 ? "es" : ""}
-                        </p>
-                      </div>
-                  
-                    </div>
-                  
-                  </div>
-                  
-                    {/* ============================= */}
-                    {/* CONTENIDO */}
-                    {/* ============================= */}
-                  
-                    <div className="p-4 sm:p-5">
-                  
-                      {/* Nombre */}
-                  
-                      <div className="min-h-[48px]">
-                        <h3 className="truncate text-base font-extrabold text-brandDark sm:text-lg">
-                          {product.name}
-                        </h3>
-                  
-                        <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-zinc-500 sm:text-xs">
-                          {product.description}
-                        </p>
-                      </div>
-                  
-                      {/* ============================= */}
-                      {/* SELECTOR DE CANTIDAD */}
-                      {/* ============================= */}
-                  
-                      <div className="mt-4">
-                  
-                        <p className="mb-2 text-center text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
-                          Ajusta tu cantidad
-                        </p>
-                  
-                        <div className="flex items-center justify-between rounded-2xl border border-zinc-100 bg-zinc-50 p-1.5">
-                  
-                          {/* MENOS */}
-                  
-                          <button
-                            type="button"
-                            onClick={() => updateQuantity(product.id, -1)}
-                            disabled={(quantities[product.id] ?? 0) === 0}
-                            className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-brandDark shadow-sm transition-all hover:bg-primary hover:text-white disabled:cursor-not-allowed disabled:opacity-40 sm:h-10 sm:w-10"
-                          >
-                            <Minus size={17} strokeWidth={2.5} />
-                          </button>
-                  
-                          {/* CANTIDAD */}
-                  
-                          <div className="min-w-[55px] text-center">
-                            <p className="text-xl font-extrabold leading-none text-brandDark sm:text-2xl">
-                              {quantities[product.id] ?? 0}
-                            </p>
-                  
-                            <p className="mt-1 text-[9px] font-medium text-zinc-400">
-                              {product.unit}
-                              {(quantities[product.id] ?? 0) !== 1 ? "es" : ""}
-                            </p>
-                          </div>
-                  
-                          {/* MÁS */}
-                  
-                          <button
-                            type="button"
-                            onClick={() => updateQuantity(product.id, 1)}
-                            className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-primary/30 sm:h-10 sm:w-10"
-                          >
-                            <Plus size={17} strokeWidth={2.5} />
-                          </button>
-                  
-                        </div>
-                  
-                      </div>
-                  
-                      {/* ============================= */}
-                      {/* PRECIO */}
-                      {/* ============================= */}
-                  
-                      <div className="mt-4 border-t border-zinc-100 pt-4">
-                  
-                        <div className="flex items-end justify-between gap-2">
-                  
-                          <div>
-                            <p className="text-[9px] font-bold uppercase tracking-wider text-zinc-400">
-                              Costo estimado
-                            </p>
-                  
-                            <p className="mt-1 text-lg font-extrabold text-brandDark sm:text-xl">
-                              $
-                              {getProductTotal(product.id).toLocaleString(
-                                "es-MX"
-                              )}
-                            </p>
-                          </div>
-                  
-                          <div className="mb-1 text-right">
-                            <p className="text-[9px] text-zinc-400">
-                              por {product.unit}
-                            </p>
-                  
-                            <p className="text-[11px] font-semibold text-zinc-500">
-                              ${product.unitPrice.toLocaleString("es-MX")}
-                            </p>
-                          </div>
-                  
-                        </div>
-                  
-                      </div>
-                  
-                    </div>
-                  </Card>
-                );
-              })}
-            </div>
+            </div> 
           </div>
+
+
+          {/* ========================================= */}
+{/* PRODUCTOS RECOMENDADOS */}
+{/* ========================================= */}
+
+<div className="mt-8">
+
+  {/* ========================================= */}
+  {/* 🍺 CERVEZAS */}
+  {/* ========================================= */}
+
+  {beerProducts.length > 0 && (
+    <section className="mb-12">
+
+      {/* ENCABEZADO */}
+
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+        <div>
+          <div className="flex items-center gap-3">
+
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <Beer size={22} />
+            </div>
+
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-primary">
+                Categoría
+              </p>
+
+              <h2 className="text-2xl font-extrabold text-brandDark">
+                Cervezas
+              </h2>
+            </div>
+
+          </div>
+
+          <p className="mt-2 text-sm text-zinc-500">
+            Distribución recomendada entre las cervezas seleccionadas.
+          </p>
+        </div>
+
+
+        {/* TOTAL */}
+
+        <div className="rounded-2xl bg-brandDark px-5 py-3 text-white shadow-lg">
+
+          <p className="text-[9px] font-bold uppercase tracking-wider text-white/40">
+            Total recomendado
+          </p>
+
+          <div className="mt-1 flex items-baseline gap-2">
+
+            <span className="text-3xl font-extrabold">
+              {totalRecommendedBeer}
+            </span>
+
+            <span className="text-xs font-semibold uppercase text-white/60">
+              cartones
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      {/* CARDS DE CERVEZA */}
+
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+
+        {beerProducts.map((product) => {
+
+          const Icon = getProductIcon(product.category);
+
+          return (
+
+            <Card
+              key={product.id}
+              className="group relative overflow-hidden rounded-lg border border-zinc-200 bg-white p-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+
+              {/* ============================= */}
+              {/* IMAGEN */}
+              {/* ============================= */}
+
+              <div className="relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br from-zinc-100 via-white to-primary/10 p-2 sm:h-36">
+
+                {/* Decoración */}
+
+                <div className="absolute -left-10 -top-10 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
+
+                <div className="absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-primary/20 blur-2xl" />
+
+
+                {/* Imagen */}
+
+                {product.image ? (
+
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="relative z-10 h-full max-w-full object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-2"
+                  />
+
+                ) : (
+
+                  <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-3xl bg-white text-primary shadow-lg">
+                    <Icon size={38} />
+                  </div>
+
+                )}
+
+
+                {/* Sombra */}
+
+                <div className="absolute bottom-5 h-3 w-24 rounded-[100%] bg-black/10 blur-md" />
+
+
+                {/* RECOMENDACIÓN */}
+
+                <div className="absolute bottom-0 left-0 right-0 z-20 flex items-center justify-between rounded-md border border-white/40 bg-white/20 px-3 py-2 shadow-lg">
+
+                  <div>
+
+                    <p className="text-[8px] font-bold uppercase tracking-wider text-zinc-400">
+                      Recomendado
+                    </p>
+
+                    <p className="text-[10px] font-medium text-zinc-600">
+                      Para tu evento
+                    </p>
+
+                  </div>
+
+                  <div className="text-right">
+
+                    <p className="text-lg font-extrabold leading-none text-primary">
+                      {product.recommendedQuantity}
+                    </p>
+
+                    <p className="mt-0.5 text-[8px] font-bold uppercase text-primary/70">
+                      {product.unit}
+                      {product.recommendedQuantity !== 1 ? "es" : ""}
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              {/* ============================= */}
+              {/* CONTENIDO */}
+              {/* ============================= */}
+
+              <div className="p-4 sm:p-3">
+
+                {/* Nombre */}
+
+                <div className="min-h-[48px]">
+
+                  <h3 className="truncate text-base font-extrabold text-brandDark sm:text-lg">
+                    {product.name}
+                  </h3>
+
+                  <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-zinc-500 sm:text-xs">
+                    {product.description}
+                  </p>
+
+                </div>
+
+
+                {/* SELECTOR */}
+
+                <div className="mt-4">
+
+                  <p className="mb-2 text-center text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+                    Ajusta tu cantidad
+                  </p>
+
+                  <div className="flex items-center justify-between rounded-2xl border border-zinc-100 bg-zinc-50">
+
+                    {/* MENOS */}
+
+                    <button
+                      type="button"
+                      onClick={() => updateQuantity(product.id, -1)}
+                      disabled={(quantities[product.id] ?? 0) === 0}
+                      className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white text-brandDark shadow-sm transition-all hover:bg-primary hover:text-white disabled:cursor-not-allowed disabled:opacity-40 sm:h-10 sm:w-10"
+                    >
+                      <Minus size={17} strokeWidth={2.5} />
+                    </button>
+
+
+                    {/* CANTIDAD */}
+
+                    <div className="min-w-[55px] text-center">
+
+                      <p className="text-xl font-extrabold leading-none text-brandDark sm:text-2xl">
+                        {quantities[product.id] ?? 0}
+                      </p>
+
+                      <p className="mt-1 text-[9px] font-medium text-zinc-400">
+                        {product.unit}
+                        {(quantities[product.id] ?? 0) !== 1
+                          ? "es"
+                          : ""}
+                      </p>
+
+                    </div>
+
+
+                    {/* MÁS */}
+
+                    <button
+                      type="button"
+                      onClick={() => updateQuantity(product.id, 1)}
+                      className="flex h-9 w-9 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-primary/30 sm:h-10 sm:w-10"
+                    >
+                      <Plus size={17} strokeWidth={2.5} />
+                    </button>
+
+                  </div>
+
+                </div>
+
+
+                {/* PRECIO */}
+
+                <div className="mt-4 border-t border-zinc-100 pt-2">
+
+                  <div className="flex items-end justify-between gap-2">
+
+                    <div>
+
+                      <p className="text-[9px] font-bold uppercase tracking-wider text-zinc-400">
+                        Costo estimado
+                      </p>
+
+                      <p className="mt-1 text-lg font-extrabold text-brandDark sm:text-xl">
+                        $
+                        {getProductTotal(product.id).toLocaleString(
+                          "es-MX"
+                        )}
+                      </p>
+
+                    </div>
+
+                    <div className="mb-1 text-right">
+
+                      <p className="text-[9px] text-zinc-400">
+                        por {product.unit}
+                      </p>
+
+                      <p className="text-[11px] font-semibold text-zinc-500">
+                        $
+                        {product.unitPrice.toLocaleString("es-MX")}
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </Card>
+
+          );
+
+        })}
+
+      </div>
+
+    </section>
+  )}
+
+
+  {/* ========================================= */}
+  {/* 🥤 BEBIDAS SIN ALCOHOL */}
+  {/* ========================================= */}
+
+  {softDrinkProducts.length > 0 && (
+    <section className="mb-12">
+
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+        <div>
+
+          <div className="flex items-center gap-3">
+
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <GlassWater size={22} />
+            </div>
+
+            <div>
+
+              <p className="text-[10px] font-bold uppercase tracking-wider text-primary">
+                Categoría
+              </p>
+
+              <h2 className="text-2xl font-extrabold text-brandDark">
+                Bebidas sin alcohol
+              </h2>
+
+            </div>
+
+          </div>
+
+          <p className="mt-2 text-sm text-zinc-500">
+            Distribución recomendada entre las bebidas seleccionadas.
+          </p>
+
+        </div>
+
+
+        <div className="rounded-2xl bg-brandDark px-5 py-3 text-white shadow-lg">
+
+          <p className="text-[9px] font-bold uppercase tracking-wider text-white/40">
+            Total recomendado
+          </p>
+
+          <div className="mt-1 flex items-baseline gap-2">
+
+            <span className="text-3xl font-extrabold">
+              {totalRecommendedSoftDrinks}
+            </span>
+
+            <span className="text-xs font-semibold uppercase text-white/60">
+              paquetes
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+
+        {softDrinkProducts.map((product) => {
+
+          const Icon = getProductIcon(product.category);
+
+          return (
+
+            <Card
+              key={product.id}
+              className="group relative overflow-hidden rounded-lg border border-zinc-200 bg-white p-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+
+              <div className="relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br from-zinc-100 via-white to-primary/10 p-2 sm:h-36">
+
+                <div className="absolute -left-10 -top-10 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
+
+                <div className="absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-primary/20 blur-2xl" />
+
+                {product.image ? (
+
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="relative z-10 h-full max-w-full object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-2"
+                  />
+
+                ) : (
+
+                  <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-3xl bg-white text-primary shadow-lg">
+                    <Icon size={38} />
+                  </div>
+
+                )}
+
+                <div className="absolute bottom-5 h-3 w-24 rounded-[100%] bg-black/10 blur-md" />
+
+                <div className="absolute bottom-0 left-0 right-0 z-20 flex items-center justify-between rounded-md border border-white/40 bg-white/20 px-3 py-2 shadow-lg">
+
+                  <div>
+
+                    <p className="text-[8px] font-bold uppercase tracking-wider text-zinc-400">
+                      Recomendado
+                    </p>
+
+                    <p className="text-[10px] font-medium text-zinc-600">
+                      Para tu evento
+                    </p>
+
+                  </div>
+
+                  <div className="text-right">
+
+                    <p className="text-lg font-extrabold leading-none text-primary">
+                      {product.recommendedQuantity}
+                    </p>
+
+                    <p className="mt-0.5 text-[8px] font-bold uppercase text-primary/70">
+                      {product.unit}
+                      {product.recommendedQuantity !== 1 ? "es" : ""}
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div className="p-4 sm:p-3">
+
+                <div className="min-h-[48px]">
+
+                  <h3 className="truncate text-base font-extrabold text-brandDark sm:text-lg">
+                    {product.name}
+                  </h3>
+
+                  <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-zinc-500 sm:text-xs">
+                    {product.description}
+                  </p>
+
+                </div>
+
+
+                <div className="mt-4">
+
+                  <p className="mb-2 text-center text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+                    Ajusta tu cantidad
+                  </p>
+
+                  <div className="flex items-center justify-between rounded-2xl border border-zinc-100 bg-zinc-50">
+
+                    <button
+                      type="button"
+                      onClick={() => updateQuantity(product.id, -1)}
+                      disabled={(quantities[product.id] ?? 0) === 0}
+                      className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white text-brandDark shadow-sm transition-all hover:bg-primary hover:text-white disabled:cursor-not-allowed disabled:opacity-40 sm:h-10 sm:w-10"
+                    >
+                      <Minus size={17} strokeWidth={2.5} />
+                    </button>
+
+                    <div className="min-w-[55px] text-center">
+
+                      <p className="text-xl font-extrabold leading-none text-brandDark sm:text-2xl">
+                        {quantities[product.id] ?? 0}
+                      </p>
+
+                      <p className="mt-1 text-[9px] font-medium text-zinc-400">
+                        {product.unit}
+                        {(quantities[product.id] ?? 0) !== 1
+                          ? "es"
+                          : ""}
+                      </p>
+
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => updateQuantity(product.id, 1)}
+                      className="flex h-9 w-9 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-primary/30 sm:h-10 sm:w-10"
+                    >
+                      <Plus size={17} strokeWidth={2.5} />
+                    </button>
+
+                  </div>
+
+                </div>
+
+
+                <div className="mt-4 border-t border-zinc-100 pt-2">
+
+                  <div className="flex items-end justify-between gap-2">
+
+                    <div>
+
+                      <p className="text-[9px] font-bold uppercase tracking-wider text-zinc-400">
+                        Costo estimado
+                      </p>
+
+                      <p className="mt-1 text-lg font-extrabold text-brandDark sm:text-xl">
+                        $
+                        {getProductTotal(product.id).toLocaleString(
+                          "es-MX"
+                        )}
+                      </p>
+
+                    </div>
+
+                    <div className="mb-1 text-right">
+
+                      <p className="text-[9px] text-zinc-400">
+                        por {product.unit}
+                      </p>
+
+                      <p className="text-[11px] font-semibold text-zinc-500">
+                        $
+                        {product.unitPrice.toLocaleString("es-MX")}
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </Card>
+
+          );
+
+        })}
+
+      </div>
+
+    </section>
+  )}
+
+
+  {/* ========================================= */}
+  {/* 🧊 HIELO */}
+  {/* ========================================= */}
+
+  {iceProducts.length > 0 && (
+    <section className="mb-12">
+
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+        <div>
+
+          <div className="flex items-center gap-3">
+
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <Snowflake size={22} />
+            </div>
+
+            <div>
+
+              <p className="text-[10px] font-bold uppercase tracking-wider text-primary">
+                Categoría
+              </p>
+
+              <h2 className="text-2xl font-extrabold text-brandDark">
+                Hielo
+              </h2>
+
+            </div>
+
+          </div>
+
+          <p className="mt-2 text-sm text-zinc-500">
+            Cantidad recomendada para mantener las bebidas frías.
+          </p>
+
+        </div>
+
+
+        <div className="rounded-2xl bg-brandDark px-5 py-3 text-white shadow-lg">
+
+          <p className="text-[9px] font-bold uppercase tracking-wider text-white/40">
+            Total recomendado
+          </p>
+
+          <div className="mt-1 flex items-baseline gap-2">
+
+            <span className="text-3xl font-extrabold">
+              {totalRecommendedIce}
+            </span>
+
+            <span className="text-xs font-semibold uppercase text-white/60">
+              bolsas
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+
+        {iceProducts.map((product) => {
+
+          const Icon = getProductIcon(product.category);
+
+          return (
+
+            <Card
+              key={product.id}
+              className="group relative overflow-hidden rounded-lg border border-zinc-200 bg-white p-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+
+              <div className="relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br from-zinc-100 via-white to-primary/10 p-2 sm:h-36">
+
+                <div className="absolute -left-10 -top-10 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
+
+                <div className="absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-primary/20 blur-2xl" />
+
+                {product.image ? (
+
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="relative z-10 h-full max-w-full object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-2"
+                  />
+
+                ) : (
+
+                  <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-3xl bg-white text-primary shadow-lg">
+                    <Icon size={38} />
+                  </div>
+
+                )}
+
+                <div className="absolute bottom-5 h-3 w-24 rounded-[100%] bg-black/10 blur-md" />
+
+                <div className="absolute bottom-0 left-0 right-0 z-20 flex items-center justify-between rounded-md border border-white/40 bg-white/20 px-3 py-2 shadow-lg">
+
+                  <div>
+
+                    <p className="text-[8px] font-bold uppercase tracking-wider text-zinc-400">
+                      Recomendado
+                    </p>
+
+                    <p className="text-[10px] font-medium text-zinc-600">
+                      Para tu evento
+                    </p>
+
+                  </div>
+
+                  <div className="text-right">
+
+                    <p className="text-lg font-extrabold leading-none text-primary">
+                      {product.recommendedQuantity}
+                    </p>
+
+                    <p className="mt-0.5 text-[8px] font-bold uppercase text-primary/70">
+                      {product.unit}
+                      {product.recommendedQuantity !== 1 ? "es" : ""}
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div className="p-4 sm:p-3">
+
+                <div className="min-h-[48px]">
+
+                  <h3 className="truncate text-base font-extrabold text-brandDark sm:text-lg">
+                    {product.name}
+                  </h3>
+
+                  <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-zinc-500 sm:text-xs">
+                    {product.description}
+                  </p>
+
+                </div>
+
+
+                <div className="mt-4">
+
+                  <p className="mb-2 text-center text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+                    Ajusta tu cantidad
+                  </p>
+
+                  <div className="flex items-center justify-between rounded-2xl border border-zinc-100 bg-zinc-50">
+
+                    <button
+                      type="button"
+                      onClick={() => updateQuantity(product.id, -1)}
+                      disabled={(quantities[product.id] ?? 0) === 0}
+                      className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white text-brandDark shadow-sm transition-all hover:bg-primary hover:text-white disabled:cursor-not-allowed disabled:opacity-40 sm:h-10 sm:w-10"
+                    >
+                      <Minus size={17} strokeWidth={2.5} />
+                    </button>
+
+                    <div className="min-w-[55px] text-center">
+
+                      <p className="text-xl font-extrabold leading-none text-brandDark sm:text-2xl">
+                        {quantities[product.id] ?? 0}
+                      </p>
+
+                      <p className="mt-1 text-[9px] font-medium text-zinc-400">
+                        {product.unit}
+                        {(quantities[product.id] ?? 0) !== 1
+                          ? "es"
+                          : ""}
+                      </p>
+
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => updateQuantity(product.id, 1)}
+                      className="flex h-9 w-9 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-primary/30 sm:h-10 sm:w-10"
+                    >
+                      <Plus size={17} strokeWidth={2.5} />
+                    </button>
+
+                  </div>
+
+                </div>
+
+
+                <div className="mt-4 border-t border-zinc-100 pt-2">
+
+                  <div className="flex items-end justify-between gap-2">
+
+                    <div>
+
+                      <p className="text-[9px] font-bold uppercase tracking-wider text-zinc-400">
+                        Costo estimado
+                      </p>
+
+                      <p className="mt-1 text-lg font-extrabold text-brandDark sm:text-xl">
+                        $
+                        {getProductTotal(product.id).toLocaleString(
+                          "es-MX"
+                        )}
+                      </p>
+
+                    </div>
+
+                    <div className="mb-1 text-right">
+
+                      <p className="text-[9px] text-zinc-400">
+                        por {product.unit}
+                      </p>
+
+                      <p className="text-[11px] font-semibold text-zinc-500">
+                        ${product.unitPrice.toLocaleString("es-MX")}
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </Card>
+
+          );
+
+        })}
+
+      </div>
+
+    </section>
+  )}
+
+</div>
 
           {/* TOTAL */}
 

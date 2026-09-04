@@ -20,7 +20,7 @@ const HomePage = () => {
     <>
       {/* ================= HERO ================= */}
 
-      <section className="relative overflow-hidden bg-brandDark py-20 text-white lg:py-28">
+      <section className="relative overflow-hidden bg-brandDark py-20 text-white lg:py-12">
         {/* Decoraciones de fondo */}
         <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-primary/30 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
@@ -477,7 +477,7 @@ const HomePage = () => {
             <Link to="/crear-evento">
               <Button
                 variant="secondary"
-                className="mt-8 bg-white text-brandDark hover:bg-zinc-100"
+                className="mt-8 bg-white text-black hover:bg-zinc-100"
               >
                 🎉 Crear mi evento
                 <ArrowRight size={18} className="ml-2" />
