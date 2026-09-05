@@ -20,8 +20,8 @@ function EventTypeCard({
       type="button"
       onClick={onClick}
       className={`
-        group relative w-full overflow-hidden rounded-3xl
-        border p-4 text-left
+        group relative w-full overflow-hidden rounded-xl
+        border p-3 text-left
         transition-all duration-300
         active:scale-[0.98]
         sm:p-5
@@ -48,12 +48,12 @@ function EventTypeCard({
       <div className="relative">
     
         {/* PARTE SUPERIOR */}
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start justify-between gap-0">
     
           {/* ICONO */}
           <div
             className={`
-              flex h-8 w-8 shrink-0 items-center justify-center
+              flex h-10 w-10 shrink-0 items-center justify-center
               rounded-2xl transition-all duration-300
               sm:h-16 sm:w-16
               ${
@@ -64,7 +64,7 @@ function EventTypeCard({
             `}
           >
             <Icon
-              size={28}
+              size={24}
               strokeWidth={2}
               className="transition-transform duration-300 group-hover:scale-110"
             />
@@ -73,7 +73,7 @@ function EventTypeCard({
           {/* INDICADOR */}
           <div
             className={`
-              rounded-full px-2.5 py-1 text-[9px] font-bold uppercase
+              rounded-full px-1.5 py-1 text-[9px] font-bold uppercase
               tracking-wider transition-all duration-300
               ${
                 selected
@@ -88,24 +88,21 @@ function EventTypeCard({
         </div>
     
         {/* TEXTO */}
-        <div className="mt-5">
+        <div className="mt-3">
     
           <h3 className="text-lg font-extrabold tracking-tight text-brandDark sm:text-xl">
             {title}
           </h3>
     
-          <p className="mt-2 line-clamp-2 text-xs leading-5 text-zinc-500 sm:text-sm sm:leading-6">
-            {description}
-          </p>
     
         </div>
     
         {/* PIE */}
-        <div className="mt-1 flex items-center justify-between border-t border-zinc-100 pt-2">
+        <div className="flex items-center justify-between border-t border-zinc-100 pt-2">
     
           <span
             className={`
-              text-[10px] font-bold uppercase tracking-[0.16em]
+              text-[8px] font-bold uppercase tracking-[0.16em]
               ${
                 selected
                   ? "text-primary"
@@ -116,19 +113,7 @@ function EventTypeCard({
             Tipo de evento
           </span>
     
-          <span
-            className={`
-              flex h-8 w-8 items-center justify-center rounded-full
-              transition-all duration-300
-              ${
-                selected
-                  ? "bg-primary text-white"
-                  : "bg-zinc-100 text-zinc-400 group-hover:bg-zinc-900 group-hover:text-white"
-              }
-            `}
-          >
-            →
-          </span>
+          
     
         </div>
     
