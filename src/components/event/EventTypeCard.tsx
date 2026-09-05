@@ -53,7 +53,7 @@ function EventTypeCard({
           {/* ICONO */}
           <div
             className={`
-              flex h-14 w-14 shrink-0 items-center justify-center
+              flex h-8 w-8 shrink-0 items-center justify-center
               rounded-2xl transition-all duration-300
               sm:h-16 sm:w-16
               ${
