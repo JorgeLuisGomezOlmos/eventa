@@ -19,184 +19,459 @@ const HomePage = () => {
     <>
       {/* ================= HERO ================= */}
 
-      <section className="relative overflow-hidden bg-brandDark py-14 text-white sm:py-16 lg:py-20">
-        {/* Decoraciones de fondo */}
-        <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-primary/30 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
+      <section className="relative isolate overflow-hidden bg-brandDark text-white">
 
-        <Container className="relative z-10">
-          <div className="grid items-center gap-16 lg:grid-cols-2">
+  {/* ================================================== */}
+  {/* IMAGEN DEL HERO */}
+  {/* ================================================== */}
 
-            {/* TEXTO */}
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm">
-                <Sparkles size={16} className="text-primary-light" />
-                La forma más fácil de planear tu evento
+  <div className="absolute inset-0 lg:left-[%]">
+
+    <img
+      src="/images/hero-eventa.png"
+      alt="Personas disfrutando de un evento"
+      className="
+        h-full w-full object-cover
+        object-center
+        opacity-80
+        lg:opacity-100
+      "
+    />
+
+    {/* Degradado para integrar la imagen con el fondo */}
+
+    <div className="
+      absolute inset-0
+      bg-gradient-to-b
+      from-brandDark/70
+      via-brandDark/60
+      to-brandDark
+      lg:bg-gradient-to-r
+      lg:from-brandDark
+      lg:via-brandDark/80
+      lg:to-transparent
+    " />
+
+  </div>
+
+
+  {/* ================================================== */}
+  {/* BRILLOS DE FONDO */}
+  {/* ================================================== */}
+
+  <div className="pointer-events-none absolute -left-32 -top-32 h-80 w-80 rounded-full bg-primary/20 blur-3xl" />
+
+  <div className="pointer-events-none absolute -bottom-40 right-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+
+
+  {/* ================================================== */}
+  {/* CONTENIDO */}
+  {/* ================================================== */}
+
+  <Container className="relative z-10">
+
+    <div className="flex min-h-[720px] flex-col justify-center py-20 sm:py-24 lg:min-h-[760px] lg:py-24">
+
+      <div className="max-w-3xl lg:max-w-2xl">
+
+
+        {/* ================================================== */}
+        {/* BADGE */}
+        {/* ================================================== */}
+
+        <div className="
+          inline-flex
+          items-center
+          gap-2
+          rounded-full
+          border
+          border-white/15
+          bg-white/10
+          px-3.5
+          py-2
+          text-xs
+          font-medium
+          text-white/90
+          backdrop-blur-md
+          sm:px-4
+          sm:text-sm
+        ">
+
+          <Sparkles
+            size={15}
+            className="text-primary-light"
+          />
+
+          Planea tu evento de forma fácil
+
+        </div>
+
+
+        {/* ================================================== */}
+        {/* TÍTULO */}
+        {/* ================================================== */}
+
+        <h1 className="
+          mt-6
+          max-w-3xl
+          text-4xl
+          font-extrabold
+          leading-[0.98]
+          tracking-tight
+          sm:text-5xl
+          md:text-6xl
+          lg:text-7xl
+        ">
+
+          Organiza tu evento.
+
+          <span className="mt-1 block text-primary-light">
+            Nosotros lo hacemos fácil.
+          </span>
+
+        </h1>
+
+
+        {/* ================================================== */}
+        {/* DESCRIPCIÓN */}
+        {/* ================================================== */}
+
+        <p className="
+          mt-6
+          max-w-xl
+          text-base
+          leading-7
+          text-zinc-300
+          sm:text-lg
+          sm:leading-8
+        ">
+          Calcula las bebidas, productos y cantidades que
+          necesitas para tu evento y recibe una cotización
+          personalizada en minutos.
+        </p>
+
+
+        {/* ================================================== */}
+        {/* BOTONES */}
+        {/* ================================================== */}
+
+        <div className="
+          mt-8
+          flex
+          flex-col
+          gap-3
+          sm:flex-row
+          sm:items-center
+          sm:gap-4
+        ">
+
+          <Link
+            to="/crear-evento"
+            className="w-full sm:w-auto"
+          >
+
+            <Button
+              className="
+                group
+                w-full
+                px-7
+                py-3.5
+                sm:w-auto
+              "
+            >
+
+              Crear mi evento
+
+              <ArrowRight
+                size={18}
+                className="
+                  ml-2
+                  transition-transform
+                  duration-300
+                  group-hover:translate-x-1
+                "
+              />
+
+            </Button>
+
+          </Link>
+
+
+          <a
+            href="#como-funciona"
+            className="w-full sm:w-auto"
+          >
+
+            <Button
+              variant="outline"
+              className="
+                w-full
+                border-white/30
+                bg-white/5
+                text-white
+                backdrop-blur-sm
+                hover:bg-white
+                hover:text-brandDark
+                sm:w-auto
+              "
+            >
+              Cómo funciona
+            </Button>
+
+          </a>
+
+        </div>
+
+
+        {/* ================================================== */}
+        {/* MICRO MENSAJE */}
+        {/* ================================================== */}
+
+        <div className="
+          mt-5
+          flex
+          items-center
+          gap-2
+          text-xs
+          text-zinc-400
+          sm:text-sm
+        ">
+
+          <CheckCircle2
+            size={15}
+            className="shrink-0 text-green-400"
+          />
+
+          Cotización inicial en menos de 1 minuto
+
+        </div>
+
+
+        {/* ================================================== */}
+        {/* BENEFICIOS */}
+        {/* ================================================== */}
+
+        <div className="
+          mt-12
+          grid
+          grid-cols-2
+          gap-3
+          border-t
+          border-white/10
+          pt-6
+          sm:mt-14
+          sm:grid-cols-4
+          sm:gap-4
+          sm:pt-8
+        ">
+
+
+          {/* BENEFICIO 1 */}
+
+          <div className="
+            rounded-2xl
+            border
+            border-white/10
+            bg-white/[0.04]
+            p-3
+            backdrop-blur-sm
+            sm:border-0
+            sm:bg-transparent
+            sm:p-0
+          ">
+
+            <div className="flex items-center gap-2">
+
+              <div className="
+                flex h-9 w-9
+                shrink-0
+                items-center justify-center
+                rounded-xl
+                bg-primary
+                text-white
+              ">
+                <PartyPopper size={18} />
               </div>
 
-              <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                Organiza tu evento{" "}
-                <span className="text-primary-light">
-                  sin complicaciones.
-                </span>
-              </h1>
+              <div>
+                <p className="text-xs font-bold sm:text-sm">
+                  Fácil
+                </p>
 
-              <p className="mt-5 max-w-xl text-base leading-7 text-zinc-300 sm:mt-6 sm:text-lg">
-                Te ayudamos a calcular las bebidas y productos que necesitas
-                para que disfrutes tu evento sin preocuparte por cantidades,
-                logística o preparación.
-              </p>
-
-              {/* BOTONES */}
-              <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:gap-4">
-                <Link to="/crear-evento">
-                  <Button className="group w-full sm:w-auto">
-                    Crear mi evento
-                    <ArrowRight
-                      size={18}
-                      className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
-                    />
-                  </Button>
-                </Link>
-
-                <a href="#como-funciona">
-                  <Button
-                    variant="outline"
-                    className="w-full border-white text-white hover:bg-white hover:text-brandDark sm:w-auto"
-                  >
-                    Cómo funciona
-                  </Button>
-                </a>
+                <p className="mt-0.5 text-[10px] text-zinc-400 sm:text-xs">
+                  Planea sin complicarte
+                </p>
               </div>
 
-              {/* Estadísticas */}
-              <div className="mt-10 grid max-w-lg grid-cols-3 gap-3 border-t border-white/10 pt-6 sm:mt-12 sm:gap-6 sm:pt-8">
-                <div>
-                  <p className="text-2xl font-bold">🎉</p>
-                  <p className="mt-1 text-xs text-zinc-400 sm:text-sm">
-                    Planea fácil
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-2xl font-bold">🍺</p>
-                  <p className="mt-1 text-xs text-zinc-400 sm:text-sm">
-                    Todo calculado
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-2xl font-bold">🚚</p>
-                  <p className="mt-1 text-xs text-zinc-400 sm:text-sm">
-                    Sin complicarte
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* CARD VISUAL */}
-            <div className="relative">
-              <div className="rounded-3xl border border-white/10 bg-white p-4 text-brandDark shadow-2xl sm:p-6 md:p-8">
-
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-zinc-500">
-                      Tu próximo evento
-                    </p>
-
-                    <h2 className="mt-1 text-xl font-bold sm:text-2xl">
-                      🎉 Fiesta increíble
-                    </h2>
-                  </div>
-
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-white">
-                    <PartyPopper size={24} />
-                  </div>
-                </div>
-
-                <div className="mt-8 space-y-4">
-
-                  <div className="flex items-center justify-between rounded-2xl bg-zinc-100 p-4">
-                    <div className="flex min-w-0 items-center gap-3">
-                      <div className="shrink-0 rounded-xl bg-white p-2.5 shadow-sm sm:p-3">
-                        <Beer size={22} className="text-primary" />
-                      </div>
-
-                      <div>
-                        <p className="font-semibold">Bebidas</p>
-                        <p className="text-xs leading-relaxed text-zinc-500 sm:text-sm">
-                          Calculadas para tu evento
-                        </p>
-                      </div>
-                    </div>
-
-                    <CheckCircle2
-                      size={22}
-                      className="text-green-500"
-                    />
-                  </div>
-
-                  <div className="flex items-center justify-between rounded-2xl bg-zinc-100 p-4">
-                    <div className="flex items-center gap-3">
-                      <div className="rounded-xl bg-white p-3 shadow-sm">
-                        <Snowflake size={22} className="text-blue-500" />
-                      </div>
-
-                      <div>
-                        <p className="font-semibold">Hielo</p>
-                        <p className="text-xs leading-relaxed text-zinc-500 sm:text-sm">
-                          Cantidad recomendada
-                        </p>
-                      </div>
-                    </div>
-
-                    <CheckCircle2
-                      size={22}
-                      className="text-green-500"
-                    />
-                  </div>
-
-                  <div className="flex items-center justify-between rounded-2xl bg-zinc-100 p-4">
-                    <div className="flex items-center gap-3">
-                      <div className="rounded-xl bg-white p-3 shadow-sm">
-                        <Truck size={22} className="text-primary" />
-                      </div>
-
-                      <div>
-                        <p className="font-semibold">Entrega</p>
-                        <p className="text-xs leading-relaxed text-zinc-500 sm:text-sm">
-                          Directamente a tu evento
-                        </p>
-                      </div>
-                    </div>
-
-                    <CheckCircle2
-                      size={22}
-                      className="text-green-500"
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-6 rounded-2xl bg-brandDark p-5 text-white">
-                  <p className="text-sm text-zinc-400">
-                    Así de sencillo
-                  </p>
-
-                  <p className="mt-1 text-xl font-bold">
-                    Nosotros calculamos. Tú disfrutas. 🎉
-                  </p>
-                </div>
-              </div>
-
-              {/* Decoración flotante */}
-              <div className="absolute -right-5 -top-5 hidden rounded-2xl bg-primary p-4 text-white shadow-xl sm:block">
-                <Beer size={28} />
-              </div>
             </div>
 
           </div>
-        </Container>
-      </section>
+
+
+          {/* BENEFICIO 2 */}
+
+          <div className="
+            rounded-2xl
+            border
+            border-white/10
+            bg-white/[0.04]
+            p-3
+            backdrop-blur-sm
+            sm:border-0
+            sm:bg-transparent
+            sm:p-0
+          ">
+
+            <div className="flex items-center gap-2">
+
+              <div className="
+                flex h-9 w-9
+                shrink-0
+                items-center justify-center
+                rounded-xl
+                bg-white
+                text-primary
+              ">
+                <Beer size={18} />
+              </div>
+
+              <div>
+                <p className="text-xs font-bold sm:text-sm">
+                  Calculado
+                </p>
+
+                <p className="mt-0.5 text-[10px] text-zinc-400 sm:text-xs">
+                  Cantidades recomendadas
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          {/* BENEFICIO 3 */}
+
+          <div className="
+            rounded-2xl
+            border
+            border-white/10
+            bg-white/[0.04]
+            p-3
+            backdrop-blur-sm
+            sm:border-0
+            sm:bg-transparent
+            sm:p-0
+          ">
+
+            <div className="flex items-center gap-2">
+
+              <div className="
+                flex h-9 w-9
+                shrink-0
+                items-center justify-center
+                rounded-xl
+                bg-white
+                text-primary
+              ">
+                <Truck size={18} />
+              </div>
+
+              <div>
+                <p className="text-xs font-bold sm:text-sm">
+                  Entrega
+                </p>
+
+                <p className="mt-0.5 text-[10px] text-zinc-400 sm:text-xs">
+                  Directo a tu evento
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          {/* BENEFICIO 4 */}
+
+          <div className="
+            rounded-2xl
+            border
+            border-white/10
+            bg-white/[0.04]
+            p-3
+            backdrop-blur-sm
+            sm:border-0
+            sm:bg-transparent
+            sm:p-0
+          ">
+
+            <div className="flex items-center gap-2">
+
+              <div className="
+                flex h-9 w-9
+                shrink-0
+                items-center justify-center
+                rounded-xl
+                bg-white
+                text-primary
+              ">
+                <CheckCircle2 size={18} />
+              </div>
+
+              <div>
+                <p className="text-xs font-bold sm:text-sm">
+                  Seguro
+                </p>
+
+                <p className="mt-0.5 text-[10px] text-zinc-400 sm:text-xs">
+                  Todo bajo control
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </Container>
+
+
+  {/* ================================================== */}
+  {/* INDICADOR VISUAL DE IMAGEN EN DESKTOP */}
+  {/* ================================================== */}
+
+  <div className="
+    absolute
+    bottom-8
+    right-8
+    hidden
+    rounded-full
+    border
+    border-white/10
+    bg-black/30
+    px-4
+    py-2
+    text-xs
+    text-white/60
+    backdrop-blur-md
+    lg:flex
+    lg:items-center
+    lg:gap-2
+  ">
+
+    <span className="h-2 w-2 rounded-full bg-primary" />
+
+    Todo listo para tu evento
+
+  </div>
+
+</section>
 
       {/* ================= SERVICIOS ================= */}
 
