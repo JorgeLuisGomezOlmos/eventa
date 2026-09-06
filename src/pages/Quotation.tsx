@@ -210,7 +210,7 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
             {/* INFORMACIÓN DEL EVENTO */}
             {/* ========================= */}
 
-            <Card className="rounded-3xl">
+            <Card className="rounded-3xl p-6">
 
               {/* ========================= */}
               {/* HEADER */}
@@ -373,7 +373,7 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
             {/* PRODUCTOS */}
             {/* ========================= */}
 
-            <Card className="rounded-3xl">
+            <Card className="rounded-3xl p-6">
 
               <div className="flex items-center justify-between">
 
