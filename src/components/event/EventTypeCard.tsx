@@ -10,7 +10,7 @@ interface EventTypeCardProps {
 
 function EventTypeCard({
   title,
-  description,
+  // description,
   icon: Icon,
   selected,
   onClick,
