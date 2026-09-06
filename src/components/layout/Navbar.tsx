@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+
 import { Link, useLocation } from "react-router-dom";
 
 import {
   Menu,
   X,
-  PartyPopper,
   Home,
   CircleHelp,
   BriefcaseBusiness,
@@ -17,6 +17,7 @@ import Container from "./Container";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+
   const location = useLocation();
 
   const links = [
@@ -58,36 +59,67 @@ function Navbar() {
 
   return (
     <>
-      {/* ================= NAVBAR ================= */}
-      <header className="sticky top-0 z-50 border-b border-zinc-200/70 bg-white/80 backdrop-blur-xl">
+      {/* ================================================== */}
+      {/* NAVBAR */}
+      {/* ================================================== */}
+
+      <header
+        className="
+          absolute
+          left-0
+          right-0
+          top-0
+          z-50
+          bg-transparent
+        "
+      >
         <Container>
-          <nav className="flex h-20 items-center justify-between">
-            
+          <nav
+            className="
+              flex
+              h-[76px]
+              items-center
+              justify-between
+              sm:h-[82px]
+            "
+          >
+            {/* ================================================== */}
             {/* LOGO */}
+            {/* ================================================== */}
+
             <Link
               to="/"
               onClick={closeMenu}
-              className="group flex items-center gap-3"
+              className="
+                group
+                flex
+                shrink-0
+                items-center
+              "
             >
-              <div className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 transition duration-300 group-hover:-rotate-6 group-hover:scale-105">
-                <PartyPopper size={22} />
-
-                <div className="absolute inset-0 bg-white/10 opacity-0 transition group-hover:opacity-100" />
-              </div>
-
-              <div className="flex flex-col leading-none">
-                <span className="text-xl font-extrabold tracking-tight text-brandDark">
-                  EVENTA
-                </span>
-
-                <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
-                  Tu evento fácil
-                </span>
-              </div>
+              <img
+                src="/images/logo-six-gomez.png"
+                alt="SIX GÓMEZ"
+                className="
+                  h-10
+                  w-auto
+                  object-contain
+                  transition-all
+                  duration-300
+                  group-hover:scale-[1.03]
+                  sm:h-11
+                  md:h-12
+                "
+              />
             </Link>
 
-            {/* ================= DESKTOP MENU ================= */}
-            <div className="hidden items-center gap-2 md:flex">
+
+            {/* ================================================== */}
+            {/* MENU DESKTOP */}
+            {/* ================================================== */}
+
+            <div className="hidden items-center gap-1 md:flex">
+
               {links.map((link) => {
                 const active = isActive(link.path);
 
@@ -95,106 +127,323 @@ function Navbar() {
                   <a
                     key={link.name}
                     href={link.path}
-                    className={`relative rounded-xl px-4 py-2 text-sm font-semibold transition-all duration-300 ${
-                      active
-                        ? "bg-primary/10 text-primary"
-                        : "text-zinc-600 hover:bg-zinc-100 hover:text-brandDark"
-                    }`}
+                    className={`
+                      group
+                      relative
+                      rounded-xl
+                      px-4
+                      py-2.5
+                      text-sm
+                      font-semibold
+                      transition-all
+                      duration-300
+                      ${
+                        active
+                          ? "text-primary-light"
+                          : "text-white/75 hover:text-white"
+                      }
+                    `}
                   >
                     {link.name}
 
-                    {active && (
-                      <span className="absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-primary" />
-                    )}
+                    {/* Indicador */}
+
+                    <span
+                      className={`
+                        absolute
+                        -bottom-1
+                        left-1/2
+                        h-0.5
+                        -translate-x-1/2
+                        rounded-full
+                        bg-primary
+                        transition-all
+                        duration-300
+                        ${
+                          active
+                            ? "w-6 opacity-100"
+                            : "w-0 opacity-0 group-hover:w-4 group-hover:opacity-70"
+                        }
+                      `}
+                    />
                   </a>
                 );
               })}
 
-              <div className="ml-3">
-                <Link to="/crear-evento">
-                  <Button className="group">
-                    Crear evento
-
-                    <ArrowRight
-                      size={17}
-                      className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
-                    />
-                  </Button>
-                </Link>
-              </div>
             </div>
 
-            {/* ================= MOBILE BUTTON ================= */}
+
+            {/* ================================================== */}
+            {/* CTA DESKTOP */}
+            {/* ================================================== */}
+
+            <div className="hidden md:block">
+
+              <Link to="/crear-evento">
+
+                <Button
+                  className="
+                    group
+                    rounded-xl
+                    border
+                    border-primary/20
+                    px-5
+                    py-2.5
+                    shadow-lg
+                    shadow-primary/20
+                  "
+                >
+                  Crear evento
+
+                  <ArrowRight
+                    size={17}
+                    className="
+                      ml-2
+                      transition-transform
+                      duration-300
+                      group-hover:translate-x-1
+                    "
+                  />
+                </Button>
+
+              </Link>
+
+            </div>
+
+
+            {/* ================================================== */}
+            {/* BOTÓN MOBILE */}
+            {/* ================================================== */}
+
             <button
               type="button"
               onClick={() => setIsOpen(true)}
-              className="group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border border-zinc-200 bg-white text-brandDark shadow-sm transition-all duration-300 hover:border-primary/30 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/20 md:hidden"
+              className="
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+                rounded-xl
+                border
+                border-white/15
+                bg-black/20
+                text-white
+                shadow-lg
+                backdrop-blur-md
+                transition-all
+                duration-300
+                hover:border-primary/40
+                hover:bg-primary
+                md:hidden
+              "
               aria-label="Abrir menú"
             >
-              <Menu
-                size={24}
-                className="transition-transform duration-300 group-hover:scale-110"
-              />
+              <Menu size={23} />
             </button>
+
           </nav>
         </Container>
       </header>
 
-      {/* ================= MOBILE MENU ================= */}
 
-      {/* OVERLAY */}
+      {/* ================================================== */}
+      {/* OVERLAY MOBILE */}
+      {/* ================================================== */}
+
       <div
         onClick={closeMenu}
-        className={`fixed inset-0 z-[60] bg-brandDark/40 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
-          isOpen
-            ? "pointer-events-auto opacity-100"
-            : "pointer-events-none opacity-0"
-        }`}
+        className={`
+          fixed
+          inset-0
+          z-[60]
+          bg-black/60
+          backdrop-blur-sm
+          transition-all
+          duration-500
+          md:hidden
+          ${
+            isOpen
+              ? "pointer-events-auto opacity-100"
+              : "pointer-events-none opacity-0"
+          }
+        `}
       />
 
-      {/* SIDE PANEL */}
+
+      {/* ================================================== */}
+      {/* DRAWER MOBILE */}
+      {/* ================================================== */}
+
       <aside
-        className={`fixed right-0 top-0 z-[70] flex h-screen w-[85%] max-w-sm flex-col border-l border-white/20 bg-white/85 shadow-2xl backdrop-blur-2xl transition-transform duration-500 ease-out md:hidden ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`
+          fixed
+          right-0
+          top-0
+          z-[70]
+          flex
+          h-screen
+          w-[88%]
+          max-w-sm
+          flex-col
+          border-l
+          border-white/10
+          bg-brandDark
+          text-white
+          shadow-2xl
+          transition-transform
+          duration-500
+          ease-out
+          md:hidden
+          ${
+            isOpen
+              ? "translate-x-0"
+              : "translate-x-full"
+          }
+        `}
       >
-        {/* HEADER DEL PANEL */}
-        <div className="flex items-center justify-between border-b border-zinc-200/70 px-6 py-6">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/20">
-              <PartyPopper size={21} />
-            </div>
 
-            <div>
-              <h2 className="text-lg font-extrabold text-brandDark">
-                EVENTA
-              </h2>
+        {/* ================================================== */}
+        {/* HEADER */}
+        {/* ================================================== */}
 
-              <p className="text-xs text-zinc-500">
-                Organiza. Disfruta. Celebra.
-              </p>
-            </div>
-          </div>
+        <div
+          className="
+            flex
+            items-center
+            justify-between
+            border-b
+            border-white/10
+            px-5
+            py-5
+          "
+        >
+
+          <Link
+            to="/"
+            onClick={closeMenu}
+            className="flex items-center"
+          >
+            <img
+              src="/images/logo-six-gomez.png"
+              alt="SIX GÓMEZ"
+              className="h-10 w-auto object-contain"
+            />
+          </Link>
+
 
           <button
             type="button"
             onClick={closeMenu}
-            className="flex h-10 w-10 items-center justify-center rounded-xl text-zinc-500 transition-all duration-300 hover:rotate-90 hover:bg-zinc-100 hover:text-brandDark"
+            className="
+              flex
+              h-10
+              w-10
+              items-center
+              justify-center
+              rounded-xl
+              border
+              border-white/10
+              bg-white/5
+              text-white/60
+              transition-all
+              duration-300
+              hover:rotate-90
+              hover:bg-white/10
+              hover:text-white
+            "
             aria-label="Cerrar menú"
           >
-            <X size={23} />
+            <X size={21} />
           </button>
+
         </div>
 
+
+        {/* ================================================== */}
         {/* CONTENIDO */}
-        <div className="flex flex-1 flex-col justify-between px-5 py-8">
+        {/* ================================================== */}
+
+        <div
+          className="
+            flex
+            flex-1
+            flex-col
+            justify-between
+            overflow-y-auto
+            px-5
+            py-7
+          "
+        >
+
           <div>
-            <p className="mb-4 px-3 text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">
+
+            {/* TITULO */}
+
+            <div className="mb-7">
+
+              <div
+                className="
+                  inline-flex
+                  items-center
+                  gap-2
+                  rounded-full
+                  border
+                  border-primary/20
+                  bg-primary/10
+                  px-3
+                  py-1.5
+                  text-[10px]
+                  font-bold
+                  uppercase
+                  tracking-wider
+                  text-primary
+                "
+              >
+                <Sparkles size={12} />
+                Eventos fáciles
+              </div>
+
+              <h2
+                className="
+                  mt-4
+                  text-2xl
+                  font-extrabold
+                  tracking-tight
+                "
+              >
+                Organiza tu evento
+              </h2>
+
+              <p className="mt-2 text-sm leading-relaxed text-white/50">
+                Todo lo que necesitas para preparar tu
+                evento sin complicaciones.
+              </p>
+
+            </div>
+
+
+            {/* NAVEGACIÓN */}
+
+            <p
+              className="
+                mb-3
+                px-2
+                text-[10px]
+                font-bold
+                uppercase
+                tracking-[0.2em]
+                text-white/30
+              "
+            >
               Navegación
             </p>
 
+
             <div className="space-y-2">
+
               {links.map((link) => {
+
                 const Icon = link.icon;
                 const active = isActive(link.path);
 
@@ -203,64 +452,168 @@ function Navbar() {
                     key={link.name}
                     href={link.path}
                     onClick={closeMenu}
-                    className={`group flex items-center gap-4 rounded-2xl px-4 py-4 font-semibold transition-all duration-300 ${
-                      active
-                        ? "bg-primary text-white shadow-lg shadow-primary/20"
-                        : "text-zinc-600 hover:translate-x-1 hover:bg-zinc-100 hover:text-brandDark"
-                    }`}
-                  >
-                    <div
-                      className={`flex h-10 w-10 items-center justify-center rounded-xl transition ${
+                    className={`
+                      group
+                      flex
+                      items-center
+                      gap-4
+                      rounded-2xl
+                      border
+                      px-4
+                      py-4
+                      font-semibold
+                      transition-all
+                      duration-300
+                      ${
                         active
-                          ? "bg-white/15"
-                          : "bg-zinc-100 text-primary group-hover:bg-primary/10"
-                      }`}
+                          ? "border-primary/30 bg-primary text-white shadow-lg shadow-primary/20"
+                          : "border-white/5 bg-white/[0.03] text-white/70 hover:translate-x-1 hover:border-white/10 hover:bg-white/[0.06] hover:text-white"
+                      }
+                    `}
+                  >
+
+                    <div
+                      className={`
+                        flex
+                        h-10
+                        w-10
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-xl
+                        ${
+                          active
+                            ? "bg-white/15"
+                            : "bg-white/5 text-primary"
+                        }
+                      `}
                     >
-                      <Icon size={20} />
+                      <Icon size={19} />
                     </div>
 
-                    <span>{link.name}</span>
+                    <span>
+                      {link.name}
+                    </span>
 
-                    {active && (
-                      <Sparkles
-                        size={17}
-                        className="ml-auto"
-                      />
-                    )}
+                    <ArrowRight
+                      size={16}
+                      className={`
+                        ml-auto
+                        transition-all
+                        duration-300
+                        ${
+                          active
+                            ? "text-white"
+                            : "text-white/20 group-hover:translate-x-1 group-hover:text-primary"
+                        }
+                      `}
+                    />
+
                   </a>
                 );
               })}
+
             </div>
+
           </div>
 
-          {/* PARTE INFERIOR */}
-          <div>
-            <div className="mb-5 rounded-3xl border border-primary/10 bg-primary/5 p-5">
-              <p className="text-sm font-bold text-brandDark">
-                ¿Listo para celebrar? 🎉
-              </p>
 
-              <p className="mt-2 text-sm leading-relaxed text-zinc-500">
-                Cuéntanos sobre tu evento y recibe una recomendación personalizada.
-              </p>
+          {/* ================================================== */}
+          {/* CTA */}
+          {/* ================================================== */}
+
+          <div className="mt-8">
+
+            <div
+              className="
+                rounded-3xl
+                border
+                border-white/10
+                bg-white/[0.04]
+                p-5
+              "
+            >
+
+              <div className="flex items-center gap-3">
+
+                <div
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-primary
+                    text-white
+                    shadow-lg
+                    shadow-primary/20
+                  "
+                >
+                  <Sparkles size={18} />
+                </div>
+
+                <div>
+
+                  <p className="text-sm font-bold">
+                    ¿Listo para celebrar?
+                  </p>
+
+                  <p className="mt-0.5 text-xs text-white/40">
+                    Crea tu evento en minutos.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <Link
+                to="/crear-evento"
+                onClick={closeMenu}
+                className="mt-4 block"
+              >
+
+                <Button
+                  className="
+                    group
+                    w-full
+                    py-3.5
+                  "
+                >
+                  Crear mi evento
+
+                  <ArrowRight
+                    size={18}
+                    className="
+                      ml-2
+                      transition-transform
+                      duration-300
+                      group-hover:translate-x-1
+                    "
+                  />
+                </Button>
+
+              </Link>
+
             </div>
 
-            <Link to="/crear-evento" onClick={closeMenu}>
-              <Button className="group w-full py-4">
-                Crear mi evento
-
-                <ArrowRight
-                  size={18}
-                  className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
-                />
-              </Button>
-            </Link>
-
-            <p className="mt-6 text-center text-xs text-zinc-400">
-              EVENTA · Planea mejor tus eventos
+            <p
+              className="
+                mt-5
+                text-center
+                text-[10px]
+                text-white/25
+              "
+            >
+              SIX GÓMEZ · Eventos
             </p>
+
           </div>
+
         </div>
+
       </aside>
     </>
   );
