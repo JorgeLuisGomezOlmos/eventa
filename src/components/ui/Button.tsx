@@ -36,6 +36,10 @@ function Button({
         duration-300
         hover:-translate-y-0.5
         active:translate-y-0
+        disabled:cursor-not-allowed
+        disabled:opacity-50
+        disabled:hover:translate-y-0
+        disabled:hover:shadow-none
         ${variants[variant]}
         ${className}
       `}

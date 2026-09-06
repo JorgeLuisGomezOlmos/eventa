@@ -108,6 +108,32 @@ function CreateEvent() {
     }));
   };
 
+  const isCurrentStepValid = () => {
+    switch (currentStep) {
+      case 1:
+        return eventData.eventType !== "";
+  
+      case 2:
+        return eventData.guests > 0;
+  
+      case 3:
+        return (
+          eventData.date !== "" &&
+          eventData.duration > 0
+        );
+  
+      case 4:
+        return (
+          eventData.preferences.beer ||
+          eventData.preferences.softDrinks ||
+          eventData.preferences.ice
+        );
+  
+      default:
+        return false;
+    }
+  };
+
   return (
 
     <>
@@ -488,11 +514,14 @@ function CreateEvent() {
                 Anterior
               </Button>
 
-              <Button onClick={nextStep}>
+              <Button
+                onClick={nextStep}
+                disabled={!isCurrentStepValid()}
+              >
                 {currentStep === totalSteps
                   ? "Generar recomendación"
                   : "Continuar"}
-
+              
                 <ArrowRight size={18} className="ml-2" />
               </Button>
             </div>
