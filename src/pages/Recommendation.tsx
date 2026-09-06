@@ -418,7 +418,7 @@ const totalRecommendedIce = iceProducts.reduce(
     hover:-translate-y-1 hover:shadow-xl
   "
 >
-  <div className="flex flex-row gap-3 p-2 sm:flex-col sm:gap-0 sm:p-0">
+  <div className="flex flex-row gap-3 p-0.2 sm:flex-col sm:gap-0 sm:p-0">
 
     {/* ================================================== */}
     {/* IMAGEN */}
