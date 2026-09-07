@@ -8,6 +8,7 @@ import {
   Sparkles,
   Truck,
   CheckCircle2,
+  BadgePercent,
 } from "lucide-react";
 
 import Container from "../components/layout/Container";
@@ -475,7 +476,7 @@ const HomePage = () => {
 
       {/* ================= SERVICIOS ================= */}
 
-      <section id="servicios" className="py-16 sm:py-20 lg:py-28">
+      <section id="servicios" className="py-16 sm:py-20 lg:py-16">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
             <span className="font-semibold text-primary">
@@ -496,7 +497,7 @@ const HomePage = () => {
 
           <div className="mt-10 grid gap-4 sm:mt-12 sm:gap-5 md:grid-cols-3 lg:mt-14">
 
-            <Card className="group hover:-translate-y-2 hover:shadow-xl">
+            <Card className="group hover:-translate-y-2 hover:shadow-xl p-6">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                 <Beer size={28} />
               </div>
@@ -511,7 +512,24 @@ const HomePage = () => {
               </p>
             </Card>
 
-            <Card className="group hover:-translate-y-2 hover:shadow-xl">
+            <Card className="group p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-100 text-orange-500 transition-all duration-300 group-hover:scale-105">
+                <BadgePercent size={28} />
+              </div>
+
+              <h3 className="mt-6 text-xl font-bold text-brandDark">
+                Mejores precios y promociones
+              </h3>
+
+              <p className="mt-3 leading-relaxed text-zinc-600">
+                Encuentra precios competitivos y promociones especiales
+                para que tu evento rinda más.
+              </p>
+
+            </Card>
+
+            <Card className="group hover:-translate-y-2 hover:shadow-xl p-6">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-blue-500">
                 <Snowflake size={28} />
               </div>
@@ -526,20 +544,7 @@ const HomePage = () => {
               </p>
             </Card>
 
-            <Card className="group hover:-translate-y-2 hover:shadow-xl">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-100 text-orange-500">
-                <Truck size={28} />
-              </div>
-
-              <h3 className="mt-6 text-xl font-bold text-brandDark">
-                Entrega
-              </h3>
-
-              <p className="mt-3 leading-relaxed text-zinc-600">
-                Tu pedido puede llegar directamente al lugar donde realizarás
-                tu evento.
-              </p>
-            </Card>
+            
 
           </div>
         </Container>
@@ -549,7 +554,7 @@ const HomePage = () => {
 
       <section
         id="como-funciona"
-        className="bg-white py-20 lg:py-28"
+        className="bg-white py-20 lg:py-16"
       >
         <Container>
           <div className="mx-auto max-w-2xl text-center">
@@ -626,7 +631,7 @@ const HomePage = () => {
 
       {/* ================= BENEFICIOS ================= */}
 
-      <section className="py-20 lg:py-28">
+      <section className="py-20 lg:py-16">
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-2">
 
@@ -751,7 +756,7 @@ const HomePage = () => {
             <Link to="/crear-evento">
               <Button
                 variant="secondary"
-                className="mt-8 bg-white text-black hover:bg-zinc-100"
+                className="mt-8 bg-white text-slate-900 hover:bg-zinc-100"
               >
                 🎉 Crear mi evento
                 <ArrowRight size={18} className="ml-2" />

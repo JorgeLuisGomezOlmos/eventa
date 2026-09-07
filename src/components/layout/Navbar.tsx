@@ -94,8 +94,7 @@ function Navbar() {
                 group
                 flex
                 shrink-0
-                items-center
-              "
+                items-center"
             >
               <img
                 src="/images/logo-six-gomez.png"
