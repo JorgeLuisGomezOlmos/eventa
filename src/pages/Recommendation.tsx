@@ -7,7 +7,7 @@ import {
   GlassWater,
   ArrowRight,
   ArrowLeft,
-  Sparkles,
+  
   Users,
   Calendar,
   Clock,
