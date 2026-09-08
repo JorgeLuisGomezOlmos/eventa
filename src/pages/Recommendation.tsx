@@ -209,16 +209,13 @@ const totalRecommendedIce = iceProducts.reduce(
 );
 
   return (
-    <section className="min-h-screen bg-background py-10 lg:py-16">
+    <section className="min-h-screen bg-background py-24 lg:py-16">
       <Container>
         <div className="mx-auto max-w-5xl">
 
           {/* HEADER */}
 
           <div className="text-center">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-lg">
-              <Sparkles size={30} />
-            </div>
 
             <span className="mt-6 block font-semibold text-primary">
               TU RECOMENDACIÓN PERSONALIZADA
@@ -410,262 +407,262 @@ const totalRecommendedIce = iceProducts.reduce(
           return (
 
             <Card
-  key={product.id}
-  className="
-    group relative overflow-hidden rounded-xl
-    border border-zinc-200 bg-white p-1
-    shadow-sm transition-all duration-300
-    hover:-translate-y-1 hover:shadow-xl
-  "
->
-  <div className="flex flex-row gap-3 p-0.2 sm:flex-col sm:gap-0 sm:p-0">
-
-    {/* ================================================== */}
-    {/* IMAGEN */}
-    {/* ================================================== */}
-
-    <div
-      className="
-        relative flex h-32 w-32 shrink-0
-        items-center justify-center overflow-hidden
-        rounded-lg
-        bg-gradient-to-br from-zinc-100 via-white to-primary/10
-        p-2
-        sm:h-36 sm:w-auto sm:rounded-lg
-      "
-    >
-      {/* Decoración */}
-
-      <div className="absolute -left-10 -top-10 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
-
-      <div className="absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-primary/20 blur-2xl" />
-
-
-      {/* Imagen */}
-
-      {product.image ? (
-        <img
-          src={product.image}
-          alt={product.name}
-          className="
-            relative z-10
-            h-full max-w-full
-            object-contain
-            drop-shadow-2xl
-            transition-transform duration-500
-            group-hover:scale-110
-            group-hover:-rotate-2
-          "
-        />
-      ) : (
-        <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-primary shadow-lg">
-          <Icon size={32} />
-        </div>
-      )}
-
-
-      {/* Sombra */}
-
-      <div className="absolute bottom-4 h-2.5 w-20 rounded-[100%] bg-black/10 blur-md" />
-
-
-      {/* RECOMENDACIÓN */}
-
-      <div
-        className="
-          absolute bottom-0 left-0 right-0 z-20
-          flex items-center justify-between
-          rounded-md border border-white/40
-          bg-white/20 px-2 py-1.5
-        "
-      >
-        <div>
-
-          <p className="text-[7px] font-bold uppercase tracking-wider text-zinc-400">
-            Recomendado
-          </p>
-
-          <p className="text-[8px] font-medium text-zinc-600">
-            Para tu evento
-          </p>
-
-        </div>
-
-        <div className="text-right">
-
-          <p className="text-base font-extrabold leading-none text-primary">
-            {product.recommendedQuantity}
-          </p>
-
-          <p className="text-[7px] font-bold uppercase text-primary/70">
-            {product.unit === "cartón"
-              ? product.recommendedQuantity !== 1
-                ? "cartones"
-                : "cartón"
-              : product.recommendedQuantity !== 1
-                ? `${product.unit}s`
-                : product.unit}
-          </p>
-
-        </div>
-      </div>
-    </div>
-
-
-    {/* ================================================== */}
-    {/* CONTENIDO */}
-    {/* ================================================== */}
-
-    <div className="min-w-0 flex-1 p-1 sm:p-3">
-
-      {/* NOMBRE */}
-
-      <div className="min-h-0 sm:min-h-[48px]">
-
-        <h3 className="text-sm font-extrabold leading-tight text-brandDark sm:text-lg">
-          {product.name}
-        </h3>
-
-        <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-zinc-500 sm:text-xs">
-          {product.description}
-        </p>
-
-      </div>
-
-
-      {/* ================================================== */}
-      {/* SELECTOR */}
-      {/* ================================================== */}
-
-      <div className="mt-3 sm:mt-4">
-
-        <p className="mb-1.5 text-[8px] font-semibold uppercase tracking-wider text-zinc-400 sm:mb-2 sm:text-[10px]">
-          Ajusta tu cantidad
-        </p>
-
-
-        <div
-          className="
-            flex items-center justify-between
-            rounded-xl border border-zinc-100
-            bg-zinc-50 p-1
-            sm:rounded-2xl
-          "
-        >
-
-          {/* MENOS */}
-
-          <button
-            type="button"
-            onClick={() => updateQuantity(product.id, -1)}
-            disabled={(quantities[product.id] ?? 0) === 0}
-            className="
-              flex h-8 w-8 items-center justify-center
-              rounded-lg bg-white
-              text-brandDark shadow-sm
-              transition-all
-              hover:bg-primary hover:text-white
-              disabled:cursor-not-allowed
-              disabled:opacity-40
-              sm:h-10 sm:w-10 sm:rounded-2xl
-            "
-          >
-            <Minus size={15} strokeWidth={2.5} />
-          </button>
-
-
-          {/* CANTIDAD */}
-
-          <div className="min-w-[42px] text-center">
-
-            <p className="text-lg font-extrabold leading-none text-brandDark sm:text-2xl">
-              {quantities[product.id] ?? 0}
-            </p>
-
-            <p className="mt-1 text-[8px] font-medium text-zinc-400 sm:text-[9px]">
-              {product.unit === "cartón"
-                ? (quantities[product.id] ?? 0) !== 1
-                  ? "cartones"
-                  : "cartón"
-                : (quantities[product.id] ?? 0) !== 1
-                  ? `${product.unit}s`
-                  : product.unit}
-            </p>
-
-          </div>
-
-
-          {/* MÁS */}
-
-          <button
-            type="button"
-            onClick={() => updateQuantity(product.id, 1)}
-            className="
-              flex h-8 w-8 items-center justify-center
-              rounded-lg bg-primary
-              text-white shadow-lg
-              shadow-primary/20
-              transition-all
-              hover:scale-105
-              hover:shadow-primary/30
-              sm:h-10 sm:w-10 sm:rounded-2xl
-            "
-          >
-            <Plus size={15} strokeWidth={2.5} />
-          </button>
-
-        </div>
-
-      </div>
-
-
-      {/* ================================================== */}
-      {/* PRECIO */}
-      {/* ================================================== */}
-
-      <div className="mt-3 border-t border-zinc-100 pt-2 sm:mt-4 sm:pt-2">
-
-        <div className="flex items-end justify-between gap-2">
-
-          <div>
-
-            <p className="text-[8px] font-bold uppercase tracking-wider text-zinc-400 sm:text-[9px]">
-              Costo estimado
-            </p>
-
-            <p className="mt-1 text-base font-extrabold text-brandDark sm:text-xl">
-              $
-              {getProductTotal(product.id).toLocaleString(
-                "es-MX"
-              )}
-            </p>
-
-          </div>
-
-
-          <div className="mb-1 text-right">
-
-            <p className="text-[8px] text-zinc-400 sm:text-[9px]">
-              por {product.unit}
-            </p>
-
-            <p className="text-[10px] font-semibold text-zinc-500 sm:text-[11px]">
-              $
-              {product.unitPrice.toLocaleString(
-                "es-MX"
-              )}
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</Card>
+              key={product.id}
+              className="
+                group relative overflow-hidden rounded-xl
+                border border-zinc-200 bg-white p-1
+                shadow-sm transition-all duration-300
+                hover:-translate-y-1 hover:shadow-xl
+              "
+            >
+              <div className="flex flex-row gap-3 p-0.2 sm:flex-col sm:gap-0 sm:p-0">
+
+                {/* ================================================== */}
+                {/* IMAGEN */}
+                {/* ================================================== */}
+
+                <div
+                  className="
+                    relative flex h-32 w-32 shrink-0
+                    items-center justify-center overflow-hidden
+                    rounded-lg
+                    bg-gradient-to-br from-zinc-100 via-white to-primary/10
+                    p-2
+                    sm:h-36 sm:w-auto sm:rounded-lg
+                  "
+                >
+                  {/* Decoración */}
+
+                  <div className="absolute -left-10 -top-10 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
+
+                  <div className="absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-primary/20 blur-2xl" />
+
+
+                  {/* Imagen */}
+
+                  {product.image ? (
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="
+                        relative z-10
+                        h-full max-w-full
+                        object-contain
+                        drop-shadow-2xl
+                        transition-transform duration-500
+                        group-hover:scale-110
+                        group-hover:-rotate-2
+                      "
+                    />
+                  ) : (
+                    <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-primary shadow-lg">
+                      <Icon size={32} />
+                    </div>
+                  )}
+
+                
+                  {/* Sombra */}
+                
+                  <div className="absolute bottom-4 h-2.5 w-20 rounded-[100%] bg-black/10 blur-md" />
+                
+                
+                  {/* RECOMENDACIÓN */}
+                
+                  <div
+                    className="
+                      absolute bottom-0 left-0 right-0 z-20
+                      flex items-center justify-between
+                      rounded-md border border-white/40
+                      bg-white/20 px-2 py-1.5
+                    "
+                  >
+                    <div>
+                
+                      <p className="text-[7px] font-bold uppercase tracking-wider text-zinc-400">
+                        Recomendado
+                      </p>
+                
+                      <p className="text-[8px] font-medium text-zinc-600">
+                        Para tu evento
+                      </p>
+                
+                    </div>
+                
+                    <div className="text-right">
+                
+                      <p className="text-base font-extrabold leading-none text-primary">
+                        {product.recommendedQuantity}
+                      </p>
+                
+                      <p className="text-[7px] font-bold uppercase text-primary/70">
+                        {product.unit === "cartón"
+                          ? product.recommendedQuantity !== 1
+                            ? "cartones"
+                            : "cartón"
+                          : product.recommendedQuantity !== 1
+                            ? `${product.unit}s`
+                            : product.unit}
+                      </p>
+                        
+                    </div>
+                  </div>
+                </div>
+                        
+                        
+                {/* ================================================== */}
+                {/* CONTENIDO */}
+                {/* ================================================== */}
+                        
+                <div className="min-w-0 flex-1 p-1 sm:p-3">
+                        
+                  {/* NOMBRE */}
+                        
+                  <div className="min-h-0 sm:min-h-[48px]">
+                        
+                    <h3 className="text-sm font-extrabold leading-tight text-brandDark sm:text-lg">
+                      {product.name}
+                    </h3>
+                        
+                    <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-zinc-500 sm:text-xs">
+                      {product.description}
+                    </p>
+                        
+                  </div>
+                        
+                        
+                  {/* ================================================== */}
+                  {/* SELECTOR */}
+                  {/* ================================================== */}
+                        
+                  <div className="mt-3 sm:mt-4">
+                        
+                    <p className="mb-1.5 text-[8px] font-semibold uppercase tracking-wider text-zinc-400 sm:mb-2 sm:text-[10px]">
+                      Ajusta tu cantidad
+                    </p>
+                        
+                        
+                    <div
+                      className="
+                        flex items-center justify-between
+                        rounded-xl border border-zinc-100
+                        bg-zinc-50 p-1
+                        sm:rounded-2xl
+                      "
+                    >
+                    
+                      {/* MENOS */}
+                        
+                      <button
+                        type="button"
+                        onClick={() => updateQuantity(product.id, -1)}
+                        disabled={(quantities[product.id] ?? 0) === 0}
+                        className="
+                          flex h-8 w-8 items-center justify-center
+                          rounded-lg bg-white
+                          text-brandDark shadow-sm
+                          transition-all
+                          hover:bg-primary hover:text-white
+                          disabled:cursor-not-allowed
+                          disabled:opacity-40
+                          sm:h-10 sm:w-10 sm:rounded-2xl
+                        "
+                      >
+                        <Minus size={15} strokeWidth={2.5} />
+                      </button>
+                        
+                        
+                      {/* CANTIDAD */}
+                        
+                      <div className="min-w-[42px] text-center">
+                        
+                        <p className="text-lg font-extrabold leading-none text-brandDark sm:text-2xl">
+                          {quantities[product.id] ?? 0}
+                        </p>
+                        
+                        <p className="mt-1 text-[8px] font-medium text-zinc-400 sm:text-[9px]">
+                          {product.unit === "cartón"
+                            ? (quantities[product.id] ?? 0) !== 1
+                              ? "cartones"
+                              : "cartón"
+                            : (quantities[product.id] ?? 0) !== 1
+                              ? `${product.unit}s`
+                              : product.unit}
+                        </p>
+                          
+                      </div>
+                          
+                          
+                      {/* MÁS */}
+                          
+                      <button
+                        type="button"
+                        onClick={() => updateQuantity(product.id, 1)}
+                        className="
+                          flex h-8 w-8 items-center justify-center
+                          rounded-lg bg-primary
+                          text-white shadow-lg
+                          shadow-primary/20
+                          transition-all
+                          hover:scale-105
+                          hover:shadow-primary/30
+                          sm:h-10 sm:w-10 sm:rounded-2xl
+                        "
+                      >
+                        <Plus size={15} strokeWidth={2.5} />
+                      </button>
+                          
+                    </div>
+                          
+                  </div>
+                          
+                          
+                  {/* ================================================== */}
+                  {/* PRECIO */}
+                  {/* ================================================== */}
+                          
+                  <div className="mt-3 border-t border-zinc-100 pt-2 sm:mt-4 sm:pt-2">
+                          
+                    <div className="flex items-end justify-between gap-2">
+                          
+                      <div>
+                          
+                        <p className="text-[8px] font-bold uppercase tracking-wider text-zinc-400 sm:text-[9px]">
+                          Costo estimado
+                        </p>
+                          
+                        <p className="mt-1 text-base font-extrabold text-brandDark sm:text-xl">
+                          $
+                          {getProductTotal(product.id).toLocaleString(
+                            "es-MX"
+                          )}
+                        </p>
+                        
+                      </div>
+                        
+                        
+                      <div className="mb-1 text-right">
+                        
+                        <p className="text-[8px] text-zinc-400 sm:text-[9px]">
+                          por {product.unit}
+                        </p>
+                        
+                        <p className="text-[10px] font-semibold text-zinc-500 sm:text-[11px]">
+                          $
+                          {product.unitPrice.toLocaleString(
+                            "es-MX"
+                          )}
+                        </p>
+                        
+                      </div>
+                        
+                    </div>
+                        
+                  </div>
+                        
+                </div>
+                        
+              </div>
+            </Card>
 
           );
 
@@ -747,263 +744,263 @@ const totalRecommendedIce = iceProducts.reduce(
           return (
 
             <Card
-  key={product.id}
-  className="
-    group relative overflow-hidden rounded-lg
-    border border-zinc-200 bg-white p-1
-    shadow-sm transition-all duration-300
-    hover:-translate-y-1 hover:shadow-xl
-  "
->
-  <div className="flex flex-row gap-3 sm:flex-col sm:gap-0 sm:p-0">
-
-    {/* ================================================== */}
-    {/* IMAGEN */}
-    {/* ================================================== */}
-
-    <div
-      className="
-        relative flex h-32 w-32 shrink-0
-        items-center justify-center overflow-hidden
-        rounded-lg
-        bg-gradient-to-br from-zinc-100 via-white to-primary/10
-        p-2
-        sm:h-36 sm:w-auto
-      "
-    >
-      {/* Decoración */}
-
-      <div className="absolute -left-10 -top-10 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
-
-      <div className="absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-primary/20 blur-2xl" />
-
-
-      {/* Imagen */}
-
-      {product.image ? (
-        <img
-          src={product.image}
-          alt={product.name}
-          className="
-            relative z-10
-            h-full max-w-full
-            object-contain
-            drop-shadow-2xl
-            transition-transform duration-500
-            group-hover:scale-110
-            group-hover:-rotate-2
-          "
-        />
-      ) : (
-        <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-primary shadow-lg">
-          <Icon size={32} />
-        </div>
-      )}
-
-
-      {/* Sombra */}
-
-      <div className="absolute bottom-4 h-2.5 w-20 rounded-[100%] bg-black/10 blur-md" />
-
-
-      {/* ================================================== */}
-      {/* RECOMENDACIÓN */}
-      {/* ================================================== */}
-
-      <div
-        className="
-          absolute bottom-0 left-0 right-0 z-20
-          flex items-center justify-between
-          rounded-md border border-white/40
-          bg-white/20 px-2 py-1.5
-        "
-      >
-        <div>
-
-          <p className="text-[7px] font-bold uppercase tracking-wider text-zinc-400">
-            Recomendado
-          </p>
-
-          <p className="text-[8px] font-medium text-zinc-600">
-            Para tu evento
-          </p>
-
-        </div>
-
-        <div className="text-right">
-
-          <p className="text-base font-extrabold leading-none text-primary">
-            {product.recommendedQuantity}
-          </p>
-
-          <p className="text-[7px] font-bold uppercase text-primary/70">
-            {product.unit === "cartón"
-              ? product.recommendedQuantity !== 1
-                ? "cartones"
-                : "cartón"
-              : product.recommendedQuantity !== 1
-                ? `${product.unit}s`
-                : product.unit}
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    {/* ================================================== */}
-    {/* CONTENIDO */}
-    {/* ================================================== */}
-
-    <div className="min-w-0 flex-1 p-1 sm:p-3">
-
-      {/* NOMBRE */}
-
-      <div className="min-h-0 sm:min-h-[48px]">
-
-        <h3 className="text-sm font-extrabold leading-tight text-brandDark sm:text-lg">
-          {product.name}
-        </h3>
-
-        <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-zinc-500 sm:text-xs">
-          {product.description}
-        </p>
-
-      </div>
-
-
-      {/* ================================================== */}
-      {/* SELECTOR DE CANTIDAD */}
-      {/* ================================================== */}
-
-      <div className="mt-3 sm:mt-4">
-
-        <p className="mb-1.5 text-[8px] font-semibold uppercase tracking-wider text-zinc-400 sm:mb-2 sm:text-[10px]">
-          Ajusta tu cantidad
-        </p>
-
-        <div
-          className="
-            flex items-center justify-between
-            rounded-xl border border-zinc-100
-            bg-zinc-50 p-1
-            sm:rounded-2xl
-          "
-        >
-
-          {/* MENOS */}
-
-          <button
-            type="button"
-            onClick={() => updateQuantity(product.id, -1)}
-            disabled={(quantities[product.id] ?? 0) === 0}
-            className="
-              flex h-8 w-8 items-center justify-center
-              rounded-lg bg-white text-brandDark
-              shadow-sm transition-all
-              hover:bg-primary hover:text-white
-              disabled:cursor-not-allowed
-              disabled:opacity-40
-              sm:h-10 sm:w-10 sm:rounded-2xl
-            "
-          >
-            <Minus size={15} strokeWidth={2.5} />
-          </button>
-
-
-          {/* CANTIDAD */}
-
-          <div className="min-w-[42px] text-center">
-
-            <p className="text-lg font-extrabold leading-none text-brandDark sm:text-2xl">
-              {quantities[product.id] ?? 0}
-            </p>
-
-            <p className="mt-1 text-[8px] font-medium text-zinc-400 sm:text-[9px]">
-              {product.unit === "cartón"
-                ? (quantities[product.id] ?? 0) !== 1
-                  ? "cartones"
-                  : "cartón"
-                : (quantities[product.id] ?? 0) !== 1
-                  ? `${product.unit}s`
-                  : product.unit}
-            </p>
-
-          </div>
-
-
-          {/* MÁS */}
-
-          <button
-            type="button"
-            onClick={() => updateQuantity(product.id, 1)}
-            className="
-              flex h-8 w-8 items-center justify-center
-              rounded-lg bg-primary text-white
-              shadow-lg shadow-primary/20
-              transition-all
-              hover:scale-105
-              hover:shadow-primary/30
-              sm:h-10 sm:w-10 sm:rounded-2xl
-            "
-          >
-            <Plus size={15} strokeWidth={2.5} />
-          </button>
-
-        </div>
-
-      </div>
-
-
-      {/* ================================================== */}
-      {/* PRECIO */}
-      {/* ================================================== */}
-
-      <div className="mt-3 border-t border-zinc-100 pt-2 sm:mt-4">
-
-        <div className="flex items-end justify-between gap-2">
-
-          <div>
-
-            <p className="text-[8px] font-bold uppercase tracking-wider text-zinc-400 sm:text-[9px]">
-              Costo estimado
-            </p>
-
-            <p className="mt-1 text-base font-extrabold text-brandDark sm:text-xl">
-              $
-              {getProductTotal(product.id).toLocaleString(
-                "es-MX"
-              )}
-            </p>
-
-          </div>
-
-
-          <div className="mb-1 text-right">
-
-            <p className="text-[8px] text-zinc-400 sm:text-[9px]">
-              por {product.unit}
-            </p>
-
-            <p className="text-[10px] font-semibold text-zinc-500 sm:text-[11px]">
-              $
-              {product.unitPrice.toLocaleString(
-                "es-MX"
-              )}
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</Card>
+              key={product.id}
+              className="
+                group relative overflow-hidden rounded-lg
+                border border-zinc-200 bg-white p-1
+                shadow-sm transition-all duration-300
+                hover:-translate-y-1 hover:shadow-xl
+              "
+            >
+              <div className="flex flex-row gap-3 sm:flex-col sm:gap-0 sm:p-0">
+
+                {/* ================================================== */}
+                {/* IMAGEN */}
+                {/* ================================================== */}
+
+                <div
+                  className="
+                    relative flex h-32 w-32 shrink-0
+                    items-center justify-center overflow-hidden
+                    rounded-lg
+                    bg-gradient-to-br from-zinc-100 via-white to-primary/10
+                    p-2
+                    sm:h-36 sm:w-auto
+                  "
+                >
+                  {/* Decoración */}
+
+                  <div className="absolute -left-10 -top-10 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
+
+                  <div className="absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-primary/20 blur-2xl" />
+
+
+                  {/* Imagen */}
+
+                  {product.image ? (
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="
+                        relative z-10
+                        h-full max-w-full
+                        object-contain
+                        drop-shadow-2xl
+                        transition-transform duration-500
+                        group-hover:scale-110
+                        group-hover:-rotate-2
+                      "
+                    />
+                  ) : (
+                    <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-primary shadow-lg">
+                      <Icon size={32} />
+                    </div>
+                  )}
+
+                
+                  {/* Sombra */}
+                
+                  <div className="absolute bottom-4 h-2.5 w-20 rounded-[100%] bg-black/10 blur-md" />
+                
+                
+                  {/* ================================================== */}
+                  {/* RECOMENDACIÓN */}
+                  {/* ================================================== */}
+                
+                  <div
+                    className="
+                      absolute bottom-0 left-0 right-0 z-20
+                      flex items-center justify-between
+                      rounded-md border border-white/40
+                      bg-white/20 px-2 py-1.5
+                    "
+                  >
+                    <div>
+                
+                      <p className="text-[7px] font-bold uppercase tracking-wider text-zinc-400">
+                        Recomendado
+                      </p>
+                
+                      <p className="text-[8px] font-medium text-zinc-600">
+                        Para tu evento
+                      </p>
+                
+                    </div>
+                
+                    <div className="text-right">
+                
+                      <p className="text-base font-extrabold leading-none text-primary">
+                        {product.recommendedQuantity}
+                      </p>
+                
+                      <p className="text-[7px] font-bold uppercase text-primary/70">
+                        {product.unit === "cartón"
+                          ? product.recommendedQuantity !== 1
+                            ? "cartones"
+                            : "cartón"
+                          : product.recommendedQuantity !== 1
+                            ? `${product.unit}s`
+                            : product.unit}
+                      </p>
+                        
+                    </div>
+                        
+                  </div>
+                        
+                </div>
+                        
+                        
+                {/* ================================================== */}
+                {/* CONTENIDO */}
+                {/* ================================================== */}
+                        
+                <div className="min-w-0 flex-1 p-1 sm:p-3">
+                        
+                  {/* NOMBRE */}
+                        
+                  <div className="min-h-0 sm:min-h-[48px]">
+                        
+                    <h3 className="text-sm font-extrabold leading-tight text-brandDark sm:text-lg">
+                      {product.name}
+                    </h3>
+                        
+                    <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-zinc-500 sm:text-xs">
+                      {product.description}
+                    </p>
+                        
+                  </div>
+                        
+                        
+                  {/* ================================================== */}
+                  {/* SELECTOR DE CANTIDAD */}
+                  {/* ================================================== */}
+                        
+                  <div className="mt-3 sm:mt-4">
+                        
+                    <p className="mb-1.5 text-[8px] font-semibold uppercase tracking-wider text-zinc-400 sm:mb-2 sm:text-[10px]">
+                      Ajusta tu cantidad
+                    </p>
+                        
+                    <div
+                      className="
+                        flex items-center justify-between
+                        rounded-xl border border-zinc-100
+                        bg-zinc-50 p-1
+                        sm:rounded-2xl
+                      "
+                    >
+                    
+                      {/* MENOS */}
+                        
+                      <button
+                        type="button"
+                        onClick={() => updateQuantity(product.id, -1)}
+                        disabled={(quantities[product.id] ?? 0) === 0}
+                        className="
+                          flex h-8 w-8 items-center justify-center
+                          rounded-lg bg-white text-brandDark
+                          shadow-sm transition-all
+                          hover:bg-primary hover:text-white
+                          disabled:cursor-not-allowed
+                          disabled:opacity-40
+                          sm:h-10 sm:w-10 sm:rounded-2xl
+                        "
+                      >
+                        <Minus size={15} strokeWidth={2.5} />
+                      </button>
+                        
+                        
+                      {/* CANTIDAD */}
+                        
+                      <div className="min-w-[42px] text-center">
+                        
+                        <p className="text-lg font-extrabold leading-none text-brandDark sm:text-2xl">
+                          {quantities[product.id] ?? 0}
+                        </p>
+                        
+                        <p className="mt-1 text-[8px] font-medium text-zinc-400 sm:text-[9px]">
+                          {product.unit === "cartón"
+                            ? (quantities[product.id] ?? 0) !== 1
+                              ? "cartones"
+                              : "cartón"
+                            : (quantities[product.id] ?? 0) !== 1
+                              ? `${product.unit}s`
+                              : product.unit}
+                        </p>
+                          
+                      </div>
+                          
+                          
+                      {/* MÁS */}
+                          
+                      <button
+                        type="button"
+                        onClick={() => updateQuantity(product.id, 1)}
+                        className="
+                          flex h-8 w-8 items-center justify-center
+                          rounded-lg bg-primary text-white
+                          shadow-lg shadow-primary/20
+                          transition-all
+                          hover:scale-105
+                          hover:shadow-primary/30
+                          sm:h-10 sm:w-10 sm:rounded-2xl
+                        "
+                      >
+                        <Plus size={15} strokeWidth={2.5} />
+                      </button>
+                          
+                    </div>
+                          
+                  </div>
+                          
+                          
+                  {/* ================================================== */}
+                  {/* PRECIO */}
+                  {/* ================================================== */}
+                          
+                  <div className="mt-3 border-t border-zinc-100 pt-2 sm:mt-4">
+                          
+                    <div className="flex items-end justify-between gap-2">
+                          
+                      <div>
+                          
+                        <p className="text-[8px] font-bold uppercase tracking-wider text-zinc-400 sm:text-[9px]">
+                          Costo estimado
+                        </p>
+                          
+                        <p className="mt-1 text-base font-extrabold text-brandDark sm:text-xl">
+                          $
+                          {getProductTotal(product.id).toLocaleString(
+                            "es-MX"
+                          )}
+                        </p>
+                        
+                      </div>
+                        
+                        
+                      <div className="mb-1 text-right">
+                        
+                        <p className="text-[8px] text-zinc-400 sm:text-[9px]">
+                          por {product.unit}
+                        </p>
+                        
+                        <p className="text-[10px] font-semibold text-zinc-500 sm:text-[11px]">
+                          $
+                          {product.unitPrice.toLocaleString(
+                            "es-MX"
+                          )}
+                        </p>
+                        
+                      </div>
+                        
+                    </div>
+                        
+                  </div>
+                        
+                </div>
+                        
+              </div>
+            </Card>
 
           );
 
@@ -1076,7 +1073,7 @@ const totalRecommendedIce = iceProducts.reduce(
       </div>
 
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-4">
 
         {iceProducts.map((product) => {
 
@@ -1086,162 +1083,316 @@ const totalRecommendedIce = iceProducts.reduce(
 
             <Card
               key={product.id}
-              className="group relative overflow-hidden rounded-lg border border-zinc-200 bg-white p-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              className="
+                group relative overflow-hidden rounded-lg
+                border border-zinc-200 bg-white p-1
+                shadow-sm transition-all duration-300
+                hover:-translate-y-1 hover:shadow-xl
+              "
             >
+              <div className="flex flex-row gap-3 sm:flex-col sm:gap-0 sm:p-0">
 
-              <div className="relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br from-zinc-100 via-white to-primary/10 p-2 sm:h-36">
+                {/* ================================================== */}
+                {/* IMAGEN */}
+                {/* ================================================== */}
 
-                <div className="absolute -left-10 -top-10 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
+                <div
+                  className="
+                    relative flex h-32 w-32 shrink-0
+                    items-center justify-center overflow-hidden
+                    rounded-lg
+                    bg-gradient-to-br from-zinc-100 via-white to-primary/10
+                    p-2
+                    sm:h-36 sm:w-auto
+                  "
+                >
+                
+                  {/* Decoración */}
 
-                <div className="absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-primary/20 blur-2xl" />
+                  <div className="absolute -left-10 -top-10 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
 
-                {product.image ? (
-
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="relative z-10 h-full max-w-full object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-2"
-                  />
-
-                ) : (
-
-                  <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-3xl bg-white text-primary shadow-lg">
-                    <Icon size={38} />
-                  </div>
-
-                )}
-
-                <div className="absolute bottom-5 h-3 w-24 rounded-[100%] bg-black/10 blur-md" />
-
-                <div className="absolute bottom-0 left-0 right-0 z-20 flex items-center justify-between rounded-md border border-white/40 bg-white/20 px-3 py-2 shadow-lg">
-
-                  <div>
-
-                    <p className="text-[8px] font-bold uppercase tracking-wider text-zinc-400">
-                      Recomendado
-                    </p>
-
-                    <p className="text-[10px] font-medium text-zinc-600">
-                      Para tu evento
-                    </p>
-
-                  </div>
-
-                  <div className="text-right">
-
-                    <p className="text-lg font-extrabold leading-none text-primary">
-                      {product.recommendedQuantity}
-                    </p>
-
-                    <p className="mt-0.5 text-[8px] font-bold uppercase text-primary/70">
-                      {product.unit}
-                      {product.recommendedQuantity !== 1 ? "es" : ""}
-                    </p>
-
-                  </div>
-
-                </div>
-
-              </div>
+                  <div className="absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-primary/20 blur-2xl" />
 
 
-              <div className="p-4 sm:p-3">
+                  {/* Imagen */}
 
-                <div className="min-h-[48px]">
-
-                  <h3 className="truncate text-base font-extrabold text-brandDark sm:text-lg">
-                    {product.name}
-                  </h3>
-
-                  <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-zinc-500 sm:text-xs">
-                    {product.description}
-                  </p>
-
-                </div>
-
-
-                <div className="mt-4">
-
-                  <p className="mb-2 text-center text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
-                    Ajusta tu cantidad
-                  </p>
-
-                  <div className="flex items-center justify-between rounded-2xl border border-zinc-100 bg-zinc-50">
-
-                    <button
-                      type="button"
-                      onClick={() => updateQuantity(product.id, -1)}
-                      disabled={(quantities[product.id] ?? 0) === 0}
-                      className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white text-brandDark shadow-sm transition-all hover:bg-primary hover:text-white disabled:cursor-not-allowed disabled:opacity-40 sm:h-10 sm:w-10"
-                    >
-                      <Minus size={17} strokeWidth={2.5} />
-                    </button>
-
-                    <div className="min-w-[55px] text-center">
-
-                      <p className="text-xl font-extrabold leading-none text-brandDark sm:text-2xl">
-                        {quantities[product.id] ?? 0}
-                      </p>
-
-                      <p className="mt-1 text-[9px] font-medium text-zinc-400">
-                        {product.unit}
-                        {(quantities[product.id] ?? 0) !== 1
-                          ? "es"
-                          : ""}
-                      </p>
-
+                  {product.image ? (
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="
+                        relative z-10
+                        h-full max-w-full
+                        object-contain
+                        drop-shadow-2xl
+                        transition-transform duration-500
+                        group-hover:scale-110
+                        group-hover:-rotate-2
+                      "
+                    />
+                  ) : (
+                    <div className="
+                      relative z-10
+                      flex h-16 w-16
+                      items-center justify-center
+                      rounded-2xl
+                      bg-white
+                      text-primary
+                      shadow-lg
+                    ">
+                      <Icon size={32} />
                     </div>
+                  )}
 
-                    <button
-                      type="button"
-                      onClick={() => updateQuantity(product.id, 1)}
-                      className="flex h-9 w-9 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-primary/30 sm:h-10 sm:w-10"
-                    >
-                      <Plus size={17} strokeWidth={2.5} />
-                    </button>
-
-                  </div>
-
-                </div>
-
-
-                <div className="mt-4 border-t border-zinc-100 pt-2">
-
-                  <div className="flex items-end justify-between gap-2">
-
+                
+                  {/* Sombra */}
+                
+                  <div className="absolute bottom-4 h-2.5 w-20 rounded-[100%] bg-black/10 blur-md" />
+                
+                
+                  {/* ================================================== */}
+                  {/* RECOMENDACIÓN */}
+                  {/* ================================================== */}
+                
+                  <div
+                    className="
+                      absolute bottom-0 left-0 right-0 z-20
+                      flex items-center justify-between
+                      rounded-md border border-white/40
+                      bg-white/20 px-2 py-1.5
+                    "
+                  >
+                  
                     <div>
-
-                      <p className="text-[9px] font-bold uppercase tracking-wider text-zinc-400">
-                        Costo estimado
+                
+                      <p className="text-[7px] font-bold uppercase tracking-wider text-zinc-400">
+                        Recomendado
                       </p>
-
-                      <p className="mt-1 text-lg font-extrabold text-brandDark sm:text-xl">
-                        $
-                        {getProductTotal(product.id).toLocaleString(
-                          "es-MX"
-                        )}
+                
+                      <p className="text-[8px] font-medium text-zinc-600">
+                        Para tu evento
                       </p>
-
+                
                     </div>
-
-                    <div className="mb-1 text-right">
-
-                      <p className="text-[9px] text-zinc-400">
-                        por {product.unit}
+                
+                
+                    <div className="text-right">
+                
+                      <p className="text-base font-extrabold leading-none text-primary">
+                        {product.recommendedQuantity}
                       </p>
-
-                      <p className="text-[11px] font-semibold text-zinc-500">
-                        ${product.unitPrice.toLocaleString("es-MX")}
+                
+                      <p className="text-[7px] font-bold uppercase text-primary/70">
+                        {product.unit === "cartón"
+                          ? product.recommendedQuantity !== 1
+                            ? "cartones"
+                            : "cartón"
+                          : product.recommendedQuantity !== 1
+                            ? `${product.unit}s`
+                            : product.unit}
                       </p>
-
+                        
                     </div>
-
+                        
                   </div>
-
+                        
                 </div>
+                        
+                        
+                {/* ================================================== */}
+                {/* CONTENIDO */}
+                {/* ================================================== */}
+                        
+                <div className="min-w-0 flex-1 p-1 sm:p-3">
+                        
+                  {/* ================================================== */}
+                  {/* NOMBRE */}
+                  {/* ================================================== */}
+                        
+                  <div className="min-h-0 sm:min-h-[48px]">
+                        
+                    <h3 className="text-sm font-extrabold leading-tight text-brandDark sm:text-lg">
+                      {product.name}
+                    </h3>
+                        
+                    <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-zinc-500 sm:text-xs">
+                      {product.description}
+                    </p>
+                        
+                  </div>
+                        
+                        
+                  {/* ================================================== */}
+                  {/* SELECTOR */}
+                  {/* ================================================== */}
+                        
+                  <div className="mt-3 sm:mt-4">
+                        
+                    <p className="
+                      mb-1.5
+                      text-[8px]
+                      font-semibold
+                      uppercase
+                      tracking-wider
+                      text-zinc-400
+                      sm:mb-2
+                      sm:text-[10px]
+                    ">
+                      Ajusta tu cantidad
+                    </p>
+                        
+                        
+                    <div className="
+                      flex items-center justify-between
+                      rounded-xl
+                      border border-zinc-100
+                      bg-zinc-50
+                      p-1
+                      sm:rounded-2xl
+                    ">
+                    
+                      {/* MENOS */}
+                        
+                      <button
+                        type="button"
+                        onClick={() => updateQuantity(product.id, -1)}
+                        disabled={(quantities[product.id] ?? 0) === 0}
+                        className="
+                          flex h-8 w-8
+                          items-center justify-center
+                          rounded-lg
+                          bg-white
+                          text-brandDark
+                          shadow-sm
+                          transition-all
+                          hover:bg-primary
+                          hover:text-white
+                          disabled:cursor-not-allowed
+                          disabled:opacity-40
+                          sm:h-10 sm:w-10
+                          sm:rounded-2xl
+                        "
+                      >
+                        <Minus size={15} strokeWidth={2.5} />
+                      </button>
+                        
+                        
+                      {/* CANTIDAD */}
+                        
+                      <div className="min-w-[42px] text-center">
+                        
+                        <p className="text-lg font-extrabold leading-none text-brandDark sm:text-2xl">
+                          {quantities[product.id] ?? 0}
+                        </p>
+                        
+                        <p className="mt-1 text-[8px] font-medium text-zinc-400 sm:text-[9px]">
+                        
+                          {product.unit === "cartón"
+                            ? (quantities[product.id] ?? 0) !== 1
+                              ? "cartones"
+                              : "cartón"
+                            : (quantities[product.id] ?? 0) !== 1
+                              ? `${product.unit}s`
+                              : product.unit}
 
+                        </p>
+                          
+                      </div>
+                          
+                          
+                      {/* MÁS */}
+                          
+                      <button
+                        type="button"
+                        onClick={() => updateQuantity(product.id, 1)}
+                        className="
+                          flex h-8 w-8
+                          items-center justify-center
+                          rounded-lg
+                          bg-primary
+                          text-white
+                          shadow-lg
+                          shadow-primary/20
+                          transition-all
+                          hover:scale-105
+                          hover:shadow-primary/30
+                          sm:h-10 sm:w-10
+                          sm:rounded-2xl
+                        "
+                      >
+                        <Plus size={15} strokeWidth={2.5} />
+                      </button>
+                          
+                    </div>
+                          
+                  </div>
+                          
+                          
+                  {/* ================================================== */}
+                  {/* PRECIO */}
+                  {/* ================================================== */}
+                          
+                  <div className="
+                    mt-3
+                    border-t
+                    border-zinc-100
+                    pt-2
+                    sm:mt-4
+                  ">
+                  
+                    <div className="flex items-end justify-between gap-2">
+                          
+                      <div>
+                          
+                        <p className="
+                          text-[8px]
+                          font-bold
+                          uppercase
+                          tracking-wider
+                          text-zinc-400
+                          sm:text-[9px]
+                        ">
+                          Costo estimado
+                        </p>
+                          
+                        <p className="
+                          mt-1
+                          text-base
+                          font-extrabold
+                          text-brandDark
+                          sm:text-xl
+                        ">
+                          $
+                          {getProductTotal(product.id).toLocaleString(
+                            "es-MX"
+                          )}
+                        </p>
+                        
+                      </div>
+                        
+                        
+                      <div className="mb-1 text-right">
+                        
+                        <p className="text-[8px] text-zinc-400 sm:text-[9px]">
+                          por {product.unit}
+                        </p>
+                        
+                        <p className="text-[10px] font-semibold text-zinc-500 sm:text-[11px]">
+                          $
+                          {product.unitPrice.toLocaleString(
+                            "es-MX"
+                          )}
+                        </p>
+                        
+                      </div>
+                        
+                    </div>
+                        
+                  </div>
+                        
+                </div>
+                        
               </div>
-
             </Card>
 
           );

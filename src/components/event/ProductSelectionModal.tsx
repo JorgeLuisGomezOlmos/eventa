@@ -89,7 +89,7 @@ function ProductSelectionModal({
 
         {/* HEADER */}
 
-        <div className="relative overflow-hidden border-b border-zinc-100 px-6 py-6 sm:px-8">
+        <div className="relative overflow-hidden border-b border-zinc-100 px-6 py-8 sm:px-8">
 
           {/* DECORACIÓN */}
 
@@ -240,8 +240,8 @@ function ProductSelectionModal({
                 {selected.length}
               </span>{" "}
               {selected.length === 1
-                ? "cerveza seleccionada"
-                : "cervezas seleccionadas"}
+                ? "producto seleccionado"
+                : "productos seleccionados"}
             </p>
 
             <div className="flex gap-3">

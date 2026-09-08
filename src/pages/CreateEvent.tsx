@@ -137,7 +137,7 @@ function CreateEvent() {
   return (
 
     <>
-    <section className="min-h-screen bg-background py-10 lg:py-16">
+    <section className="min-h-screen bg-background py-24 lg:py-16">
       <Container>
         <div className="mx-auto max-w-3xl">
 
@@ -499,7 +499,7 @@ function CreateEvent() {
 
             {/* ================= NAVEGACIÓN ================= */}
 
-            <div className="mt-10 flex items-center justify-between border-t border-zinc-100 pt-6">
+            <div className="mt-10 gap-6 flex items-center justify-between border-t border-zinc-100 pt-6">
               <Button
                 variant="outline"
                 onClick={previousStep}
@@ -517,6 +517,7 @@ function CreateEvent() {
               <Button
                 onClick={nextStep}
                 disabled={!isCurrentStepValid()}
+                className="w-full px-4 py-2.5 text-sm sm:w-auto sm:px-6 sm:py-3 sm:text-base ga"
               >
                 {currentStep === totalSteps
                   ? "Generar recomendación"
