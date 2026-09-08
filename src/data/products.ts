@@ -131,4 +131,19 @@ export const products: Product[] = [
 
     price: 180,
   },
+  {
+    id: "Jarrito-manzana-2l",
+
+    name: "Jarritos Manzana 2L",
+
+    description: "Refresco · Caja con 8 piezas",
+
+    category: "softDrinks",
+
+    image: "/images/products/jarrito-manzana.png",
+
+    unit: "paquete",
+
+    price: 180,
+  },
 ];

@@ -262,24 +262,6 @@ function ProductsPage() {
                         </p>
                       </div>
 
-                      <button
-                        type="button"
-                        className="
-                          mt-4 flex w-full items-center
-                          justify-center gap-2
-                          rounded-xl
-                          bg-brandDark
-                          px-4 py-2.5
-                          text-xs font-bold
-                          text-white
-                          transition-all duration-200
-                          hover:bg-zinc-800
-                          sm:text-sm
-                        "
-                      >
-                        <ShoppingCart size={16} />
-                        Agregar a mi evento
-                      </button>
                     </div>
                   </article>
                 );

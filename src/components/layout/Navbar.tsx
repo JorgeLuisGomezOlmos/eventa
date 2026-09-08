@@ -11,6 +11,7 @@ import {
   ArrowRight,
   Sparkles,
   ShoppingBag,
+  Tag,
 } from "lucide-react";
 
 import Button from "../ui/Button";
@@ -42,8 +43,14 @@ function Navbar() {
     path: "/productos",
     icon: ShoppingBag,
     },
+    {
+      name: "Promociones",
+      path: "/#promociones",
+      icon: Tag,
+    },
   ];
 
+  
   // Bloquea el scroll cuando el menú está abierto
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
