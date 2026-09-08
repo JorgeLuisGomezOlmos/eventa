@@ -10,6 +10,7 @@ import {
   BriefcaseBusiness,
   ArrowRight,
   Sparkles,
+  ShoppingBag,
 } from "lucide-react";
 
 import Button from "../ui/Button";
@@ -35,6 +36,11 @@ function Navbar() {
       name: "Servicios",
       path: "/#servicios",
       icon: BriefcaseBusiness,
+    },
+    {
+    name: "Productos",
+    path: "/productos",
+    icon: ShoppingBag,
     },
   ];
 
@@ -64,14 +70,20 @@ function Navbar() {
       {/* ================================================== */}
 
       <header
-        className="
+        className={`
           absolute
           left-0
           right-0
           top-0
           z-50
-          bg-transparent
-        "
+          transition-all
+          duration-300
+          ${
+            location.pathname === "/"
+              ? "bg-transparent"
+              : "bg-white/95 shadow-sm backdrop-blur-md"
+          }
+        `}
       >
         <Container>
           <nav
@@ -138,8 +150,10 @@ function Navbar() {
                       duration-300
                       ${
                         active
-                          ? "text-primary-light"
-                          : "text-white/75 hover:text-white"
+                          ? "text-primary"
+                          : location.pathname === "/"
+                            ? "text-white/75 hover:text-white"
+                            : "text-zinc-600 hover:text-brandDark"
                       }
                     `}
                   >
@@ -217,26 +231,27 @@ function Navbar() {
             <button
               type="button"
               onClick={() => setIsOpen(true)}
-              className="
-                flex
-                h-11
-                w-11
-                items-center
-                justify-center
-                rounded-xl
-                border
-                border-white/15
-                bg-black/20
-                text-white
-                shadow-lg
-                backdrop-blur-md
-                transition-all
-                duration-300
-                hover:border-primary/40
-                hover:bg-primary
-                md:hidden
-              "
-              aria-label="Abrir menú"
+              className={`
+  flex
+  h-11
+  w-11
+  items-center
+  justify-center
+  rounded-xl
+  border
+  shadow-lg
+  backdrop-blur-md
+  transition-all
+  duration-300
+  hover:border-primary/40
+  hover:bg-primary
+  md:hidden
+  ${
+    location.pathname === "/"
+      ? "border-white/15 bg-black/20 text-white"
+      : "border-zinc-200 bg-white text-brandDark"
+  }
+`}
             >
               <Menu size={23} />
             </button>

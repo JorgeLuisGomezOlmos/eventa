@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import MainLayout from "./components/layout/MainLayout";
 import { EventProvider } from "./context/EventContext";
 import Quotation from "./pages/Quotation";
+import Products from "./pages/ProductsPage";
 
 function App() {
   return (
@@ -27,6 +28,11 @@ function App() {
         <Route
           path="/cotizacion"
           element={<Quotation />}
+        />
+
+        <Route 
+          path="/productos" 
+          element={<Products />} 
         />
 
       </Routes>
