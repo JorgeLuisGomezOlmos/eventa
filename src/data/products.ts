@@ -14,6 +14,9 @@ export interface Product {
   unit: string;
 
   price: number;
+  promoPrice?: number;
+
+  stock: number;
 
   unitsPerPackage?: number;
 }
@@ -36,7 +39,10 @@ export const products: Product[] = [
 
     unit: "cartón",
 
-    price: 160,
+    price: 180,
+    promoPrice: 160,
+
+    stock: 12,
 
     unitsPerPackage: 20,
   },
@@ -54,7 +60,11 @@ export const products: Product[] = [
 
     unit: "cartón",
 
-    price: 155,
+    price: 170,
+    promoPrice: 155,
+
+    stock: 12,
+    
 
     unitsPerPackage: 20,
   },
@@ -71,7 +81,10 @@ export const products: Product[] = [
 
     unit: "cartón",
 
-    price: 155,
+    price: 170,
+    promoPrice: 155,
+
+    stock: 0,
 
     unitsPerPackage: 20,
   },
@@ -95,6 +108,8 @@ export const products: Product[] = [
     unit: "bolsa",
 
     price: 45,
+
+    stock: 50
   },
 
   // =========================
@@ -114,7 +129,9 @@ export const products: Product[] = [
 
     unit: "paquete",
 
-    price: 180,
+    price: 190,
+
+    stock: 12,
   },
   {
     id: "Jarrito-limon-2l",
@@ -130,6 +147,8 @@ export const products: Product[] = [
     unit: "paquete",
 
     price: 180,
+
+    stock: 12,
   },
   {
     id: "Jarrito-manzana-2l",
@@ -145,5 +164,7 @@ export const products: Product[] = [
     unit: "paquete",
 
     price: 180,
+
+    stock: 12,
   },
 ];

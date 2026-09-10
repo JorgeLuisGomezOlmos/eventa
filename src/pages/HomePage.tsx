@@ -13,12 +13,22 @@ import {
   Tag,
 } from "lucide-react";
 
+import { products } from "../data/products";
+
 
 import Container from "../components/layout/Container";
 import Card from "../components/ui/Card"
 import Button from "../components/ui/Button"
 
 const HomePage = () => {
+
+  const promotionalProducts = products.filter(
+    (product) =>
+      product.category === "beer" &&
+      product.promoPrice !== undefined &&
+      product.promoPrice < product.price
+  );
+
   return (
     <>
       {/* ================= HERO ================= */}
@@ -555,206 +565,174 @@ const HomePage = () => {
 
       {/* ================= PROMOCIONES ================= */}
       <section
-  id="promociones"
-  className="relative overflow-hidden bg-brandDark py-20 sm:py-24"
->
-  <Container className="relative">
-    {/* Encabezado */}
-    <div className="mx-auto max-w-3xl text-center">
-      <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary">
-        <Tag size={14} />
-        Promociones
-      </span>
-
-      <h2 className="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-        Las mejores cervezas
-        <span className="block text-primary">
-          para tu evento
-        </span>
-      </h2>
-
-      <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/60 sm:text-base">
-        Aprovecha nuestros precios especiales y haz que tu
-        evento sea inolvidable.
-      </p>
-    </div>
-
-    {/* Productos en promoción */}
-    <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-
-      {/* XX Lager */}
-      <article className="group overflow-hidden rounded-3xl border border-white/10 bg-zinc-950 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30">
-        <div className="relative aspect-[4/3] overflow-hidden">
-          <img
-            src="/images/promotions/xx-lager-carton.png"
-            alt="XX Lager"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-
-          <div className="absolute left-4 top-4">
-            <span className="rounded-full bg-primary px-3 py-1.5 text-xs font-extrabold text-white shadow-lg">
-              -11%
-            </span>
-          </div>
-        </div>
-
-        <div className="p-5">
-          <p className="text-xs font-bold uppercase tracking-wider text-primary">
-            Oferta especial
-          </p>
-
-          <h3 className="mt-2 text-2xl font-extrabold text-white">
-            XX Lager
-          </h3>
-
-          <p className="mt-1 text-sm text-white/50">
-            20 botellas de 190 ml
-          </p>
-
-          <div className="mt-5 flex items-end gap-3">
-            <span className="text-sm font-semibold text-white/30 line-through">
-              $450
-            </span>
-
-            <span className="text-3xl font-extrabold text-primary">
-              $399
-            </span>
-          </div>
-
-          <p className="mt-1 text-xs font-semibold text-green-400">
-            Ahorras $51
-          </p>
-
-          <button
-            type="button"
-            className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3.5 text-sm font-bold text-white transition-all duration-200 hover:bg-primary-light active:scale-[0.98]"
-          >
-            <ShoppingCart size={17} />
-            Agregar a mi evento
-          </button>
-        </div>
-      </article>
-
-      {/* Tecate */}
-      <article className="group overflow-hidden rounded-3xl border border-white/10 bg-zinc-950 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30">
-        <div className="relative aspect-[4/3] overflow-hidden">
-          <img
-            src="/images/promotions/tecate-carton.png"
-            alt="Tecate Original"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-
-          <div className="absolute left-4 top-4">
-            <span className="rounded-full bg-primary px-3 py-1.5 text-xs font-extrabold text-white shadow-lg">
-              -11%
-            </span>
-          </div>
-        </div>
-
-        <div className="p-5">
-          <p className="text-xs font-bold uppercase tracking-wider text-primary">
-            Oferta especial
-          </p>
-
-          <h3 className="mt-2 text-2xl font-extrabold text-white">
-            Tecate Original
-          </h3>
-
-          <p className="mt-1 text-sm text-white/50">
-            20 botellas de 190 ml
-          </p>
-
-          <div className="mt-5 flex items-end gap-3">
-            <span className="text-sm font-semibold text-white/30 line-through">
-              $460
-            </span>
-
-            <span className="text-3xl font-extrabold text-primary">
-              $410
-            </span>
-          </div>
-
-          <p className="mt-1 text-xs font-semibold text-green-400">
-            Ahorras $50
-          </p>
-
-          <button
-            type="button"
-            className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3.5 text-sm font-bold text-white transition-all duration-200 hover:bg-primary-light active:scale-[0.98]"
-          >
-            <ShoppingCart size={17} />
-            Agregar a mi evento
-          </button>
-        </div>
-      </article>
-
-      {/* Indio */}
-      <article className="group overflow-hidden rounded-3xl border border-white/10 bg-zinc-950 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30">
-        <div className="relative aspect-[4/3] overflow-hidden">
-          <img
-            src="/images/promotions/indio-carton.png"
-            alt="Indio"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-
-          <div className="absolute left-4 top-4">
-            <span className="rounded-full bg-primary px-3 py-1.5 text-xs font-extrabold text-white shadow-lg">
-              -10%
-            </span>
-          </div>
-        </div>
-
-        <div className="p-5">
-          <p className="text-xs font-bold uppercase tracking-wider text-primary">
-            Oferta especial
-          </p>
-
-          <h3 className="mt-2 text-2xl font-extrabold text-white">
-            Indio
-          </h3>
-
-          <p className="mt-1 text-sm text-white/50">
-            20 botellas de 190 ml
-          </p>
-
-          <div className="mt-5 flex items-end gap-3">
-            <span className="text-sm font-semibold text-white/30 line-through">
-              $450
-            </span>
-
-            <span className="text-3xl font-extrabold text-primary">
-              $405
-            </span>
-          </div>
-
-          <p className="mt-1 text-xs font-semibold text-green-400">
-            Ahorras $45
-          </p>
-
-          <button
-            type="button"
-            className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3.5 text-sm font-bold text-white transition-all duration-200 hover:bg-primary-light active:scale-[0.98]"
-          >
-            <ShoppingCart size={17} />
-            Agregar a mi evento
-          </button>
-        </div>
-      </article>
-
-    </div>
-
-    {/* Ver todos */}
-    <div className="mt-10 text-center">
-      <Link
-        to="/productos"
-        className="inline-flex items-center gap-2 rounded-2xl border border-white/20 px-6 py-3.5 text-sm font-bold text-white transition-all duration-200 hover:border-primary hover:bg-primary"
+        id="promociones"
+        className="relative overflow-hidden bg-brandDark py-20 sm:py-24"
       >
-        Ver todos los productos
-        <ArrowRight size={17} />
-      </Link>
-    </div>
-  </Container>
-</section>
+        <Container className="relative">
+          {/* Encabezado */}
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary">
+              <Tag size={14} />
+              Promociones
+            </span>
+
+            <h2 className="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              Las mejores cervezas
+              <span className="block text-primary">
+                para tu evento
+              </span>
+            </h2>
+
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/60 sm:text-base">
+              Aprovecha nuestros precios especiales y haz que tu
+              evento sea inolvidable.
+            </p>
+          </div>
+
+          {/* Productos en promoción */}
+<div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+  {promotionalProducts.slice(0, 3).map((product) => {
+    const promoPrice = product.promoPrice!;
+
+    const discount = Math.round(
+      ((product.price - promoPrice) / product.price) * 100
+    );
+
+    const savings = product.price - promoPrice;
+
+    const inStock = product.stock > 0;
+
+    return (
+      <article
+        key={product.id}
+        className="
+          group overflow-hidden rounded-3xl
+          border border-white/10
+          bg-zinc-950
+          shadow-2xl
+          transition-all duration-300
+          hover:-translate-y-1
+          hover:border-primary/30
+        "
+      >
+        {/* Imagen */}
+        <div className="relative aspect-[4/3] overflow-hidden">
+          {product.image ? (
+            <img
+              src={product.image}
+              alt={product.name}
+              className="
+                h-full w-full object-cover
+                transition-transform duration-500
+                group-hover:scale-105
+              "
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center text-white/30">
+              Sin imagen
+            </div>
+          )}
+
+          {/* Descuento */}
+          <div className="absolute left-4 top-4">
+            <span className="rounded-full bg-primary px-3 py-1.5 text-xs font-extrabold text-white shadow-lg">
+              -{discount}%
+            </span>
+          </div>
+
+          {/* Existencia */}
+          <div className="absolute right-4 top-4">
+            <span
+              className={`
+                rounded-full px-3 py-1.5
+                text-xs font-bold
+                backdrop-blur-md
+                ${
+                  inStock
+                    ? "bg-green-500/90 text-white"
+                    : "bg-red-500/90 text-white"
+                }
+              `}
+            >
+              {inStock ? "En existencia" : "Agotado"}
+            </span>
+          </div>
+        </div>
+
+        {/* Información */}
+        <div className="p-5">
+          <p className="text-xs font-bold uppercase tracking-wider text-primary">
+            Oferta especial
+          </p>
+
+          <h3 className="mt-2 text-2xl font-extrabold text-white">
+            {product.name}
+          </h3>
+
+          <p className="mt-1 text-sm text-white/50">
+            {product.unitsPerPackage
+              ? `${product.unitsPerPackage} botellas`
+              : product.unit}
+          </p>
+
+          {/* Precios */}
+          <div className="mt-5 flex items-end gap-3">
+            <span className="text-sm font-semibold text-white/30 line-through">
+              ${product.price.toLocaleString("es-MX")}
+            </span>
+
+            <span className="text-3xl font-extrabold text-primary">
+              ${promoPrice.toLocaleString("es-MX")}
+            </span>
+          </div>
+
+          {/* Ahorro */}
+          <p className="mt-1 text-xs font-semibold text-green-400">
+            Ahorras ${savings.toLocaleString("es-MX")}
+          </p>
+
+          {/* Botón */}
+          <button
+            type="button"
+            disabled={!inStock}
+            className={`
+              mt-5 flex w-full items-center
+              justify-center gap-2
+              rounded-2xl
+              px-5 py-3.5
+              text-sm font-bold
+              transition-all duration-200
+              ${
+                inStock
+                  ? "bg-primary text-white hover:bg-primary-light active:scale-[0.98]"
+                  : "cursor-not-allowed bg-zinc-800 text-white/30"
+              }
+            `}
+          >
+            <ShoppingCart size={17} />
+
+            {inStock
+              ? "Agregar a mi evento"
+              : "Agotado"}
+          </button>
+        </div>
+      </article>
+    );
+  })}
+</div>
+
+          {/* Ver todos */}
+          <div className="mt-10 text-center">
+            <Link
+              to="/productos"
+              className="inline-flex items-center gap-2 rounded-2xl border border-white/20 px-6 py-3.5 text-sm font-bold text-white transition-all duration-200 hover:border-primary hover:bg-primary"
+            >
+              Ver todos los productos
+              <ArrowRight size={17} />
+            </Link>
+          </div>
+        </Container>
+      </section>
       {/* ================= COMO FUNCIONA ================= */}
 
       <section
