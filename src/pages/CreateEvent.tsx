@@ -13,6 +13,7 @@ import {
   Beer,
   Snowflake,
   GlassWater,
+  CircleHelp,
 } from "lucide-react";
 
 import Container from "../components/layout/Container";
@@ -295,26 +296,92 @@ function CreateEvent() {
                   </div>
 
                   <div>
-                    <label className="text-sm font-semibold text-brandDark">
-                      Duración (horas)
-                    </label>
+                    
+                      <div className="flex items-center gap-2">
+                        <label className="text-sm font-semibold text-brandDark">
+                          Duración (horas)
+                        </label>
 
-                    <input
-                      type="number"
-                      min="1"
-                      value={
-                        eventData.duration === 0
-                          ? ""
-                          : eventData.duration
-                      }
-                      onChange={(e) =>
-                        updateEventData({
-                          duration: Number(e.target.value),
-                        })
-                      }
-                      placeholder="Ejemplo: 5"
-                      className="mt-2 w-full rounded-xl border border-zinc-200 px-4 py-3 outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"
-                    />
+                        <div className="group relative">
+                          <CircleHelp
+                            size={16}
+                            className="cursor-help text-zinc-400 transition-colors group-hover:text-primary"
+                          />
+
+                          <div
+                            className="
+                              pointer-events-none
+                              absolute
+                              left-1/2
+                              top-full
+                              z-50
+                              mt-2
+                              w-64
+                              -translate-x-1/2
+                              rounded-xl
+                              bg-brandDark
+                              px-4
+                              py-3
+                              text-xs
+                              leading-relaxed
+                              text-white
+                              opacity-0
+                              shadow-xl
+                              transition-all
+                              duration-200
+                              group-hover:translate-y-1
+                              group-hover:opacity-100
+                            "
+                          >
+                            Indica cuántas horas durará aproximadamente tu evento.
+                            Este dato nos ayuda a calcular mejor la cantidad de
+                            bebidas que podrías necesitar.
+                          </div>                    
+                        </div>                    
+                      </div>                  
+
+                      {/* aquí va tu select de duración */}
+                      <select
+                        value={eventData.duration || ""}
+                        onChange={(e) =>
+                          updateEventData({
+                            duration: Number(e.target.value),
+                          })
+                        }
+                        className="
+                          mt-2
+                          w-full
+                          rounded-xl
+                          border
+                          border-zinc-200
+                          bg-white
+                          px-4
+                          py-3
+                          text-brandDark
+                          outline-none
+                          transition
+                          focus:border-primary
+                          focus:ring-4
+                          focus:ring-primary/10
+                        "
+                      >
+                        <option value="" disabled>
+                          Selecciona la duración
+                        </option>
+                      
+                        <option value="2">2 horas</option>
+                        <option value="3">3 horas</option>
+                        <option value="4">4 horas</option>
+                        <option value="5">5 horas</option>
+                        <option value="6">6 horas</option>
+                        <option value="7">7 horas</option>
+                        <option value="8">8 horas</option>
+                        <option value="9">9 horas</option>
+                        <option value="10">10 horas</option>
+                        <option value="11">11 horas</option>
+                        <option value="12">12 horas</option>
+                      </select>
+                   
                   </div>
                 </div>
               </div>
