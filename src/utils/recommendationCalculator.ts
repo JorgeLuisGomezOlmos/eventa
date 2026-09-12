@@ -116,61 +116,67 @@ export function calculateRecommendation(
   // ================= BEBIDAS SIN ALCOHOL =================
 
   if (
-    event.preferences.softDrinks &&
-    event.selectedSoftDrinkIds.length > 0
-  ) {
-    const selectedSoftDrinks = products.filter(
-      (product) =>
-        product.category === "softDrinks" &&
-        event.selectedSoftDrinkIds.includes(product.id)
+  event.preferences.softDrinks &&
+  event.selectedSoftDrinkIds.length > 0
+) {
+  const selectedSoftDrinks = products.filter(
+    (product) =>
+      product.category === "softDrinks" &&
+      event.selectedSoftDrinkIds.includes(product.id)
+  );
+
+  // Parámetro inicial de planificación.
+  // Representa litros estimados por persona por hora.
+  const SOFT_DRINK_LITERS_PER_PERSON_PER_HOUR = 0.35;
+
+  // 1. Calculamos los litros totales necesarios para el evento.
+  const litersNeeded =
+    event.guests *
+    SOFT_DRINK_LITERS_PER_PERSON_PER_HOUR *
+    event.duration;
+
+  // 2. Dividimos los litros entre las bebidas seleccionadas.
+  const litersPerDrink =
+    litersNeeded / selectedSoftDrinks.length;
+
+  // 3. Calculamos los paquetes necesarios para cada producto.
+  selectedSoftDrinks.forEach((drink) => {
+    const litersPerUnit =
+      drink.litersPerUnit ?? 0;
+
+    const unitsPerPackage =
+      drink.unitsPerPackage ?? 1;
+
+    // Si el producto no tiene información de volumen,
+    // no podemos calcular correctamente su recomendación.
+    if (litersPerUnit <= 0) {
+      return;
+    }
+
+    const litersPerPackage =
+      litersPerUnit * unitsPerPackage;
+
+    const quantity = Math.ceil(
+      litersPerDrink / litersPerPackage
     );
-  
-    // Cantidad total recomendada de paquetes
-    // Esta fórmula es provisional y después la validaremos
-    // con datos reales.
-    const packsNeeded = Math.ceil(
-      (event.guests / 8) * durationFactor
-    );
-  
-    // Dividimos inicialmente la recomendación
-    // entre las bebidas seleccionadas.
-    const quantityPerDrink = Math.floor(
-      packsNeeded / selectedSoftDrinks.length
-    );
-  
-    // Si la división no es exacta,
-    // repartimos el sobrante entre los primeros productos.
-    const remainder =
-      packsNeeded % selectedSoftDrinks.length;
-  
-    selectedSoftDrinks.forEach((drink, index) => {
-      const quantity =
-        quantityPerDrink +
-        (index < remainder ? 1 : 0);
-  
-      recommendedProducts.push({
-        id: drink.id,
-  
-        name: drink.name,
-  
-        description: drink.description,
-  
-        image: drink.image,
-  
-        category: drink.category,
-  
-        quantity,
-  
-        recommendedQuantity: quantity,
-  
-        unit: drink.unit,
-  
-        unitPrice: drink.price,
-  
-        total: quantity * drink.price,
-      });
+
+    const unitPrice =
+      drink.promoPrice ?? drink.price;
+
+    recommendedProducts.push({
+      id: drink.id,
+      name: drink.name,
+      description: drink.description,
+      image: drink.image,
+      category: drink.category,
+      quantity,
+      recommendedQuantity: quantity,
+      unit: drink.unit,
+      unitPrice,
+      total: quantity * unitPrice,
     });
-  }
+  });
+}
 
   const total = recommendedProducts.reduce(
     (sum, product) => sum + product.total,

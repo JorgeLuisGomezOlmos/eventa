@@ -19,6 +19,8 @@ export interface Product {
   stock: number;
 
   unitsPerPackage?: number;
+
+  litersPerUnit?: number;
 }
 
 export const products: Product[] = [
@@ -132,6 +134,10 @@ export const products: Product[] = [
     price: 190,
 
     stock: 12,
+
+    unitsPerPackage: 8,
+
+    litersPerUnit: 2,
   },
   {
     id: "Jarrito-limon-2l",
@@ -149,6 +155,10 @@ export const products: Product[] = [
     price: 180,
 
     stock: 12,
+
+    unitsPerPackage: 8,
+
+    litersPerUnit: 2,
   },
   {
     id: "Jarrito-manzana-2l",
@@ -166,5 +176,9 @@ export const products: Product[] = [
     price: 180,
 
     stock: 12,
+
+    unitsPerPackage: 8,
+
+    litersPerUnit: 2,
   },
 ];

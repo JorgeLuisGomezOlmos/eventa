@@ -220,6 +220,13 @@ const estimatedBeers =
       eventData.duration
   );
 
+
+  const estimatedSoftDrinkLiters = Math.round(
+  eventData.guests *
+    0.35 *
+    eventData.duration
+);
+
   return (
     <section className="min-h-screen bg-background py-24 lg:py-16">
       <Container>
@@ -381,7 +388,7 @@ const estimatedBeers =
 
   {/* TOTAL */}
   <div className="rounded-2xl bg-brandDark px-5 py-3 text-white shadow-lg">
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between gap-2">
       <p className="text-[9px] font-bold uppercase tracking-wider text-white/40">
         Total recomendado
       </p>
@@ -389,99 +396,99 @@ const estimatedBeers =
       
           </div>
           <div className="mt-1 flex items-baseline gap-2">
-  <span className="text-3xl font-extrabold">
-    {totalRecommendedBeer}
-  </span>
+            <span className="text-3xl font-extrabold">
+              {totalRecommendedBeer}
+            </span>
 
-  <span className="text-xs font-semibold uppercase text-white/60">
-    cartones
-  </span>
+            <span className="text-xs font-semibold uppercase text-white/60">
+              cartones
+            </span>
 
-  {/* AYUDA */}
-  <div className="group relative ml-auto">
-    <CircleHelp
-      size={14}
-      className="
-        cursor-help
-        text-white/40
-        transition-colors
-        group-hover:text-primary
-      "
-    />
+            {/* AYUDA */}
+            <div className="group relative ml-auto">
+              <CircleHelp
+                size={14}
+                className="
+                  cursor-help
+                  text-white/95
+                  transition-colors
+                  group-hover:text-primary
+                "
+              />
 
-    {/* TOOLTIP */}
-    <div
-      className="
-        pointer-events-none
-        absolute
-        right-full
-        top-full
-        z-50
-        mr-3
-        w-72
-        translate-y-0
-        rounded-2xl
-        bg-brandDark
-        p-4
-        text-left
-        text-xs
-        leading-relaxed
-        text-white
-        opacity-0
-        shadow-2xl
-        transition-all
-        duration-200
-        group-hover:-translate-x-1
-        group-hover:opacity-100
-      "
-    >
-      <p className="font-bold text-white">
-        ¿Cómo calculamos esta recomendación?
-      </p>
+              {/* TOOLTIP */}
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  right-full
+                  top-full
+                  z-50
+                  mr-3
+                  w-72
+                  translate-y-0
+                  rounded-2xl
+                  bg-brandDark
+                  p-4
+                  text-left
+                  text-xs
+                  leading-relaxed
+                  text-white
+                  opacity-0
+                  shadow-2xl
+                  transition-all
+                  duration-200
+                  group-hover:-translate-x-1
+                  group-hover:opacity-100
+                "
+              >
+                <p className="font-bold text-white">
+                  ¿Cómo calculamos esta recomendación?
+                </p>
 
-      <div className="mt-3 space-y-2 text-white/70">
-        <p>
-          • Consideramos{" "}
-          <span className="font-semibold text-white">
-            {eventData.guests} invitados
-          </span>{" "}
-          y una duración de{" "}
-          <span className="font-semibold text-white">
-            {eventData.duration} horas
-          </span>
-          .
-        </p>
+                <div className="mt-3 space-y-2 text-white/70">
+                  <p>
+                    • Consideramos{" "}
+                    <span className="font-semibold text-white">
+                      {eventData.guests} invitados
+                    </span>{" "}
+                    y una duración de{" "}
+                    <span className="font-semibold text-white">
+                      {eventData.duration} horas
+                    </span>
+                    .
+                  </p>
 
-        <p>
-          • Con base en nuestro consumo estimado, calculamos
-          aproximadamente{" "}
-          <span className="font-semibold text-white">
-            {estimatedBeers} cervezas
-          </span>
-          .
-        </p>
+                  <p>
+                    • Con base en nuestro consumo estimado, calculamos
+                    aproximadamente{" "}
+                    <span className="font-semibold text-white">
+                      {estimatedBeers} cervezas
+                    </span>
+                    .
+                  </p>
 
-        <p>
-          • Como cada cartón contiene{" "}
-          <span className="font-semibold text-white">
-            20 piezas
-          </span>
-          , esto equivale aproximadamente a{" "}
-          <span className="font-semibold text-white">
-            {recommendedBeerCartons} cartones
-          </span>
-          .
-        </p>
+                  <p>
+                    • Como cada cartón contiene{" "}
+                    <span className="font-semibold text-white">
+                      20 piezas
+                    </span>
+                    , esto equivale aproximadamente a{" "}
+                    <span className="font-semibold text-white">
+                      {recommendedBeerCartons} cartones
+                    </span>
+                    .
+                  </p>
 
-        <p className="border-t border-white/10 pt-2 text-[11px] leading-relaxed text-white/40">
-          La cantidad mostrada es una estimación y puede variar
-          según el consumo de tus invitados. Puedes modificar la
-          cantidad recomendada.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+                  <p className="border-t border-white/10 pt-2 text-[11px] leading-relaxed text-white/40">
+                    La cantidad mostrada es una estimación y puede variar
+                    según el consumo de tus invitados. Puedes modificar la
+                    cantidad recomendada.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
          
         </div>
       </div>
@@ -804,23 +811,116 @@ const estimatedBeers =
 
 
         <div className="rounded-2xl bg-brandDark px-5 py-3 text-white shadow-lg">
-
-          <p className="text-[9px] font-bold uppercase tracking-wider text-white/40">
-            Total recomendado
-          </p>
-
+          <div className="flex items-center gap-2">
+            <p className="text-[9px] font-bold uppercase tracking-wider text-white/40">
+              Total recomendado
+            </p>
+            
+          </div>
+          
           <div className="mt-1 flex items-baseline gap-2">
-
             <span className="text-3xl font-extrabold">
               {totalRecommendedSoftDrinks}
             </span>
-
+          
             <span className="text-xs font-semibold uppercase text-white/60">
               paquetes
             </span>
 
-          </div>
+            {/* AYUDA */}
 
+            <div className="group relative ml-auto">
+              <CircleHelp
+                size={14}
+                className="
+                  cursor-help
+                  text-white/95
+                  transition-colors
+                  group-hover:text-primary
+                "
+              />
+        
+              {/* TOOLTIP */}
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  right-full
+                  top-full
+                  z-50
+                  mr-3
+                  w-72
+                  translate-y-0
+                  rounded-2xl
+                  bg-brandDark
+                  p-4
+                  text-left
+                  text-xs
+                  leading-relaxed
+                  text-white
+                  opacity-0
+                  shadow-2xl
+                  transition-all
+                  duration-200
+                  group-hover:-translate-x-1
+                  group-hover:opacity-100
+                "
+              >
+                <p className="font-bold text-white">
+                  ¿Cómo calculamos esta recomendación?
+                </p>
+          
+                <div className="mt-3 space-y-2 text-white/70">
+                  <p>
+                    • Consideramos{" "}
+                    <span className="font-semibold text-white">
+                      {eventData.guests} invitados
+                    </span>{" "}
+                    y una duración de{" "}
+                    <span className="font-semibold text-white">
+                      {eventData.duration} horas
+                    </span>
+                    .
+                  </p>
+          
+                  <p>
+                    • Estimamos aproximadamente{" "}
+                    <span className="font-semibold text-white">
+                      0.35 litros
+                    </span>{" "}
+                    por persona por hora.
+                  </p>
+          
+                  <p>
+                    • Esto representa aproximadamente{" "}
+                    <span className="font-semibold text-white">
+                      {estimatedSoftDrinkLiters.toLocaleString("es-MX")} litros
+                    </span>{" "}
+                    de bebidas para tu evento.
+                  </p>
+          
+                  <p>
+                    • La cantidad se distribuye entre las bebidas
+                    seleccionadas según el tamaño de cada presentación.
+                  </p>
+          
+                  <p>
+                    • El resultado se redondea para considerar{" "}
+                    <span className="font-semibold text-white">
+                      paquetes completos
+                    </span>
+                    .
+                  </p>
+          
+                  <p className="border-t border-white/10 pt-2 text-[11px] leading-relaxed text-white/40">
+                    La cantidad mostrada es una estimación y puede variar
+                    según el consumo de tus invitados. Puedes modificar
+                    la cantidad recomendada.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
