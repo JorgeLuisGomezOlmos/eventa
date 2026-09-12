@@ -143,8 +143,10 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
   window.open(whatsappUrl, "_blank");
 
   // Mostrar confirmación en EVENTA
-  setShowConfirmation(true);
-};
+  setTimeout(() => {
+      setShowConfirmation(true);
+    }, 2000);
+  };
 
   return (
     <main className="min-h-screen bg-zinc-50 py-24 sm:py-12">
@@ -554,8 +556,18 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
                   onClick={handleWhatsAppQuotation}
                   className="mt-6 w-full"
                 >
-                  Solicitar cotización
-                  <ArrowRight size={18} className="ml-2" />
+                  <img
+                    src="/images/icons/iconowhastapp.png"
+                    alt="WhatsApp"
+                    className="mr-2 h-5 w-5"
+                  />
+
+                  Realizar pedido
+
+                  <ArrowRight
+                    size={18}
+                    className="ml-2"
+                  />
                 </Button>
 
                 <p className="mt-4 text-center text-[11px] leading-relaxed text-brandDark">
@@ -590,7 +602,6 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
         rounded-3xl
         bg-white
         shadow-2xl
-
         sm:max-w-md
 
         lg:max-w-4xl
@@ -654,7 +665,7 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
           " />
 
 
-          <div className="relative">
+          <div className="">
 
             {/* ICONO */}
 

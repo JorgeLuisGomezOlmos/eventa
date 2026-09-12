@@ -14,6 +14,7 @@ import {
   Package,
   Minus, 
   Plus,
+  CircleHelp,
 } from "lucide-react";
 
 import Container from "../components/layout/Container";
@@ -345,55 +346,106 @@ const totalRecommendedIce = iceProducts.reduce(
       {/* ENCABEZADO */}
 
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-
-        <div>
-          <div className="flex items-center gap-3">
-
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <Beer size={22} />
-            </div>
-
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-primary">
-                Categoría
-              </p>
-
-              <h2 className="text-2xl font-extrabold text-brandDark">
-                Cervezas
-              </h2>
-            </div>
-
-          </div>
-
-          <p className="mt-2 text-sm text-zinc-500">
-            Distribución recomendada entre las cervezas seleccionadas.
-          </p>
-        </div>
-
-
-        {/* TOTAL */}
-
-        <div className="rounded-2xl bg-brandDark px-5 py-3 text-white shadow-lg">
-
-          <p className="text-[9px] font-bold uppercase tracking-wider text-white/40">
-            Total recomendado
-          </p>
-
-          <div className="mt-1 flex items-baseline gap-2">
-
-            <span className="text-3xl font-extrabold">
-              {totalRecommendedBeer}
-            </span>
-
-            <span className="text-xs font-semibold uppercase text-white/60">
-              cartones
-            </span>
-
-          </div>
-
-        </div>
-
+  <div>
+    <div className="flex items-center gap-3">
+      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+        <Beer size={22} />
       </div>
+
+      <div>
+        <p className="text-[10px] font-bold uppercase tracking-wider text-primary">
+          Categoría
+        </p>
+
+        <h2 className="text-2xl font-extrabold text-brandDark">
+          Cervezas
+        </h2>
+      </div>
+    </div>
+
+    <p className="mt-2 text-sm text-zinc-500">
+      Distribución recomendada entre las cervezas seleccionadas.
+    </p>
+  </div>
+
+  {/* TOTAL */}
+  <div className="rounded-2xl bg-brandDark px-5 py-3 text-white shadow-lg">
+    <div className="flex items-center gap-2">
+      <p className="text-[9px] font-bold uppercase tracking-wider text-white/40">
+        Total recomendado
+      </p>
+
+      <div className="group relative">
+        <CircleHelp
+          size={14}
+          className="cursor-help text-white/40 transition-colors group-hover:text-primary"
+        />
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            right-0
+            top-full
+            z-50
+            mt-3
+            w-72
+            rounded-2xl
+            bg-white
+            p-4
+            text-left
+            text-xs
+            leading-relaxed
+            text-zinc-600
+            opacity-0
+            shadow-2xl
+            transition-all
+            duration-200
+            group-hover:translate-y-1
+            group-hover:opacity-100
+          "
+        >
+          <p className="font-bold text-brandDark">
+            ¿Cómo calculamos esta cantidad?
+          </p>
+
+          <div className="space-y-1.5">
+  <p>
+    • Calculamos aproximadamente 4 cervezas por persona.
+  </p>
+
+  <p>
+    • Tomamos 4 horas como duración base.
+  </p>
+
+  <p>
+    • Por cada hora adicional, aumenta la cantidad
+    recomendada proporcionalmente.
+  </p>
+
+  <p>
+    • Cada cartón contiene 20 cervezas.
+  </p>
+
+  <p>
+    • La cantidad final se redondea al siguiente cartón.
+  </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <div className="mt-1 flex items-baseline gap-2">
+      <span className="text-3xl font-extrabold">
+        {totalRecommendedBeer}
+      </span>
+
+      <span className="text-xs font-semibold uppercase text-white/60">
+        cartones
+      </span>
+    </div>
+  </div>
+</div>
 
 
       {/* CARDS DE CERVEZA */}
