@@ -406,7 +406,6 @@ function CreateEvent() {
                   <button
                     type="button"
                     onClick={() => {
-                  
                       if (!eventData.preferences.beer) {
                         updateEventData({
                           preferences: {
@@ -414,43 +413,94 @@ function CreateEvent() {
                             beer: true,
                           },
                         });
-                  
+                      
                         setIsBeerModalOpen(true);
-                  
                         return;
                       }
-                  
+                    
                       setIsBeerModalOpen(true);
                     }}
-                    className={`flex w-full items-center justify-between rounded-2xl border-2 p-5 text-left transition ${
-                      eventData.preferences.beer
-                        ? "border-primary bg-primary/5"
-                        : "border-zinc-200 hover:border-primary/40"
-                    }`}
+                    className={`
+                      flex w-full items-center justify-between
+                      rounded-2xl border-2 p-4
+                      text-left transition sm:p-5
+                      ${
+                        eventData.preferences.beer
+                          ? "border-primary bg-primary/5"
+                          : "border-zinc-200 hover:border-primary/40"
+                      }
+                    `}
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="rounded-xl bg-primary/10 p-3 text-primary">
-                        <Beer size={24} />
+                    {/* IZQUIERDA */}
+                    <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+                      {/* ICONO */}
+                      <div className="shrink-0 rounded-xl bg-primary/10 p-2.5 text-primary sm:p-3">
+                        <Beer size={22} className="sm:h-6 sm:w-6" />
                       </div>
-
-                      <div>
-                        <h3 className="font-bold text-brandDark">
+                    
+                      {/* INFORMACIÓN */}
+                      <div className="min-w-0">
+                        <h3 className="truncate font-bold text-brandDark sm:text-base">
                           Cerveza
                         </h3>
-
-                        <p className="text-sm text-zinc-500">
+                    
+                        <p className="mt-0.5 text-xs text-zinc-500 sm:text-sm">
                           Recomendación según invitados.
                         </p>
+                    
+                        {/* CONTADOR EN MÓVIL */}
+                        {eventData.selectedBeerIds.length > 0 && (
+                          <span className="mt-2 inline-flex rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-bold text-primary sm:hidden">
+                            {eventData.selectedBeerIds.length}{" "}
+                            {eventData.selectedBeerIds.length === 1
+                              ? "seleccionada"
+                              : "seleccionadas"}
+                          </span>
+                        )}
                       </div>
                     </div>
-
-                    <div
-                      className={`h-6 w-6 rounded-full border-2 ${
-                        eventData.preferences.beer
-                          ? "border-primary bg-primary"
-                          : "border-zinc-300"
-                      }`}
-                    />
+                      
+                    {/* DERECHA */}
+                    <div className="ml-3 flex shrink-0 items-center gap-3">
+                      {/* CONTADOR EN DESKTOP */}
+                      {eventData.selectedBeerIds.length > 0 && (
+                        <span className="hidden text-xs font-bold text-primary sm:block">
+                          {eventData.selectedBeerIds.length}{" "}
+                          {eventData.selectedBeerIds.length === 1
+                            ? "seleccionada"
+                            : "seleccionadas"}
+                        </span>
+                      )}
+                  
+                      {/* INDICADOR */}
+                      <div
+                        className={`
+                          flex h-6 w-6 shrink-0 items-center justify-center
+                          rounded-full border-2 transition-colors duration-300
+                          ${
+                            eventData.preferences.beer
+                              ? "border-primary bg-primary"
+                              : "border-zinc-300 bg-white"
+                          }
+                        `}
+                      >
+                        {eventData.preferences.beer && (
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="white"
+                            strokeWidth="3"
+                            className="h-3.5 w-3.5"
+                          >
+                            <path
+                              d="M5 12l4 4L19 7"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        )}
+                      </div>
+                    </div>
                   </button>
 
                   {/* HIELO */}
@@ -501,7 +551,6 @@ function CreateEvent() {
                   <button
                     type="button"
                     onClick={() => {
-                      // Activamos la categoría
                       updateEventData({
                         preferences: {
                           ...eventData.preferences,
@@ -509,54 +558,87 @@ function CreateEvent() {
                         },
                       });
                     
-                      // Abrimos el catálogo
                       setIsSoftDrinkModalOpen(true);
                     }}
-                    className={`flex w-full items-center justify-between rounded-2xl border-2 p-5 text-left transition ${
-                      eventData.preferences.softDrinks
-                        ? "border-primary bg-primary/5"
-                        : "border-zinc-200"
-                    }`}
+                    className={`
+                      flex w-full items-center justify-between
+                      rounded-2xl border-2 p-4 text-left
+                      transition sm:p-5
+                      ${
+                        eventData.preferences.softDrinks
+                          ? "border-primary bg-primary/5"
+                          : "border-zinc-200"
+                      }
+                    `}
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="rounded-xl bg-orange-100 p-3 text-orange-500">
-                        <GlassWater size={24} />
+                    <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+                      {/* ICONO */}
+                      <div className="shrink-0 rounded-xl bg-orange-100 p-2.5 text-orange-500 sm:p-3">
+                        <GlassWater size={22} className="sm:h-6 sm:w-6" />
                       </div>
-
-                      <div>
-                        <h3 className="font-bold text-brandDark">
+                    
+                      {/* INFORMACIÓN */}
+                      <div className="min-w-0">
+                        <h3 className="truncate font-bold text-brandDark sm:text-base">
                           Bebidas sin alcohol
                         </h3>
-
-                        <p className="text-sm text-zinc-500">
+                    
+                        <p className="mt-0.5 text-xs text-zinc-500 sm:text-sm">
                           Refrescos y otras bebidas.
                         </p>
+                    
+                        {/* CONTADOR SOLO PARA MOSTRAR EN MÓVIL */}
+                        {eventData.selectedSoftDrinkIds.length > 0 && (
+                          <span className="mt-2 inline-flex rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-bold text-primary sm:hidden">
+                            {eventData.selectedSoftDrinkIds.length}{" "}
+                            {eventData.selectedSoftDrinkIds.length === 1
+                              ? "seleccionada"
+                              : "seleccionadas"}
+                          </span>
+                        )}
                       </div>
                     </div>
-
-                    <div className="flex items-center gap-3">
-
-                      {/* CANTIDAD DE BEBIDAS SELECCIONADAS */}
-                                      
+                      
+                    {/* PARTE DERECHA */}
+                    <div className="ml-3 flex shrink-0 items-center gap-3">
+                      {/* CONTADOR DESKTOP */}
                       {eventData.selectedSoftDrinkIds.length > 0 && (
                         <span className="hidden text-xs font-bold text-primary sm:block">
-                          {eventData.selectedSoftDrinkIds.length} seleccionada
-                          {eventData.selectedSoftDrinkIds.length !== 1
-                            ? "s"
-                            : ""}
+                          {eventData.selectedSoftDrinkIds.length}{" "}
+                          {eventData.selectedSoftDrinkIds.length === 1
+                            ? "seleccionada"
+                            : "seleccionadas"}
                         </span>
                       )}
-                    
+
                       {/* INDICADOR */}
-                    
                       <div
-                        className={`h-6 w-6 rounded-full border-2 transition-colors duration-300 ${
-                          eventData.preferences.softDrinks
-                            ? "border-primary bg-primary"
-                            : "border-zinc-300"
-                        }`}
-                      />
-                    
+                        className={`
+                          flex h-6 w-6 shrink-0 items-center justify-center
+                          rounded-full border-2 transition-colors duration-300
+                          ${
+                            eventData.preferences.softDrinks
+                              ? "border-primary bg-primary"
+                              : "border-zinc-300 bg-white"
+                          }
+                        `}
+                      >
+                        {eventData.preferences.softDrinks && (
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="white"
+                            strokeWidth="3"
+                            className="h-3.5 w-3.5"
+                          >
+                            <path
+                              d="M5 12l4 4L19 7"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        )}
+                      </div>
                     </div>
                   </button>
 
