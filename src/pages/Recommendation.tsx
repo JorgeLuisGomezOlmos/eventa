@@ -209,6 +209,17 @@ const totalRecommendedIce = iceProducts.reduce(
   0
 );
 
+
+const recommendedBeerCartons =
+  totalRecommendedBeer;
+
+const estimatedBeers =
+  Math.round(
+    eventData.guests *
+      0.75 *
+      eventData.duration
+  );
+
   return (
     <section className="min-h-screen bg-background py-24 lg:py-16">
       <Container>
@@ -370,7 +381,7 @@ const totalRecommendedIce = iceProducts.reduce(
 
   {/* TOTAL */}
   <div className="rounded-2xl bg-brandDark px-5 py-3 text-white shadow-lg">
-    <div className="flex items-center gap-2">
+    <div className="flex items-center justify-between">
       <p className="text-[9px] font-bold uppercase tracking-wider text-white/40">
         Total recomendado
       </p>
@@ -378,7 +389,12 @@ const totalRecommendedIce = iceProducts.reduce(
       <div className="group relative">
         <CircleHelp
           size={14}
-          className="cursor-help text-white/40 transition-colors group-hover:text-primary"
+          className="ml-auto
+    sm:ml-0
+    cursor-help
+    text-white/40
+    transition-colors
+    group-hover:text-primary"
         />
 
         <div
@@ -406,31 +422,48 @@ const totalRecommendedIce = iceProducts.reduce(
           "
         >
           <p className="font-bold text-brandDark">
-            ¿Cómo calculamos esta cantidad?
+            ¿Cómo calculamos esta recomendación?
           </p>
 
-          <div className="space-y-1.5">
-  <p>
-    • Calculamos aproximadamente 4 cervezas por persona.
-  </p>
+          <div className="space-y-2">
+            <p>
+              • Consideramos{" "}
+              <span className="font-semibold text-brandDark">
+                {eventData.guests} invitados
+              </span>{" "}
+              y una duración de{" "}
+              <span className="font-semibold text-brandDark">
+                {eventData.duration} horas
+              </span>
+              .
+            </p>
 
-  <p>
-    • Tomamos 4 horas como duración base.
-  </p>
+            <p>
+              • Con base en nuestro consumo estimado, calculamos
+              aproximadamente{" "}
+              <span className="font-semibold text-brandDark">
+                {estimatedBeers} cervezas
+              </span>
+              .
+            </p>
 
-  <p>
-    • Por cada hora adicional, aumenta la cantidad
-    recomendada proporcionalmente.
-  </p>
+            <p>
+              • Como cada cartón contiene{" "}
+              <span className="font-semibold text-brandDark">
+                20 piezas
+              </span>
+              , esto equivale aproximadamente a{" "}
+              <span className="font-semibold text-brandDark">
+                {recommendedBeerCartons} cartones
+              </span>
+              .
+            </p>
 
-  <p>
-    • Cada cartón contiene 20 cervezas.
-  </p>
-
-  <p>
-    • La cantidad final se redondea al siguiente cartón.
-  </p>
-</div>
+            <p className="pt-1 text-[11px] text-zinc-400">
+              La cantidad mostrada es una estimación y puede variar
+              según el consumo de tus invitados, puedes modificar la cantidad recomendada.
+            </p>
+          </div>
         </div>
       </div>
     </div>

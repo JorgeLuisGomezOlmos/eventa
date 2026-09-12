@@ -11,6 +11,7 @@ export function calculateRecommendation(
 ): RecommendationResult {
   const recommendedProducts: RecommendedProduct[] = [];
 
+
   // Ajustamos ligeramente según duración
   const durationFactor =
     event.duration > 0
@@ -20,61 +21,60 @@ export function calculateRecommendation(
   // ================= CERVEZA =================
 
   if (
-    event.preferences.beer &&
-    event.selectedBeerIds.length > 0
-  ) {
-    const selectedBeers = products.filter(
-      (product) =>
-        product.category === "beer" &&
-        event.selectedBeerIds.includes(product.id)
-    );
-  
-    // Aproximadamente 4 cervezas por persona
-    const beersNeeded =
-      event.guests * 4 * durationFactor;
-  
-    // Cada cartón tiene 20 piezas
-    const cartonsNeeded = Math.ceil(
-      beersNeeded / 20
-    );
-  
-    // Dividimos inicialmente entre las cervezas seleccionadas
-    const quantityPerBeer = Math.floor(
-      cartonsNeeded / selectedBeers.length
-    );
-  
-    const remainder =
-      cartonsNeeded % selectedBeers.length;
-  
-    selectedBeers.forEach((beer, index) => {
-  
-      const quantity =
-        quantityPerBeer +
-        (index < remainder ? 1 : 0);
-  
-      recommendedProducts.push({
-        id: beer.id,
-  
-        name: beer.name,
-  
-        description: beer.description,
-  
-        image: beer.image,
-  
-        category: beer.category,
-  
-        quantity,
-  
-        recommendedQuantity: quantity,
-  
-        unit: beer.unit,
-  
-        unitPrice: beer.price,
-  
-        total: quantity * beer.price,
-      });
+  event.preferences.beer &&
+  event.selectedBeerIds.length > 0
+) {
+  const selectedBeers = products.filter(
+    (product) =>
+      product.category === "beer" &&
+      event.selectedBeerIds.includes(product.id)
+  );
+
+  // Parámetros iniciales de planificación
+  const BEERS_PER_PERSON_PER_HOUR = 0.75;
+  const BEERS_PER_CARTON = 20;
+
+  // Calculamos la cantidad estimada de cervezas
+  const beersNeeded =
+    event.guests *
+    BEERS_PER_PERSON_PER_HOUR *
+    event.duration;
+
+  // Convertimos a cartones y redondeamos hacia arriba
+  const cartonsNeeded = Math.ceil(
+    beersNeeded / BEERS_PER_CARTON
+  );
+
+  // Distribuimos los cartones entre las cervezas seleccionadas
+  const quantityPerBeer = Math.floor(
+    cartonsNeeded / selectedBeers.length
+  );
+
+  const remainder =
+    cartonsNeeded % selectedBeers.length;
+
+  selectedBeers.forEach((beer, index) => {
+    const quantity =
+      quantityPerBeer +
+      (index < remainder ? 1 : 0);
+
+    recommendedProducts.push({
+      id: beer.id,
+      name: beer.name,
+      description: beer.description,
+      image: beer.image,
+      category: beer.category,
+      quantity,
+      recommendedQuantity: quantity,
+      unit: beer.unit,
+      unitPrice:
+        beer.promoPrice ?? beer.price,
+      total:
+        quantity *
+        (beer.promoPrice ?? beer.price),
     });
-  }
+  });
+}
 
   // ================= HIELO =================
 
