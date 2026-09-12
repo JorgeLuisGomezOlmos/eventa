@@ -386,99 +386,105 @@ const estimatedBeers =
         Total recomendado
       </p>
 
-      <div className="group relative">
-        <CircleHelp
-          size={14}
-          className="ml-auto
-    sm:ml-0
-    cursor-help
-    text-white/40
-    transition-colors
-    group-hover:text-primary"
-        />
-
-        <div
-          className="
-            pointer-events-none
-            absolute
-            right-0
-            top-full
-            z-50
-            mt-3
-            w-72
-            rounded-2xl
-            bg-white
-            p-4
-            text-left
-            text-xs
-            leading-relaxed
-            text-zinc-600
-            opacity-0
-            shadow-2xl
-            transition-all
-            duration-200
-            group-hover:translate-y-1
-            group-hover:opacity-100
-          "
-        >
-          <p className="font-bold text-brandDark">
-            ¿Cómo calculamos esta recomendación?
-          </p>
-
-          <div className="space-y-2">
-            <p>
-              • Consideramos{" "}
-              <span className="font-semibold text-brandDark">
-                {eventData.guests} invitados
-              </span>{" "}
-              y una duración de{" "}
-              <span className="font-semibold text-brandDark">
-                {eventData.duration} horas
-              </span>
-              .
-            </p>
-
-            <p>
-              • Con base en nuestro consumo estimado, calculamos
-              aproximadamente{" "}
-              <span className="font-semibold text-brandDark">
-                {estimatedBeers} cervezas
-              </span>
-              .
-            </p>
-
-            <p>
-              • Como cada cartón contiene{" "}
-              <span className="font-semibold text-brandDark">
-                20 piezas
-              </span>
-              , esto equivale aproximadamente a{" "}
-              <span className="font-semibold text-brandDark">
-                {recommendedBeerCartons} cartones
-              </span>
-              .
-            </p>
-
-            <p className="pt-1 text-[11px] text-zinc-400">
-              La cantidad mostrada es una estimación y puede variar
-              según el consumo de tus invitados, puedes modificar la cantidad recomendada.
-            </p>
+      
           </div>
-        </div>
+          <div className="mt-1 flex items-baseline gap-2">
+  <span className="text-3xl font-extrabold">
+    {totalRecommendedBeer}
+  </span>
+
+  <span className="text-xs font-semibold uppercase text-white/60">
+    cartones
+  </span>
+
+  {/* AYUDA */}
+  <div className="group relative ml-auto">
+    <CircleHelp
+      size={14}
+      className="
+        cursor-help
+        text-white/40
+        transition-colors
+        group-hover:text-primary
+      "
+    />
+
+    {/* TOOLTIP */}
+    <div
+      className="
+        pointer-events-none
+        absolute
+        right-full
+        top-full
+        z-50
+        mr-3
+        w-72
+        translate-y-0
+        rounded-2xl
+        bg-brandDark
+        p-4
+        text-left
+        text-xs
+        leading-relaxed
+        text-white
+        opacity-0
+        shadow-2xl
+        transition-all
+        duration-200
+        group-hover:-translate-x-1
+        group-hover:opacity-100
+      "
+    >
+      <p className="font-bold text-white">
+        ¿Cómo calculamos esta recomendación?
+      </p>
+
+      <div className="mt-3 space-y-2 text-white/70">
+        <p>
+          • Consideramos{" "}
+          <span className="font-semibold text-white">
+            {eventData.guests} invitados
+          </span>{" "}
+          y una duración de{" "}
+          <span className="font-semibold text-white">
+            {eventData.duration} horas
+          </span>
+          .
+        </p>
+
+        <p>
+          • Con base en nuestro consumo estimado, calculamos
+          aproximadamente{" "}
+          <span className="font-semibold text-white">
+            {estimatedBeers} cervezas
+          </span>
+          .
+        </p>
+
+        <p>
+          • Como cada cartón contiene{" "}
+          <span className="font-semibold text-white">
+            20 piezas
+          </span>
+          , esto equivale aproximadamente a{" "}
+          <span className="font-semibold text-white">
+            {recommendedBeerCartons} cartones
+          </span>
+          .
+        </p>
+
+        <p className="border-t border-white/10 pt-2 text-[11px] leading-relaxed text-white/40">
+          La cantidad mostrada es una estimación y puede variar
+          según el consumo de tus invitados. Puedes modificar la
+          cantidad recomendada.
+        </p>
       </div>
-    </div>
-
-    <div className="mt-1 flex items-baseline gap-2">
-      <span className="text-3xl font-extrabold">
-        {totalRecommendedBeer}
-      </span>
-
-      <span className="text-xs font-semibold uppercase text-white/60">
-        cartones
-      </span>
     </div>
   </div>
 </div>
+         
+        </div>
+      </div>
 
 
       {/* CARDS DE CERVEZA */}
