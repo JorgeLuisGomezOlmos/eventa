@@ -670,13 +670,73 @@ const estimatedBeers =
                         
                         
                       {/* CANTIDAD */}
-                        
+                      
                       <div className="min-w-[42px] text-center">
-                        
-                        <p className="text-lg font-extrabold leading-none text-brandDark sm:text-2xl">
-                          {quantities[product.id] ?? 0}
-                        </p>
-                        
+                        <input
+  type="text"
+  inputMode="numeric"
+  value={
+    quantities[product.id] === undefined
+      ? ""
+      : quantities[product.id]
+  }
+  onChange={(e) => {
+    const value = e.target.value;
+
+    // Permitir borrar completamente
+    if (value === "") {
+      setQuantities((prev) => ({
+        ...prev,
+        [product.id]: 0,
+      }));
+
+      setEventData((prev) => ({
+        ...prev,
+        productQuantities: {
+          ...prev.productQuantities,
+          [product.id]: 0,
+        },
+      }));
+
+      return;
+    }
+
+    // Solo permitir números
+    if (!/^\d+$/.test(value)) {
+      return;
+    }
+
+    const newQuantity = Number(value);
+
+    // Actualizar estado local
+    setQuantities((prev) => ({
+      ...prev,
+      [product.id]: newQuantity,
+    }));
+
+    // Actualizar EventContext
+    setEventData((prev) => ({
+      ...prev,
+      productQuantities: {
+        ...prev.productQuantities,
+        [product.id]: newQuantity,
+      },
+    }));
+  }}
+  className="
+    w-[50px]
+    bg-transparent
+    text-center
+    text-lg
+    font-extrabold
+    leading-none
+    text-brandDark
+    outline-none
+    sm:w-[60px]
+    sm:text-2xl
+  "
+/>
+
                         <p className="mt-1 text-[8px] font-medium text-zinc-400 sm:text-[9px]">
                           {product.unit === "cartón"
                             ? (quantities[product.id] ?? 0) !== 1
@@ -686,7 +746,6 @@ const estimatedBeers =
                               ? `${product.unit}s`
                               : product.unit}
                         </p>
-                          
                       </div>
                           
                           
@@ -1104,22 +1163,77 @@ const estimatedBeers =
                       {/* CANTIDAD */}
                         
                       <div className="min-w-[42px] text-center">
+                        <input
+                        type="text"
+                        inputMode="numeric"
+                        value={
+                          quantities[product.id] === undefined
+                            ? ""
+                            : quantities[product.id]
+                        }
+                        onChange={(e) => {
+                          const value = e.target.value;
                         
-                        <p className="text-lg font-extrabold leading-none text-brandDark sm:text-2xl">
-                          {quantities[product.id] ?? 0}
-                        </p>
-                        
-                        <p className="mt-1 text-[8px] font-medium text-zinc-400 sm:text-[9px]">
-                          {product.unit === "cartón"
-                            ? (quantities[product.id] ?? 0) !== 1
-                              ? "cartones"
-                              : "cartón"
-                            : (quantities[product.id] ?? 0) !== 1
-                              ? `${product.unit}s`
-                              : product.unit}
-                        </p>
+                          if (value === "") {
+                            setQuantities((prev) => ({
+                              ...prev,
+                              [product.id]: 0,
+                            }));
                           
-                      </div>
+                            setEventData((prev) => ({
+                              ...prev,
+                              productQuantities: {
+                                ...prev.productQuantities,
+                                [product.id]: 0,
+                              },
+                            }));
+                          
+                            return;
+                          }
+                        
+                          if (!/^\d+$/.test(value)) {
+                            return;
+                          }
+                        
+                          const newQuantity = Number(value);
+                        
+                          setQuantities((prev) => ({
+                            ...prev,
+                            [product.id]: newQuantity,
+                          }));
+                        
+                          setEventData((prev) => ({
+                            ...prev,
+                            productQuantities: {
+                              ...prev.productQuantities,
+                              [product.id]: newQuantity,
+                            },
+                          }));
+                        }}
+                        className="
+                          w-[50px]
+                          bg-transparent
+                          text-center
+                          text-lg
+                          font-extrabold
+                          leading-none
+                          text-brandDark
+                          outline-none
+                          sm:w-[60px]
+                          sm:text-2xl
+                        "
+                      />
+
+  <p className="mt-1 text-[8px] font-medium text-zinc-400 sm:text-[9px]">
+    {product.unit === "cartón"
+      ? (quantities[product.id] ?? 0) !== 1
+        ? "cartones"
+        : "cartón"
+      : (quantities[product.id] ?? 0) !== 1
+        ? `${product.unit}s`
+        : product.unit}
+  </p>
+</div>
                           
                           
                       {/* MÁS */}
