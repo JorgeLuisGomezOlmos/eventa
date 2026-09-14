@@ -13,7 +13,7 @@ function Button({
 }: ButtonProps) {
   const variants = {
     primary:
-      "bg-primary text-white hover:bg-primary-dark shadow-lg shadow-red-500/20",
+      "border-2 border-primary bg-primary text-white hover:bg-primary-dark shadow-lg shadow-red-500/20",
 
     secondary:
       "bg-brandDark text-white hover:bg-brandDarkSoft",
@@ -29,8 +29,8 @@ function Button({
         items-center
         justify-center
         rounded-xl
-        px-6
-        py-3
+        px-4
+        py-2
         font-semibold
         transition-all
         duration-300

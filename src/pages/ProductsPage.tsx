@@ -5,9 +5,11 @@ import {
   GlassWater,
   Snowflake,
   ShoppingCart,
+  ArrowRight,
 } from "lucide-react";
 import { products, type ProductCategory } from "../data/products";
 import Container from "../components/layout/Container";
+import { Link } from "react-router-dom";
 
 type CategoryFilter = "all" | ProductCategory;
 
@@ -86,7 +88,7 @@ function ProductsPage() {
     <div className="min-h-screen bg-background pt-[76px] sm:pt-[82px]">
       {/* Hero */}
       <section className="border-b border-zinc-200 bg-white">
-        <Container className="py-14 sm:py-18 lg:py-20">
+        <Container className="py-10 sm:py-10 lg:py-10">
           <div className="mx-auto max-w-3xl text-center">
             <span className="inline-flex rounded-full bg-primary/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary">
               Productos
@@ -166,8 +168,29 @@ function ProductsPage() {
             </div>
           </div>
 
+          <div className="mt-6 flex justify-end">
+            <Link
+              to="/crear-evento"
+              className="
+                inline-flex items-center gap-2
+                rounded-2xl
+                bg-primary
+                px-5 py-3
+                text-sm font-bold text-white
+                shadow-lg shadow-primary/20
+                transition-all duration-200
+                hover:bg-primary-light
+                hover:-translate-y-0.5
+                active:scale-[0.98]
+              "
+            >
+              Crear mi evento
+              <ArrowRight size={17} />
+            </Link>
+          </div>
+
           {/* Resultado */}
-          <div className="mt-8 flex items-center justify-between">
+          <div className="mt-2 flex items-center justify-between">
             <p className="text-sm font-medium text-zinc-500">
               {filteredProducts.length}{" "}
               {filteredProducts.length === 1
@@ -188,85 +211,188 @@ function ProductsPage() {
 
           {/* Grid */}
           {filteredProducts.length > 0 ? (
-            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
-              {filteredProducts.map((product) => {
-                const CategoryIcon = getCategoryIcon(
-                  product.category
-                );
-
-                return (
-                  <article
-                    key={product.id}
-                    className="
-                      group overflow-hidden
-                      rounded-3xl
-                      border border-zinc-200
-                      bg-white
-                      shadow-sm
-                      transition-all duration-300
-                      hover:-translate-y-1
-                      hover:shadow-xl
-                    "
-                  >
-                    {/* Imagen */}
-                    <div className="relative aspect-square overflow-hidden bg-zinc-100">
-                      {product.image ? (
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="
-                            h-full w-full object-cover
-                            transition-transform duration-500
-                            group-hover:scale-105
-                          "
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center text-zinc-300">
-                          <CategoryIcon
-                            size={52}
-                            strokeWidth={1.5}
-                          />
-                        </div>
-                      )}
-
-                      <div className="absolute left-3 top-3">
-                        <span className="rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-zinc-700 shadow-sm backdrop-blur">
-                          {getCategoryLabel(product.category)}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Información */}
-                    <div className="p-4 sm:p-5">
-                      <h2 className="line-clamp-1 text-sm font-bold text-brandDark sm:text-base">
-                        {product.name}
-                      </h2>
-
-                      <p className="mt-1 line-clamp-2 min-h-[32px] text-xs leading-relaxed text-zinc-500 sm:text-sm">
-                        {product.description}
-                      </p>
-
-                      <div className="mt-4">
-                        <p className="text-lg font-extrabold text-brandDark sm:text-xl">
-                          $
-                          {product.price.toLocaleString(
-                            "es-MX"
-                          )}
-                        </p>
-
-                        <p className="mt-1 text-[11px] font-medium text-zinc-500 sm:text-xs">
-                          {product.unit}
-                          {product.unitsPerPackage
-                            ? ` · ${product.unitsPerPackage} pzas`
-                            : ""}
-                        </p>
-                      </div>
-
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
+           <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+             {filteredProducts.map((product) => {
+               const CategoryIcon = getCategoryIcon(product.category);
+             
+               const hasPromotion =
+                 product.promoPrice !== undefined &&
+                 product.promoPrice < product.price;
+             
+               const discount = hasPromotion
+                 ? Math.round(
+                     ((product.price - product.promoPrice!) /
+                       product.price) *
+                       100
+                   )
+                 : 0;
+                 
+               const inStock = product.stock > 0;
+                 
+               return (
+                 <article
+                   key={product.id}
+                   className="
+                     group overflow-hidden
+                     rounded-2xl
+                     border border-zinc-200
+                     bg-white
+                     shadow-sm
+                     transition-all duration-300
+                     hover:-translate-y-1
+                     hover:border-zinc-300
+                     hover:shadow-lg
+                   "
+                 >
+                   {/* IMAGEN */}
+                   <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100">
+                     {product.image ? (
+                       <img
+                         src={product.image}
+                         alt={product.name}
+                         className="
+                           h-full w-full object-cover
+                           transition-transform duration-500
+                           group-hover:scale-105
+                         "
+                       />
+                     ) : (
+                       <div className="flex h-full items-center justify-center text-zinc-300">
+                         <CategoryIcon size={42} strokeWidth={1.5} />
+                       </div>
+                     )}
+           
+                     {/* DESCUENTO */}
+                     {hasPromotion && (
+                       <span className="
+                         absolute left-2.5 top-2.5
+                         rounded-full bg-primary
+                         px-2 py-1
+                         text-[9px] font-extrabold
+                         text-white shadow-md
+                         sm:left-3 sm:top-3
+                         sm:px-2.5 sm:py-1.5
+                         sm:text-[10px]
+                       ">
+                         -{discount}%
+                       </span>
+                     )}
+           
+                     {/* EXISTENCIA */}
+                     <span
+                       className={`
+                         absolute right-2.5 top-2.5
+                         rounded-full px-2 py-1
+                         text-[9px] font-bold
+                         shadow-sm backdrop-blur-sm
+                         sm:right-3 sm:top-3
+                         sm:px-2.5 sm:py-1.5
+                         sm:text-[10px]
+                         ${
+                           inStock
+                             ? "bg-white/90 text-green-600"
+                             : "bg-white/90 text-red-500"
+                         }
+                       `}
+                     >
+                       {inStock ? "En stock" : "Agotado"}
+                     </span>
+                   </div>
+                       
+                   {/* CONTENIDO */}
+                   <div className="p-3 sm:p-4">
+                       
+                     {/* NOMBRE */}
+                     <h2 className="
+                       truncate
+                       text-sm
+                       font-extrabold
+                       text-brandDark
+                       sm:text-base
+                     ">
+                       {product.name}
+                     </h2>
+                       
+                     {/* PRESENTACIÓN */}
+                     <p className="
+                       mt-1
+                       text-[10px]
+                       font-medium
+                       text-zinc-500
+                       sm:text-xs
+                     ">
+                       {product.unit}
+                       {product.unitsPerPackage
+                         ? ` · ${product.unitsPerPackage} pzas`
+                         : ""}
+                     </p>
+                       
+                     {/* PRECIO */}
+                     <div className="mt-3 flex items-end gap-2">
+                       {hasPromotion ? (
+                         <>
+                           <span className="
+                             text-[10px]
+                             font-semibold
+                             text-zinc-400
+                             line-through
+                             sm:text-xs
+                           ">
+                             ${product.price.toLocaleString("es-MX")}
+                           </span>
+                       
+                           <span className="
+                             text-lg
+                             font-extrabold
+                             leading-none
+                             text-primary
+                             sm:text-xl
+                           ">
+                             ${product.promoPrice!.toLocaleString("es-MX")}
+                           </span>
+                         </>
+                       ) : (
+                         <span className="
+                           text-lg
+                           font-extrabold
+                           leading-none
+                           text-brandDark
+                           sm:text-xl
+                         ">
+                           ${product.price.toLocaleString("es-MX")}
+                         </span>
+                       )}
+                     </div>
+                     
+                     {/* ESTADO / AHORRO */}
+                     {hasPromotion ? (
+                       <p className="
+                         mt-1
+                         text-[9px]
+                         font-semibold
+                         text-green-600
+                         sm:text-[10px]
+                       ">
+                         Ahorras $
+                         {(product.price - product.promoPrice!).toLocaleString(
+                           "es-MX"
+                         )}
+                       </p>
+                     ) : (
+                       <p className="
+                         mt-1
+                         text-[9px]
+                         text-zinc-400
+                         sm:text-[10px]
+                       ">
+                         Precio regular
+                       </p>
+                     )}
+                   </div>
+                 </article>
+               );
+             })}
+           </div>
           ) : (
             /* Sin resultados */
             <div className="mt-10 rounded-3xl border border-dashed border-zinc-300 bg-white px-6 py-16 text-center">

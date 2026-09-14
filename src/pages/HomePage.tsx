@@ -11,6 +11,7 @@ import {
   BadgePercent,
   ShoppingCart,
   Tag,
+  ExternalLink,
 } from "lucide-react";
 
 import { products } from "../data/products";
@@ -153,15 +154,14 @@ const HomePage = () => {
         <p className="
           mt-6
           max-w-xl
-          text-base
+          text-sm
           leading-7
           text-zinc-300
           sm:text-lg
           sm:leading-8
         ">
           Calcula las bebidas, productos y cantidades que
-          necesitas para tu evento y recibe una cotización
-          personalizada en minutos.
+          necesitas para tu evento, recibe una cotización perosonalizada y realiza tu pedido en minutos.
         </p>
 
 
@@ -693,29 +693,44 @@ const HomePage = () => {
                     </p>
                       
                     {/* Botón */}
-                    <button
-                      type="button"
-                      disabled={!inStock}
-                      className={`
-                        mt-5 flex w-full items-center
-                        justify-center gap-2
-                        rounded-2xl
-                        px-5 py-3.5
-                        text-sm font-bold
-                        transition-all duration-200
-                        ${
-                          inStock
-                            ? "bg-primary text-white hover:bg-primary-light active:scale-[0.98]"
-                            : "cursor-not-allowed bg-zinc-800 text-white/30"
-                        }
-                      `}
-                    >
-                      <ShoppingCart size={17} />
-                      
-                      {inStock
-                        ? "Agregar a mi evento"
-                        : "Agotado"}
-                    </button>
+
+                    {inStock ? (
+                      <Link
+                        to="/crear-evento"
+                        className="
+                          mt-5 flex w-full items-center
+                          justify-center gap-2
+                          rounded-2xl
+                          bg-primary
+                          px-5 py-3.5
+                          text-sm font-bold
+                          text-white
+                          transition-all duration-200
+                          hover:bg-primary-light
+                          active:scale-[0.98]
+                        "
+                      >
+                        Crear mi evento y solicitar
+                        <ArrowRight size={17} />
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        disabled
+                        className="
+                          mt-5 flex w-full items-center
+                          justify-center gap-2
+                          rounded-2xl
+                          bg-zinc-800
+                          px-5 py-3.5
+                          text-sm font-bold
+                          text-white/30
+                          cursor-not-allowed
+                        "
+                      >
+                        Agotado
+                      </button>
+                    )}
                   </div>
                 </article>
               );
@@ -940,12 +955,185 @@ const HomePage = () => {
             <Link to="/crear-evento">
               <Button
                 variant="secondary"
-                className="mt-8 bg-white text-slate-900 hover:bg-zinc-100"
+                className="mt-8 text-slate-900 hover:bg-zinc-100 hover:text-black"
               >
                 🎉 Crear mi evento
                 <ArrowRight size={18} className="ml-2" />
               </Button>
             </Link>
+
+            {/* REDES SOCIALES */}
+<div className="mt-14">
+  <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/40">
+    Síguenos
+  </p>
+
+  <h3 className="mt-2 text-2xl font-extrabold text-white">
+    También estamos en redes
+  </h3>
+
+  <p className="mx-auto mt-2 max-w-lg text-sm leading-relaxed text-white/50">
+    Descubre promociones, nuevos productos y contenido para
+    hacer de tus eventos algo especial.
+  </p>
+
+  <div className="mt-6 flex flex-wrap justify-center gap-3">
+    {/* INSTAGRAM */}
+    <a
+      href="https://www.instagram.com/six_gomez"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        group flex items-center gap-3
+        rounded-2xl
+        border border-white/10
+        bg-white/[0.04]
+        px-4 py-3
+        text-left
+        transition-all duration-300
+        hover:-translate-y-1
+        hover:border-pink-500/30
+        hover:bg-white/[0.08]
+        hover:shadow-xl
+      "
+    >
+
+      <div
+        className="
+          flex h-10 w-10 items-center justify-center
+          rounded-xl
+          bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-600
+          text-white
+          shadow-lg
+        "
+      >
+        <img
+          src="/images/social/instagram.png"
+          alt="Instagram"
+          className=""
+        />
+
+      </div>
+
+      <div>
+        <p className="text-[10px] font-bold uppercase tracking-wider text-white/40">
+          Síguenos en
+        </p>
+
+        <p className="text-sm font-bold text-white">
+          Instagram
+        </p>
+      </div>
+
+      <ExternalLink
+        size={15}
+        className="ml-1 text-white/30 transition group-hover:text-white"
+      />
+    </a>
+
+    {/* FACEBOOK */}
+    <a
+      href="https://www.facebook.com/share/1FLBpNzgBr/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        group flex items-center gap-3
+        rounded-2xl
+        border border-white/10
+        bg-white/[0.04]
+        px-4 py-3
+        text-left
+        transition-all duration-300
+        hover:-translate-y-1
+        hover:border-blue-500/30
+        hover:bg-white/[0.08]
+        hover:shadow-xl
+      "
+    >
+      <div
+        className="
+          flex h-10 w-10 items-center justify-center
+          rounded-xl
+          bg-blue-600
+          text-white
+          shadow-lg
+        "
+      >
+        <img
+          src="/images/social/facebook.png"
+          alt="Facebook"
+          className=""
+        />
+      </div>
+
+      <div>
+        <p className="text-[10px] font-bold uppercase tracking-wider text-white/40">
+          Encuéntranos en
+        </p>
+
+        <p className="text-sm font-bold text-white">
+          Facebook
+        </p>
+      </div>
+
+      <ExternalLink
+        size={15}
+        className="ml-1 text-white/30 transition group-hover:text-white"
+      />
+    </a>
+
+    {/* TIKTOK */}
+    <a
+      href="https://www.tiktok.com/@TU_USUARIO"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        group flex items-center gap-3
+        rounded-2xl
+        border border-white/10
+        bg-white/[0.04]
+        px-4 py-3
+        text-left
+        transition-all duration-300
+        hover:-translate-y-1
+        hover:border-white/30
+        hover:bg-white/[0.08]
+        hover:shadow-xl
+      "
+    >
+      <div
+        className="
+          flex h-10 w-10 items-center justify-center
+          rounded-xl
+          bg-black
+          text-white
+          shadow-lg
+        "
+      >
+        <img
+          src="/images/social/tiktok.png"
+          alt="TikTok"
+          className=""
+        />
+      </div>
+
+      <div>
+        <p className="text-[10px] font-bold uppercase tracking-wider text-white/40">
+          Síguenos en
+        </p>
+
+        <p className="text-sm font-bold text-white">
+          TikTok
+        </p>
+      </div>
+
+      <ExternalLink
+        size={15}
+        className="ml-1 text-white/30 transition group-hover:text-white"
+      />
+    </a>
+  </div>
+</div>
 
           </div>
         </Container>

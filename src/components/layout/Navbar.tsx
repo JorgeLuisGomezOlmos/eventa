@@ -29,25 +29,26 @@ function Navbar() {
       icon: Home,
     },
     {
-      name: "Cómo funciona",
-      path: "/#como-funciona",
-      icon: CircleHelp,
-    },
-    {
       name: "Servicios",
       path: "/#servicios",
       icon: BriefcaseBusiness,
-    },
-    {
-    name: "Productos",
-    path: "/productos",
-    icon: ShoppingBag,
     },
     {
       name: "Promociones",
       path: "/#promociones",
       icon: Tag,
     },
+    {
+      name: "Cómo funciona",
+      path: "/#como-funciona",
+      icon: CircleHelp,
+    },
+    {
+    name: "Productos",
+    path: "/productos",
+    icon: ShoppingBag,
+    },
+
   ];
 
   
@@ -239,26 +240,26 @@ function Navbar() {
               type="button"
               onClick={() => setIsOpen(true)}
               className={`
-  flex
-  h-11
-  w-11
-  items-center
-  justify-center
-  rounded-xl
-  border
-  shadow-lg
-  backdrop-blur-md
-  transition-all
-  duration-300
-  hover:border-primary/40
-  hover:bg-primary
-  md:hidden
-  ${
-    location.pathname === "/"
-      ? "border-white/15 bg-black/20 text-white"
-      : "border-zinc-200 bg-white text-brandDark"
-  }
-`}
+              flex
+              h-11
+              w-11
+              items-center
+              justify-center
+              rounded-xl
+              border
+              shadow-lg
+              backdrop-blur-md
+              transition-all
+              duration-300
+              hover:border-primary/40
+              hover:bg-primary
+              md:hidden
+              ${
+                location.pathname === "/"
+                  ? "border-white/15 bg-black/20 text-white"
+                  : "border-zinc-200 bg-white text-brandDark"
+              }
+            `}
             >
               <Menu size={23} />
             </button>
@@ -537,6 +538,135 @@ function Navbar() {
             </div>
 
           </div>
+
+          {/* REDES SOCIALES */}
+            <div className="mt-8">
+              <div className="mb-3 flex items-center justify-between">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">
+                  Síguenos
+                </p>
+                        
+              </div>
+                        
+              <div className="grid grid-cols-3 gap-2.5">
+                {/* Instagram */}
+                <a
+                  href="https://www.instagram.com/six_gomez"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    group flex flex-col items-center
+                    justify-center gap-2
+                    rounded-2xl
+                    border border-white/10
+                    bg-white/[0.04]
+                    px-3 py-3.5
+                    transition-all duration-300
+                    hover:-translate-y-1
+                    hover:border-pink-500/30
+                    hover:bg-white/[0.08]
+                  "
+                >
+                  <div
+                    className="
+                      flex h-10 w-10 items-center justify-center
+                      rounded-xl
+                      bg-gradient-to-br
+                      from-yellow-400
+                      via-pink-500
+                      to-purple-600
+                      shadow-lg
+                    "
+                  >
+                    <img
+                      src="/images/social/instagram.png"
+                      alt="Instagram"
+                      className=""
+                    />
+                  </div>
+                        
+                  <span className="text-[11px] font-semibold text-white/70 transition group-hover:text-white">
+                    Instagram
+                  </span>
+                </a>
+                        
+                {/* Facebook */}
+                <a
+                  href="https://www.facebook.com/share/1FLBpNzgBr/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    group flex flex-col items-center
+                    justify-center gap-2
+                    rounded-2xl
+                    border border-white/10
+                    bg-white/[0.04]
+                    px-3 py-3.5
+                    transition-all duration-300
+                    hover:-translate-y-1
+                    hover:border-blue-500/30
+                    hover:bg-white/[0.08]
+                  "
+                >
+                  <div
+                    className="
+                      flex h-10 w-10 items-center justify-center
+                      rounded-xl
+                      bg-blue-600
+                      shadow-lg
+                    "
+                  >
+                    <img
+                      src="/images/social/facebook.png"
+                      alt="Facebook"
+                      className=""
+                    />
+                  </div>
+                        
+                  <span className="text-[11px] font-semibold text-white/70 transition group-hover:text-white">
+                    Facebook
+                  </span>
+                </a>
+                        
+                {/* TikTok */}
+                <a
+                  href="https://www.tiktok.com/@TU_USUARIO"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    group flex flex-col items-center
+                    justify-center gap-2
+                    rounded-2xl
+                    border border-white/10
+                    bg-white/[0.04]
+                    px-3 py-3.5
+                    transition-all duration-300
+                    hover:-translate-y-1
+                    hover:border-white/30
+                    hover:bg-white/[0.08]
+                  "
+                >
+                  <div
+                    className="
+                      flex h-10 w-10 items-center justify-center
+                      rounded-xl
+                      bg-black
+                      shadow-lg
+                    "
+                  >
+                    <img
+                      src="/images/social/tiktok.png"
+                      alt="TikTok"
+                      className="h-7 w-7"
+                    />
+                  </div>
+                        
+                  <span className="text-[11px] font-semibold text-white/70 transition group-hover:text-white">
+                    TikTok
+                  </span>
+                </a>
+              </div>
+            </div>
 
 
           {/* ================================================== */}

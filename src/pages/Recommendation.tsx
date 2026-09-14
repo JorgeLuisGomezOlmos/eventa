@@ -228,7 +228,7 @@ const estimatedBeers =
 );
 
   return (
-    <section className="min-h-screen bg-background py-24 lg:py-16">
+    <section className="min-h-screen bg-background py-24 lg:py-24">
       <Container>
         <div className="mx-auto max-w-5xl">
 
@@ -1760,16 +1760,11 @@ const estimatedBeers =
                   {" "}
                   MXN
                 </h2>
-
-                <p className="mt-2 text-sm text-zinc-400">
-                  El precio puede variar dependiendo de los productos
-                  disponibles.
-                </p>
               </div>
 
               <Link to="/cotizacion">
                 <Button className="w-full sm:w-auto">
-                  Continuar a cotización
+                  Resumen de pedido
                   <ArrowRight size={18} className="ml-2" />
                 </Button>
               </Link>

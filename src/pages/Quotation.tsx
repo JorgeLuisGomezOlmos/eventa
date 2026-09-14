@@ -105,7 +105,7 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
   const handleWhatsAppQuotation = () => {
   const phoneNumber = "5573270076";
 
-  let message = `Hola, quiero solicitar una cotización para mi evento.\n\n`;
+  let message = `Hola, quiero solicitar el sigueinte pedido para mi evento.\n\n`;
 
   message += `🎉 Tipo de evento: ${getEventName()}\n`;
   message += `👥 Invitados: ${eventData.guests} personas\n`;
@@ -149,7 +149,7 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
   };
 
   return (
-    <main className="min-h-screen bg-zinc-50 py-24 sm:py-12">
+    <main className="min-h-screen bg-zinc-50 py-24 sm:py-28">
       <Container>
 
         {/* ========================= */}
@@ -168,7 +168,7 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
         {/* HEADER */}
         {/* ========================= */}
 
-        <div className="mt-6 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+        <div className="mt-2 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
 
           <div>
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-brandDark sm:text-4xl">
