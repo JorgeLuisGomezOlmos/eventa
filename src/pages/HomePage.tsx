@@ -9,7 +9,6 @@ import {
   Truck,
   CheckCircle2,
   BadgePercent,
-  ShoppingCart,
   Tag,
   ExternalLink,
 } from "lucide-react";

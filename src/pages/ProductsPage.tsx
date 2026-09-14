@@ -33,21 +33,21 @@ function ProductsPage() {
     });
   }, [category, search]);
 
-  const getCategoryLabel = (productCategory: ProductCategory) => {
-    switch (productCategory) {
-      case "beer":
-        return "Cervezas";
+  // const getCategoryLabel = (productCategory: ProductCategory) => {
+  //   switch (productCategory) {
+  //     case "beer":
+  //       return "Cervezas";
 
-      case "softDrinks":
-        return "Sin alcohol";
+  //     case "softDrinks":
+  //       return "Sin alcohol";
 
-      case "ice":
-        return "Hielo";
+  //     case "ice":
+  //       return "Hielo";
 
-      default:
-        return "";
-    }
-  };
+  //     default:
+  //       return "";
+  //   }
+  // };
 
   const getCategoryIcon = (productCategory: ProductCategory) => {
     switch (productCategory) {
