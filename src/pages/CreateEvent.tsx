@@ -239,13 +239,14 @@ function CreateEvent() {
                     onChange={(e) =>
                       updateEventData({
                         guests: Number(e.target.value),
+                        productQuantities: {},
                       })
                     }
                     placeholder="Ejemplo: 100"
                     className="mt-3 w-full rounded-2xl border border-zinc-200 px-5 py-5 text-3xl font-bold outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                   />
 
-                  <div className="mt-6 grid grid-cols-3 gap-3">
+                  {/* <div className="mt-6 grid grid-cols-3 gap-3">
                     {[25, 50, 100].map((number) => (
                       <button
                         key={number}
@@ -264,7 +265,7 @@ function CreateEvent() {
                         {number}
                       </button>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             )}
@@ -350,6 +351,7 @@ function CreateEvent() {
                         onChange={(e) =>
                           updateEventData({
                             duration: Number(e.target.value),
+                            productQuantities: {},
                           })
                         }
                         className="
@@ -373,17 +375,18 @@ function CreateEvent() {
                           Selecciona la duración
                         </option>
                       
-                        <option value="2">2 horas</option>
-                        <option value="3">3 horas</option>
-                        <option value="4">4 horas</option>
-                        <option value="5">5 horas</option>
-                        <option value="6">6 horas</option>
-                        <option value="7">7 horas</option>
-                        <option value="8">8 horas</option>
-                        <option value="9">9 horas</option>
-                        <option value="10">10 horas</option>
-                        <option value="11">11 horas</option>
                         <option value="12">12 horas</option>
+                        <option value="11">11 horas</option>
+                        <option value="10">10 horas</option>
+                        <option value="9">9 horas</option>
+                        <option value="8">8 horas</option>
+                        <option value="7">7 horas</option>
+                        <option value="6">6 horas</option>
+                        <option value="5">5 horas</option>
+                        <option value="4">4 horas</option>
+                        <option value="3">3 horas</option>
+                        <option value="2">2 horas</option>
+                        
                       </select>
                    
                   </div>
@@ -700,6 +703,8 @@ function CreateEvent() {
           },
 
           selectedBeerIds: selectedIds,
+
+          productQuantities: {},
         });
       }}
     />
@@ -718,6 +723,8 @@ function CreateEvent() {
             softDrinks: selectedIds.length > 0,
           },
           selectedSoftDrinkIds: selectedIds,
+
+          productQuantities: {},
         });
       }}
     />

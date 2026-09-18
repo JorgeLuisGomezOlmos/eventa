@@ -342,7 +342,7 @@ const estimatedBeers =
 
               <p className="mt-3 text-zinc-600">
                 Puedes revisar y modificar las cantidades antes de solicitar
-                una cotización.
+                tu pedido.
               </p>
             </div> 
           </div>
@@ -673,69 +673,69 @@ const estimatedBeers =
                       
                       <div className="min-w-[42px] text-center">
                         <input
-  type="text"
-  inputMode="numeric"
-  value={
-    quantities[product.id] === undefined
-      ? ""
-      : quantities[product.id]
-  }
-  onChange={(e) => {
-    const value = e.target.value;
-
-    // Permitir borrar completamente
-    if (value === "") {
-      setQuantities((prev) => ({
-        ...prev,
-        [product.id]: 0,
-      }));
-
-      setEventData((prev) => ({
-        ...prev,
-        productQuantities: {
-          ...prev.productQuantities,
-          [product.id]: 0,
-        },
-      }));
-
-      return;
-    }
-
-    // Solo permitir números
-    if (!/^\d+$/.test(value)) {
-      return;
-    }
-
-    const newQuantity = Number(value);
-
-    // Actualizar estado local
-    setQuantities((prev) => ({
-      ...prev,
-      [product.id]: newQuantity,
-    }));
-
-    // Actualizar EventContext
-    setEventData((prev) => ({
-      ...prev,
-      productQuantities: {
-        ...prev.productQuantities,
-        [product.id]: newQuantity,
-      },
-    }));
-  }}
-  className="
-    w-[50px]
-    bg-transparent
-    text-center
-    text-lg
-    font-extrabold
-    leading-none
-    text-brandDark
-    outline-none
-    sm:w-[60px]
-    sm:text-2xl
-  "
-/>
+                          type="text"
+                          inputMode="numeric"
+                          value={
+                            quantities[product.id] === undefined
+                              ? ""
+                              : quantities[product.id]
+                          }
+                          onChange={(e) => {
+                            const value = e.target.value;
+                          
+                            // Permitir borrar completamente
+                            if (value === "") {
+                              setQuantities((prev) => ({
+                                ...prev,
+                                [product.id]: 0,
+                              }));
+                            
+                              setEventData((prev) => ({
+                                ...prev,
+                                productQuantities: {
+                                  ...prev.productQuantities,
+                                  [product.id]: 0,
+                                },
+                              }));
+                            
+                              return;
+                            }
+                          
+                            // Solo permitir números
+                            if (!/^\d+$/.test(value)) {
+                              return;
+                            }
+                          
+                            const newQuantity = Number(value);
+                          
+                            // Actualizar estado local
+                            setQuantities((prev) => ({
+                              ...prev,
+                              [product.id]: newQuantity,
+                            }));
+                          
+                            // Actualizar EventContext
+                            setEventData((prev) => ({
+                              ...prev,
+                              productQuantities: {
+                                ...prev.productQuantities,
+                                [product.id]: newQuantity,
+                              },
+                            }));
+                          }}
+                          className="
+                            w-[50px]
+                            bg-transparent
+                            text-center
+                            text-lg
+                            font-extrabold
+                            leading-none
+                            text-brandDark
+                            outline-none
+                            sm:w-[60px]
+                            sm:text-2xl
+                          "
+                        />
 
                         <p className="mt-1 text-[8px] font-medium text-zinc-400 sm:text-[9px]">
                           {product.unit === "cartón"
