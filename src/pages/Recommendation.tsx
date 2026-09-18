@@ -78,6 +78,9 @@ function Recommendation() {
       boda: "Boda",
       reunion: "Reunión o fiesta",
       corporativo: "Evento corporativo",
+      xv_anos: "XV años",
+      bautizo: "Bauitizo",
+      primera_comunion_confirmacion: "Primera comunión o Confirmación",
       otro: "Otro evento",
     };
 
@@ -341,7 +344,7 @@ const estimatedBeers =
               </h2>
 
               <p className="mt-3 text-zinc-600">
-                Puedes revisar y modificar las cantidades antes de solicitar
+                Puedes modificar las cantidades deacuerdo a tu presupuesto o estimaciones antes de solicitar
                 tu pedido.
               </p>
             </div> 

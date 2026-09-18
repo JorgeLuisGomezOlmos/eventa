@@ -31,6 +31,9 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
       boda: "Boda",
       reunion: "Reunión o fiesta",
       corporativo: "Evento corporativo",
+      xv_anos: "XV años",
+      bautizo: "Bauitizo",
+      primera_comunion_confirmacion: "Primera comunión o Confirmación",
       otro: "Otro evento",
     };
   
@@ -66,19 +69,16 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
   /* PRODUCTOS PARA COTIZACIÓN */
   /* ============================= */
 
-  const quotationProducts = recommendation.products.map(
-    (product) => ({
-
-      ...product,
-
-      // Usamos la cantidad modificada por el usuario.
-      // Si no existe, usamos la cantidad recomendada.
-      quantity:
-        eventData.productQuantities[product.id] ??
-        product.quantity,
-
-    })
-  );
+  const quotationProducts = recommendation.products
+  .map((product) => ({
+    ...product,
+    // Usamos la cantidad modificada por el usuario.
+    // Si no existe, usamos la cantidad recomendada.
+    quantity:
+      eventData.productQuantities[product.id] ??
+      product.quantity,
+  }))
+  .filter((product) => product.quantity > 0);
 
 
   /* ============================= */
@@ -172,12 +172,12 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
 
           <div>
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-brandDark sm:text-4xl">
-              Cotización de tu evento
+              Resumen de pedido
             </h1>
 
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-500 sm:text-base">
               Revisa los productos y el costo estimado antes de solicitar
-              tu cotización.
+              tu pedido.
             </p>
 
           </div>
@@ -490,7 +490,7 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
                   </p>
 
                   <h2 className="mt-2 text-2xl font-extrabold">
-                    Tu cotización
+                    Tu pedido
                   </h2>
 
                   <p className="mt-2 text-sm text-brandDark">
@@ -554,6 +554,7 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
                 <Button
                   type="button"
                   onClick={handleWhatsAppQuotation}
+                  disabled={quotationProducts.length === 0}
                   className="mt-6 w-full"
                 >
                   <img
@@ -562,7 +563,9 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
                     className="mr-2 h-5 w-5"
                   />
 
-                  Realizar pedido
+                  {quotationProducts.length === 0
+                    ? "Sin productos"
+                    : "Realizar pedido"}
 
                   <ArrowRight
                     size={18}
@@ -725,14 +728,24 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
                 text-xs
                 leading-5
                 text-white/60
-
+                  
                 sm:text-sm
-
+                  
                 lg:mx-0
                 lg:mt-2
               "
             >
-              Tu solicitud está preparada para enviarse por WhatsApp.
+              <span className="font-semibold text-white">
+                Tu pedido está en atención.
+              </span>
+                  
+              <br />
+                  
+              El administrador de{" "}
+              <span className="font-semibold text-white">
+                Tienda SIX GÓMEZ
+              </span>{" "}
+              dará seguimiento a tu solicitud a través de WhatsApp.
             </p>
 
 

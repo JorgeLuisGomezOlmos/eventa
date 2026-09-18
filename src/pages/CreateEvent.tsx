@@ -14,6 +14,9 @@ import {
   Snowflake,
   GlassWater,
   CircleHelp,
+  Baby,
+  Church,
+  Sparkles,
 } from "lucide-react";
 
 import Container from "../components/layout/Container";
@@ -85,6 +88,24 @@ function CreateEvent() {
       title: "XV años",
       description: "Para una celebración unica",
       icon: Crown,
+    },
+    {
+      value: "bautizo",
+      title: "Bauitizo",
+      description: "Para una celebración unica",
+      icon: Baby,
+    },
+    {
+      value: "primera_comunion_confirmacion",
+      title: "1a comunion, confirmación",
+      description: "Para una celebración unica",
+      icon: Church,
+    },
+    {
+      value: "otro",
+      title: "Otro",
+      description: "Para una celebración unica",
+      icon: Sparkles,
     },
   ];
 
@@ -182,7 +203,7 @@ function CreateEvent() {
                   Esto nos ayudará a entender mejor tu evento.
                 </p>
 
-                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
                   {eventTypes.map((event) => (
                     <EventTypeCard
                       key={event.value}
@@ -225,7 +246,7 @@ function CreateEvent() {
 
                 <div className="mt-10">
                   <label className="text-sm font-semibold text-brandDark">
-                    Número de invitados
+                    Número de invitados estimado
                   </label>
 
                   <input

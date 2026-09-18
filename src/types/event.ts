@@ -4,6 +4,8 @@ export type EventType =
   | "reunion"
   | "corporativo"
   | "xv_anos"
+  | "bautizo"
+  | "primera_comunion_confirmacion"
   | "otro";
 
 export interface EventPreferences {

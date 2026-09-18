@@ -24,7 +24,7 @@ function EventTypeCard({
         border p-3 text-left
         transition-all duration-300
         active:scale-[0.98]
-        sm:p-5
+        sm:p-3
         ${
           selected
             ? "border-primary bg-gradient-to-br from-primary/[0.08] via-white to-white shadow-xl shadow-primary/10"
