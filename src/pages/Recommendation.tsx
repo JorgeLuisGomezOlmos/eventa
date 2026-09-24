@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Info, Lightbulb } from "lucide-react";
+import { Lightbulb } from "lucide-react";
 
 import {
   Beer,
