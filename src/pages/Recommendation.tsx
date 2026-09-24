@@ -1,5 +1,6 @@
 import { useMemo, useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Info, Lightbulb } from "lucide-react";
 
 import {
   Beer,
@@ -229,6 +230,21 @@ const estimatedBeers =
     0.35 *
     eventData.duration
 );
+
+
+const location = useLocation();
+
+const [showRecommendationNotice, setShowRecommendationNotice] =
+  useState(false);
+
+useEffect(() => {
+  if (location.state?.showRecommendationNotice) {
+    setShowRecommendationNotice(true);
+
+    // Evita que el modal vuelva a aparecer al recargar/navegar atrás
+    window.history.replaceState({}, document.title);
+  }
+}, [location.state]);
 
   return (
     <section className="min-h-screen bg-background py-24 lg:py-24">
@@ -1712,6 +1728,315 @@ const estimatedBeers =
     </section>
   )}
 
+{showRecommendationNotice && (
+  <div
+    className="
+      fixed inset-0 z-[100]
+      flex items-center justify-center
+      bg-black/60
+      px-3 py-3
+      backdrop-blur-sm
+    "
+  >
+    <div
+      className="
+        w-full
+        max-w-sm
+        overflow-hidden
+        rounded-3xl
+        bg-white
+        shadow-2xl
+
+        sm:max-w-md
+
+        lg:max-w-4xl
+        lg:rounded-[2rem]
+      "
+    >
+      <div className="flex flex-col lg:flex-row">
+
+        {/* ================================================== */}
+        {/* IZQUIERDA */}
+        {/* ================================================== */}
+
+        <div
+          className="
+            relative
+            flex
+            items-center
+            justify-center
+            overflow-hidden
+            bg-brandDark
+            px-5
+            py-7
+            text-center
+            text-white
+
+            sm:px-7
+            sm:py-8
+
+            lg:w-[40%]
+            lg:justify-center
+            lg:px-8
+            lg:py-8
+            lg:text-left
+          "
+        >
+          {/* Decoraciones */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              -right-12
+              -top-12
+              h-32
+              w-32
+              rounded-full
+              bg-primary/20
+              blur-3xl
+            "
+          />
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              -bottom-14
+              -left-14
+              h-36
+              w-36
+              rounded-full
+              bg-primary/10
+              blur-3xl
+            "
+          />
+
+          <div className="relative">
+            {/* ICONO */}
+            <div
+              className="
+                mx-auto
+                flex
+                h-12
+                w-12
+                items-center
+                justify-center
+                rounded-full
+                bg-primary
+                shadow-lg
+                shadow-primary/20
+
+                sm:h-14
+                sm:w-14
+
+                lg:mx-0
+                lg:h-16
+                lg:w-16
+              "
+            >
+              <Lightbulb
+                size={25}
+                strokeWidth={2.5}
+                className="sm:h-7 sm:w-7"
+              />
+            </div>
+
+            {/* TITULO */}
+            <h2
+              className="
+                mt-3
+                text-2xl
+                font-extrabold
+                tracking-tight
+
+                sm:text-3xl
+
+                lg:mt-4
+                lg:text-4xl
+              "
+            >
+              ¡Listo!
+            </h2>
+
+            <p
+              className="
+                mx-auto
+                mt-2
+                max-w-xs
+                text-xs
+                leading-5
+                text-white/60
+
+                sm:text-sm
+
+                lg:mx-0
+              "
+            >
+              Hemos preparado una recomendación para tu evento.
+            </p>
+
+            <div
+              className="
+                mx-auto
+                mt-4
+                h-px
+                w-auto
+                bg-primary
+
+                lg:mx-0
+                lg:mt-5
+              "
+            />
+
+          </div>
+        </div>
+
+        {/* ================================================== */}
+        {/* DERECHA */}
+        {/* ================================================== */}
+
+        <div
+          className="
+            px-4
+            py-5
+
+            sm:px-6
+            sm:py-7
+
+            lg:w-[60%]
+            lg:px-8
+            lg:py-8
+          "
+        >
+          {/* ENCABEZADO */}
+          <div>
+            <p
+              className="
+                text-[9px]
+                font-bold
+                uppercase
+                tracking-[0.18em]
+                text-primary
+
+                sm:text-[10px]
+              "
+            >
+              Antes de continuar
+            </p>
+
+            <h3
+              className="
+                mt-1
+                text-xl
+                font-extrabold
+                tracking-tight
+                text-brandDark
+
+                sm:text-2xl
+              "
+            >
+              Esta es una recomendación
+            </h3>
+
+            <p
+              className="
+                mt-2
+                text-xs
+                leading-5
+                text-zinc-500
+
+                sm:text-sm
+              "
+            >
+              EVENTA realiza una estimación tomando
+              como referencia la información de tu evento.
+            </p>
+          </div>
+
+          {/* MENSAJE */}
+          <div
+            className="
+              mt-5
+              rounded-2xl
+              border
+              border-primary/10
+              bg-primary/5
+              px-4
+              py-4
+
+              sm:mt-6
+              sm:px-5
+              sm:py-5
+            "
+          >
+            <p
+              className="
+                text-xs
+                leading-5
+                text-zinc-600
+
+                sm:text-sm
+                sm:leading-6
+              "
+            >
+              Las cantidades mostradas son una{" "}
+              <span className="font-bold text-brandDark">
+                estimación
+              </span>{" "}
+              y pueden modificarse de acuerdo con tu{" "}
+              <span className="font-bold text-brandDark">
+                presupuesto, preferencias o necesidades.
+              </span>
+            </p>
+
+            <p
+              className="
+                mt-3
+                text-xs
+                leading-5
+                text-zinc-500
+
+                sm:text-sm
+                sm:leading-6
+              "
+            >
+              Puedes ajustar las cantidades posteriormente
+              antes de realizar tu pedido.
+            </p>
+          </div>
+
+          {/* BOTÓN */}
+          <div className="mt-5 sm:mt-6">
+            <button
+              type="button"
+              onClick={() => setShowRecommendationNotice(false)}
+              className="
+                flex
+                w-full
+                items-center
+                justify-center
+                rounded-xl
+                bg-primary
+                px-5
+                py-3
+                text-sm
+                font-bold
+                text-white
+                transition
+                hover:bg-primary-dark
+                sm:py-3.5
+                sm:text-base
+              "
+            >
+              Aceptar
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+)}  
 </div>
 
           {/* TOTAL */}

@@ -17,6 +17,12 @@ import {
   Baby,
   Church,
   Sparkles,
+  Wine,
+  Table2,
+  ConciergeBell,
+  Utensils,
+  PartyPopperIcon,
+  Building2,
 } from "lucide-react";
 
 import Container from "../components/layout/Container";
@@ -113,7 +119,11 @@ function CreateEvent() {
     if (currentStep < totalSteps) {
       setCurrentStep((prev) => prev + 1);
     } else {
-      navigate("/recomendacion");
+      navigate("/recomendacion", {
+        state: {
+          showRecommendationNotice: true,
+        },
+      });
     }
   };
 
@@ -428,6 +438,9 @@ function CreateEvent() {
                 </p>
 
                 <div className="mt-8 space-y-4">
+                  <h2 className="text-2xl font-bold text-brandDark">
+                  BEBIDAS
+                </h2>
 
                   {/* CERVEZA */}
 
@@ -473,7 +486,7 @@ function CreateEvent() {
                         </h3>
                     
                         <p className="mt-0.5 text-xs text-zinc-500 sm:text-sm">
-                          Recomendación según invitados.
+                          Indio, XX lager, Tecate y mas.
                         </p>
                     
                         {/* CONTADOR EN MÓVIL */}
@@ -529,49 +542,6 @@ function CreateEvent() {
                         )}
                       </div>
                     </div>
-                  </button>
-
-                  {/* HIELO */}
-
-                  <button
-                    type="button"
-                    onClick={() =>
-                      updateEventData({
-                        preferences: {
-                          ...eventData.preferences,
-                          ice: !eventData.preferences.ice,
-                        },
-                      })
-                    }
-                    className={`flex w-full items-center justify-between rounded-2xl border-2 p-5 text-left transition ${
-                      eventData.preferences.ice
-                        ? "border-primary bg-primary/5"
-                        : "border-zinc-200"
-                    }`}
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="rounded-xl bg-blue-100 p-3 text-blue-500">
-                        <Snowflake size={24} />
-                      </div>
-
-                      <div>
-                        <h3 className="font-bold text-brandDark">
-                          Hielo
-                        </h3>
-
-                        <p className="text-sm text-zinc-500">
-                          Calcularemos una cantidad recomendada.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div
-                      className={`h-6 w-6 rounded-full border-2 ${
-                        eventData.preferences.ice
-                          ? "border-primary bg-primary"
-                          : "border-zinc-300"
-                      }`}
-                    />
                   </button>
 
                   {/* BEBIDAS SIN ALCOHOL*/}
@@ -668,6 +638,312 @@ function CreateEvent() {
                         )}
                       </div>
                     </div>
+                  </button>
+
+                  {/* VINOS Y LICORES */}
+                  <button
+                    type="button"
+                    disabled
+                    /*
+                    onClick={() =>
+                      updateEventData({
+                        preferences: {
+                          ...eventData.preferences,
+                          winesAndLiquors: !eventData.preferences.winesAndLiquors,
+                        },
+                        productQuantities: {},
+                      })
+                    }
+                    */
+                    className="relative flex w-full cursor-not-allowed items-center justify-between rounded-2xl border-2 border-zinc-200 bg-zinc-50 p-5 text-left opacity-60"
+                  >
+                    {/* Etiqueta próximamente */}
+                    <span className="absolute right-12 top-4 rounded-full bg-zinc-200 px-2.5 py-1 text-[8px] font-bold uppercase tracking-wide text-zinc-500">
+                      Próximamente
+                    </span>
+
+                    <div className="flex min-w-0 items-center gap-4 pr-20">
+                      <div className="rounded-xl bg-purple-100 p-3 text-purple-400">
+                        <Wine size={24} />
+                      </div>
+
+                      <div>
+                        <h3 className="font-bold text-brandDark">
+                          Vinos y licores
+                        </h3>
+
+                        <p className="mt-0.5 text-xs text-zinc-500 sm:text-sm">
+                          Disponible próximamente.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Indicador deshabilitado */}
+                    <div className="h-6 w-6 shrink-0 rounded-full border-2 border-zinc-300 bg-zinc-100" />
+                  </button>
+
+
+                  {/* HIELO */}
+                  <button
+                    type="button"
+                    disabled
+                    /*
+                    onClick={() =>
+                      updateEventData({
+                        preferences: {
+                          ...eventData.preferences,
+                          ice: !eventData.preferences.ice,
+                        },
+                        productQuantities: {},
+                      })
+                    }
+                    */
+                    className="relative flex w-full cursor-not-allowed items-center justify-between rounded-2xl border-2 border-zinc-200 bg-zinc-50 p-5 text-left opacity-60"
+                  >
+                    {/* Etiqueta próximamente */}
+                    <span className="absolute right-12 top-4 rounded-full bg-zinc-200 px-2.5 py-1 text-[8px] font-bold uppercase tracking-wide text-zinc-500">
+                      Próximamente
+                    </span>
+
+                    <div className="flex min-w-0 items-center gap-4 pr-20">
+                      <div className="rounded-xl bg-blue-100 p-3 text-blue-400">
+                        <Snowflake size={24} />
+                      </div>
+
+                      <div>
+                        <h3 className="font-bold text-brandDark">
+                          Hielo
+                        </h3>
+
+                        <p className="mt-0.5 text-xs text-zinc-500 sm:text-sm">
+                          Disponible próximamente.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Indicador deshabilitado */}
+                    <div className="h-6 w-6 shrink-0 rounded-full border-2 border-zinc-300 bg-zinc-100" />
+                  </button>
+
+                  <h2 className="text-2xl font-bold text-brandDark">
+                    SERVICIOS
+                  </h2>
+
+                  
+                  {/* LUGAR / SALÓN */}
+                  <button
+                    type="button"
+                    disabled
+                    /*
+                    onClick={() =>
+                      updateEventData({
+                        preferences: {
+                          ...eventData.preferences,
+                          venue: !eventData.preferences.venue,
+                        },
+                        productQuantities: {},
+                      })
+                    }
+                    */
+                    className="relative flex w-full cursor-not-allowed items-center justify-between rounded-2xl border-2 border-zinc-200 bg-zinc-50 p-5 text-left opacity-60"
+                  >
+                    {/* Etiqueta próximamente */}
+                    <span className="absolute right-12 top-4 rounded-full bg-zinc-200 px-2.5 py-1 text-[8px] font-bold uppercase tracking-wide text-zinc-500">
+                      Próximamente
+                    </span>
+
+                    <div className="flex min-w-0 items-center gap-4 pr-20">
+                      <div className="rounded-xl bg-indigo-100 p-3 text-indigo-500">
+                        <Building2 size={24} />
+                      </div>
+
+                      <div>
+                        <h3 className="font-bold text-brandDark">
+                          Lugar / Salón
+                        </h3>
+
+                        <p className="mt-0.5 text-xs text-zinc-500 sm:text-sm">
+                          Encuentra el lugar ideal para tu evento.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Indicador deshabilitado */}
+                    <div className="h-6 w-6 shrink-0 rounded-full border-2 border-zinc-300 bg-zinc-100" />
+                  </button>
+
+
+                  {/* MESAS Y SILLAS */}
+                  <button
+                    type="button"
+                    disabled
+                    /*
+                    onClick={() =>
+                      updateEventData({
+                        preferences: {
+                          ...eventData.preferences,
+                          tablesAndChairs: !eventData.preferences.tablesAndChairs,
+                        },
+                        productQuantities: {},
+                      })
+                    }
+                    */
+                    className="relative flex w-full cursor-not-allowed items-center justify-between rounded-2xl border-2 border-zinc-200 bg-zinc-50 p-5 text-left opacity-60"
+                  >
+                    {/* Etiqueta próximamente */}
+                    <span className="absolute right-12 top-4 rounded-full bg-zinc-200 px-2.5 py-1 text-[8px] font-bold uppercase tracking-wide text-zinc-500">
+                      Próximamente
+                    </span>
+
+                    <div className="flex min-w-0 items-center gap-4 pr-20">
+                      <div className="rounded-xl bg-amber-100 p-3 text-amber-500">
+                        <Table2 size={24} />
+                      </div>
+
+                      <div>
+                        <h3 className="font-bold text-brandDark">
+                          Mesas y sillas
+                        </h3>
+
+                        <p className="mt-0.5 text-xs text-zinc-500 sm:text-sm">
+                          Disponible próximamente.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Indicador deshabilitado */}
+                    <div className="h-6 w-6 shrink-0 rounded-full border-2 border-zinc-300 bg-zinc-100" />
+                  </button>
+
+                  {/* MESEROS */}
+                  <button
+                    type="button"
+                    disabled
+                    /*
+                    onClick={() =>
+                      updateEventData({
+                        preferences: {
+                          ...eventData.preferences,
+                          waiters: !eventData.preferences.waiters,
+                        },
+                        productQuantities: {},
+                      })
+                    }
+                    */
+                    className="relative flex w-full cursor-not-allowed items-center justify-between rounded-2xl border-2 border-zinc-200 bg-zinc-50 p-5 text-left opacity-60"
+                  >
+                    {/* Etiqueta próximamente */}
+                    <span className="absolute right-12 top-4 rounded-full bg-zinc-200 px-2.5 py-1 text-[8px] font-bold uppercase tracking-wide text-zinc-500">
+                      Próximamente
+                    </span>
+
+                    <div className="flex min-w-0 items-center gap-4 pr-20">
+                      <div className="rounded-xl bg-emerald-100 p-3 text-emerald-500">
+                        <ConciergeBell size={24} />
+                      </div>
+
+                      <div>
+                        <h3 className="font-bold text-brandDark">
+                          Meseros
+                        </h3>
+
+                        <p className="mt-0.5 text-xs text-zinc-500 sm:text-sm">
+                          Disponible próximamente.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Indicador deshabilitado */}
+                    <div className="h-6 w-6 shrink-0 rounded-full border-2 border-zinc-300 bg-zinc-100" />
+                  </button>
+
+
+                  {/* ENTRETENIMIENTO */}
+                  <button
+                    type="button"
+                    disabled
+                    /*
+                    onClick={() =>
+                      updateEventData({
+                        preferences: {
+                          ...eventData.preferences,
+                          entertainment: !eventData.preferences.entertainment,
+                        },
+                        productQuantities: {},
+                      })
+                    }
+                    */
+                    className="relative flex w-full cursor-not-allowed items-center justify-between rounded-2xl border-2 border-zinc-200 bg-zinc-50 p-5 text-left opacity-60"
+                  >
+                    {/* Etiqueta próximamente */}
+                    <span className="absolute right-12 top-4 rounded-full bg-zinc-200 px-2.5 py-1 text-[8px] font-bold uppercase tracking-wide text-zinc-500">
+                      Próximamente
+                    </span>
+
+                    <div className="flex min-w-0 items-center gap-4 pr-20">
+                      <div className="rounded-xl bg-pink-100 p-3 text-pink-500">
+                        <PartyPopperIcon size={24} />
+                      </div>
+
+                      <div>
+                        <h3 className="font-bold text-brandDark">
+                          Entretenimiento
+                        </h3>
+
+                        <p className="mt-0.5 text-xs text-zinc-500 sm:text-sm">
+                          Opciones de entretenimiento para tu evento.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Indicador deshabilitado */}
+                    <div className="h-6 w-6 shrink-0 rounded-full border-2 border-zinc-300 bg-zinc-100" />
+                  </button>
+
+                  <h2 className="text-2xl font-bold text-brandDark">
+                    ALIMENTOS
+                  </h2>
+
+                  {/* COMIDA */}
+                  <button
+                    type="button"
+                    disabled
+                    /*
+                    onClick={() =>
+                      updateEventData({
+                        preferences: {
+                          ...eventData.preferences,
+                          food: !eventData.preferences.food,
+                        },
+                        productQuantities: {},
+                      })
+                    }
+                    */
+                    className="relative flex w-full cursor-not-allowed items-center justify-between rounded-2xl border-2 border-zinc-200 bg-zinc-50 p-5 text-left opacity-60"
+                  >
+                    {/* Etiqueta próximamente */}
+                    <span className="absolute right-12 top-4 rounded-full bg-zinc-200 px-2.5 py-1 text-[8px] font-bold uppercase tracking-wide text-zinc-500">
+                      Próximamente
+                    </span>
+
+                    <div className="flex min-w-0 items-center gap-4 pr-20">
+                      <div className="rounded-xl bg-orange-100 p-3 text-orange-500">
+                        <Utensils size={24} />
+                      </div>
+
+                      <div>
+                        <h3 className="font-bold text-brandDark">
+                          Comida
+                        </h3>
+
+                        <p className="mt-0.5 text-xs text-zinc-500 sm:text-sm">
+                          Servicio de alimentos para tu evento.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Indicador deshabilitado */}
+                    <div className="h-6 w-6 shrink-0 rounded-full border-2 border-zinc-300 bg-zinc-100" />
                   </button>
 
                 </div>
