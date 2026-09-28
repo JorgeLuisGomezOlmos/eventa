@@ -149,20 +149,10 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
   };
 
   return (
-    <main className="min-h-screen bg-zinc-50 py-24 sm:py-28">
+    <main className="min-h-screen bg-background py-24 lg:py-28">
       <Container>
 
-        {/* ========================= */}
-        {/* BOTÓN REGRESAR */}
-        {/* ========================= */}
-
-        <Link
-          to="/recomendacion"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 transition hover:text-primary"
-        >
-          <ArrowLeft size={18} />
-          Volver a la recomendación
-        </Link>
+        
 
         {/* ========================= */}
         {/* HEADER */}
@@ -170,21 +160,27 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
 
         <div className="mt-2 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
 
-          <div>
-            <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-brandDark sm:text-4xl">
+          <div className="">
+            <h1 className="mt-3 text-3xl font-bold text-brandDark sm:text-5xl">
               Resumen de pedido
             </h1>
 
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-500 sm:text-base">
-              Revisa los productos y el costo estimado antes de solicitar
-              tu pedido.
+              Revisa tu pedido y costo estimado.
             </p>
 
-          </div>
+            {/* ========================= */}
+            {/* BOTÓN REGRESAR */}
+            {/* ========================= */}
 
-          <div className="flex items-center gap-2 rounded-2xl bg-green-50 px-4 py-3 text-sm font-semibold text-green-700">
-            <CheckCircle2 size={18} />
-            Selección lista
+            <Link
+              to="/recomendacion"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 transition hover:text-primary"
+            >
+              <ArrowLeft size={18} />
+              Volver a la recomendación
+            </Link> 
+
           </div>
 
         </div>
@@ -384,7 +380,7 @@ import { calculateRecommendation } from "../utils/recommendationCalculator";
                     </p>
 
                     <h2 className="font-bold text-brandDark">
-                      Productos para el evento
+                      Productos para tu evento
                     </h2>
                   </div>
 

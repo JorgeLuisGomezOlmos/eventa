@@ -2,15 +2,18 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Beer,
-  Snowflake,
   PartyPopper,
   ClipboardList,
   Sparkles,
-  Truck,
   CheckCircle2,
   BadgePercent,
   Tag,
   ExternalLink,
+  SlidersHorizontal,
+  Receipt,
+  ListChecks,
+  Calculator,
+  ReceiptText,
 } from "lucide-react";
 
 import { products } from "../data/products";
@@ -159,8 +162,7 @@ const HomePage = () => {
           sm:text-lg
           sm:leading-8
         ">
-          Calcula las bebidas, productos y cantidades que
-          necesitas para tu evento, recibe una cotización perosonalizada y realiza tu pedido en minutos.
+          Crea tu evento, calcula lo que necesitas, recibe tu cotización y haz tu pedido fácilmente.
         </p>
 
 
@@ -264,88 +266,92 @@ const HomePage = () => {
         {/* BENEFICIOS */}
         {/* ================================================== */}
 
-        <div className="
-          mt-12
-          grid
-          grid-cols-2
-          gap-3
-          border-t
-          border-white/10
-          pt-6
-          sm:mt-14
-          sm:grid-cols-4
-          sm:gap-4
-          sm:pt-8
-        ">
+        <div
+          className="
+            mt-12
+            grid
+            grid-cols-2
+            gap-3
+            border-t
+            border-white/10
+            pt-6
 
+            sm:mt-14
+            sm:grid-cols-4
+            sm:gap-4
+            sm:pt-8
+          "
+        >
 
           {/* BENEFICIO 1 */}
+          <div
+            className="
+              rounded-2xl
+              border
+              border-white/10
+              bg-white/[0.04]
+              p-3
+              backdrop-blur-sm
 
-          <div className="
-            rounded-2xl
-            border
-            border-white/10
-            bg-white/[0.04]
-            p-3
-            backdrop-blur-sm
-            sm:border-0
-            sm:bg-transparent
-            sm:p-0
-          ">
-
+              sm:border-0
+              sm:bg-transparent
+              sm:p-0
+            "
+          >
             <div className="flex items-center gap-2">
-
-              <div className="
-                flex h-9 w-9
-                shrink-0
-                items-center justify-center
-                rounded-xl
-                bg-primary
-                text-white
-              ">
-                <PartyPopper size={18} />
+              <div
+                className="
+                  flex h-9 w-9
+                  shrink-0
+                  items-center justify-center
+                  rounded-xl
+                  bg-primary
+                  text-white
+                "
+              >
+                <ListChecks size={18} />
               </div>
 
               <div>
                 <p className="text-xs font-bold sm:text-sm">
-                  Fácil
+                  Selecciona
                 </p>
 
                 <p className="mt-0.5 text-[10px] text-zinc-400 sm:text-xs">
-                  Planea sin complicarte
+                  Bebidas, servicios o alimentos
                 </p>
               </div>
-
             </div>
-
           </div>
 
 
           {/* BENEFICIO 2 */}
+          <div
+            className="
+              rounded-2xl
+              border
+              border-white/10
+              bg-white/[0.04]
+              p-3
+              backdrop-blur-sm
 
-          <div className="
-            rounded-2xl
-            border
-            border-white/10
-            bg-white/[0.04]
-            p-3
-            backdrop-blur-sm
-            sm:border-0
-            sm:bg-transparent
-            sm:p-0
-          ">
-
+              sm:border-0
+              sm:bg-transparent
+              sm:p-0
+            "
+          >
             <div className="flex items-center gap-2">
-
-              <div className="
-                flex h-9 w-9
-                shrink-0
-                items-center justify-center
-                rounded-xl
-                bg-white
-                text-primary
-              ">
-                <Beer size={18} />
+              <div
+                className="
+                  flex h-9 w-9
+                  shrink-0
+                  items-center justify-center
+                  rounded-xl
+                  bg-white
+                  text-primary
+                "
+              >
+                <Calculator size={18} />
               </div>
 
               <div>
@@ -357,93 +363,91 @@ const HomePage = () => {
                   Cantidades recomendadas
                 </p>
               </div>
-
             </div>
-
           </div>
 
 
           {/* BENEFICIO 3 */}
+          <div
+            className="
+              rounded-2xl
+              border
+              border-white/10
+              bg-white/[0.04]
+              p-3
+              backdrop-blur-sm
 
-          <div className="
-            rounded-2xl
-            border
-            border-white/10
-            bg-white/[0.04]
-            p-3
-            backdrop-blur-sm
-            sm:border-0
-            sm:bg-transparent
-            sm:p-0
-          ">
-
+              sm:border-0
+              sm:bg-transparent
+              sm:p-0
+            "
+          >
             <div className="flex items-center gap-2">
-
-              <div className="
-                flex h-9 w-9
-                shrink-0
-                items-center justify-center
-                rounded-xl
-                bg-white
-                text-primary
-              ">
-                <Truck size={18} />
+              <div
+                className="
+                  flex h-9 w-9
+                  shrink-0
+                  items-center justify-center
+                  rounded-xl
+                  bg-white
+                  text-primary
+                "
+              >
+                <Receipt size={18} />
               </div>
 
               <div>
                 <p className="text-xs font-bold sm:text-sm">
-                  Entrega
+                  Cotiza
                 </p>
 
                 <p className="mt-0.5 text-[10px] text-zinc-400 sm:text-xs">
-                  Directo a tu evento
+                  Conoce tu costo estimado
                 </p>
               </div>
-
             </div>
-
           </div>
 
 
           {/* BENEFICIO 4 */}
+          <div
+            className="
+              rounded-2xl
+              border
+              border-white/10
+              bg-white/[0.04]
+              p-3
+              backdrop-blur-sm
 
-          <div className="
-            rounded-2xl
-            border
-            border-white/10
-            bg-white/[0.04]
-            p-3
-            backdrop-blur-sm
-            sm:border-0
-            sm:bg-transparent
-            sm:p-0
-          ">
-
+              sm:border-0
+              sm:bg-transparent
+              sm:p-0
+            "
+          >
             <div className="flex items-center gap-2">
-
-              <div className="
-                flex h-9 w-9
-                shrink-0
-                items-center justify-center
-                rounded-xl
-                bg-white
-                text-primary
-              ">
-                <CheckCircle2 size={18} />
+              <div
+                className="
+                  flex h-9 w-9
+                  shrink-0
+                  items-center justify-center
+                  rounded-xl
+                  bg-white
+                  text-primary
+                "
+              >
+                <SlidersHorizontal size={18} />
               </div>
 
               <div>
                 <p className="text-xs font-bold sm:text-sm">
-                  Seguro
+                  Flexible
                 </p>
 
                 <p className="mt-0.5 text-[10px] text-zinc-400 sm:text-xs">
-                  Todo bajo control
+                  Ajusta según tu presupuesto
                 </p>
               </div>
-
             </div>
-
           </div>
 
         </div>
@@ -515,7 +519,7 @@ const HomePage = () => {
               </div>
 
               <h3 className="mt-6 text-xl font-bold text-brandDark">
-                Bebidas
+                Bebidas, alimentos, servicios
               </h3>
 
               <p className="mt-3 leading-relaxed text-zinc-600">
@@ -541,18 +545,17 @@ const HomePage = () => {
 
             </Card>
 
-            <Card className="group hover:-translate-y-2 hover:shadow-xl p-6">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-blue-500">
-                <Snowflake size={28} />
+            <Card className="group p-6 hover:-translate-y-2 hover:shadow-xl">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-green-100 text-green-600">
+                <ReceiptText size={28} />
               </div>
-
+              
               <h3 className="mt-6 text-xl font-bold text-brandDark">
-                Hielo y complementos
+                Cotización personalizada
               </h3>
-
+              
               <p className="mt-3 leading-relaxed text-zinc-600">
-                No solo pensamos en las bebidas, también en todo lo necesario
-                para servirlas.
+                Revisa lo que necesitas y conoce un costo estimado para tu evento.
               </p>
             </Card>
 
@@ -782,7 +785,7 @@ const HomePage = () => {
 
               <p className="mt-3 text-zinc-600">
                 Cuéntanos qué tipo de evento tendrás y cuántas personas
-                asistirán.
+                asistirán y que nesecitas.
               </p>
             </div>
 
@@ -819,7 +822,7 @@ const HomePage = () => {
 
               <p className="mt-3 text-zinc-600">
                 Obtén tu cotización y prepárate para disfrutar sin
-                complicaciones.
+                complicaciones y a los mejores precios.
               </p>
             </div>
 
@@ -853,7 +856,7 @@ const HomePage = () => {
                 {[
                   "Recomendaciones basadas en tu evento",
                   "Cantidades fáciles de modificar",
-                  "Cotización clara y sencilla",
+                  "Cotización clara, sencilla y ajustable",
                   "Proceso rápido desde cualquier dispositivo",
                 ].map((benefit) => (
                   <div

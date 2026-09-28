@@ -91,12 +91,9 @@ function ProductSelectionModal({
                 <Beer size={26} />
               </div>
 
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
-                  Personaliza tu evento
-                </p>
+              <div className="mb-3">
 
-                <h2 className="mt-1 text-2xl font-extrabold text-brandDark">
+                <h2 className="text-2xl font-extrabold text-brandDark">
                   {title}
                 </h2>
 

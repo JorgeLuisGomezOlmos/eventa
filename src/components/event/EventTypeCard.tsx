@@ -21,10 +21,10 @@ function EventTypeCard({
       onClick={onClick}
       className={`
         group relative w-full overflow-hidden rounded-xl
-        border p-3 text-left
+        border p-2 text-left
         transition-all duration-300
         active:scale-[0.98]
-        sm:p-3
+        sm:p-2
         ${
           selected
             ? "border-primary bg-gradient-to-br from-primary/[0.08] via-white to-white shadow-xl shadow-primary/10"
@@ -73,7 +73,7 @@ function EventTypeCard({
           {/* INDICADOR */}
           <div
             className={`
-              rounded-full px-1.5 py-1 text-[9px] font-bold uppercase
+              rounded-full px-1.5 py-1 text-[7px] font-bold uppercase
               tracking-wider transition-all duration-300
               ${
                 selected
@@ -94,26 +94,6 @@ function EventTypeCard({
             {title}
           </h3>
     
-    
-        </div>
-    
-        {/* PIE */}
-        <div className="flex items-center justify-between border-t border-zinc-100 pt-2">
-    
-          <span
-            className={`
-              text-[8px] font-bold uppercase tracking-[0.16em]
-              ${
-                selected
-                  ? "text-primary"
-                  : "text-zinc-400"
-              }
-            `}
-          >
-            Tipo de evento
-          </span>
-    
-          
     
         </div>
     

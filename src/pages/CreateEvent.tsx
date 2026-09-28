@@ -169,26 +169,19 @@ function CreateEvent() {
   return (
 
     <>
-    <section className="min-h-screen bg-background py-24 lg:py-28
-    
-    
-    
-    ">
+    <section className="min-h-screen bg-background py-24 lg:py-28">
       <Container>
         <div className="mx-auto max-w-3xl">
 
           {/* ENCABEZADO */}
 
-          <div className="mb-10 text-center">
-            <span className="font-semibold text-primary">
-              CREA TU EVENTO
-            </span>
+          <div className="mb-10">
 
-            <h1 className="mt-3 text-4xl font-bold text-brandDark sm:text-5xl">
-              Vamos a organizar algo increíble 🎉
+            <h1 className="mt-3 text-3xl font-bold text-brandDark sm:text-5xl">
+              CREA TU EVENTO 🎉
             </h1>
 
-            <p className="mt-4 text-zinc-600">
+            <p className="mt-2 text-zinc-600">
               Cuéntanos algunos detalles para poder recomendarte
               lo que necesitas.
             </p>
@@ -206,12 +199,8 @@ function CreateEvent() {
             {currentStep === 1 && (
               <div>
                 <h2 className="text-2xl font-bold text-brandDark">
-                  ¿Qué tipo de evento estás organizando?
+                  ¿Qué vamos a celebrar?
                 </h2>
-
-                <p className="mt-2 text-zinc-500">
-                  Esto nos ayudará a entender mejor tu evento.
-                </p>
 
                 <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
                   {eventTypes.map((event) => (
@@ -306,11 +295,11 @@ function CreateEvent() {
             {currentStep === 3 && (
               <div>
                 <h2 className="text-2xl font-bold text-brandDark">
-                  Cuéntanos los detalles
+                  ¿Cuándo será tu evento y cuánto tiempo durará?
                 </h2>
 
                 <p className="mt-2 text-zinc-500">
-                  ¿Cuándo será tu evento y cuánto tiempo durará?
+                  
                 </p>
 
                 <div className="mt-8 grid gap-6 sm:grid-cols-2">
@@ -370,8 +359,7 @@ function CreateEvent() {
                             "
                           >
                             Indica cuántas horas durará aproximadamente tu evento.
-                            Este dato nos ayuda a calcular mejor la cantidad de
-                            bebidas que podrías necesitar.
+                            Este dato nos ayuda a calcular mejor lo que podrías necesitar.
                           </div>                    
                         </div>                    
                       </div>                  
@@ -434,7 +422,7 @@ function CreateEvent() {
                 </h2>
 
                 <p className="mt-2 text-zinc-500">
-                  Selecciona los productos que quieres incluir.
+                  Selecciona los productos o servicios que quieres incluir.
                 </p>
 
                 <div className="mt-8 space-y-4">
@@ -989,7 +977,7 @@ function CreateEvent() {
       isOpen={isBeerModalOpen}
       onClose={() => setIsBeerModalOpen(false)}
       title="Elige tus cervezas"
-      subtitle="Puedes seleccionar una o varias opciones para tu evento."
+      subtitle="Selecciona las marcas de tu preferencia."
       products={beerProducts}
       selectedIds={eventData.selectedBeerIds}
       onConfirm={(selectedIds) => {

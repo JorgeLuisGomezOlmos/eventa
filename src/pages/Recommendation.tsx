@@ -247,31 +247,26 @@ useEffect(() => {
 }, [location.state]);
 
   return (
-    <section className="min-h-screen bg-background py-24 lg:py-24">
+    <section className="min-h-screen bg-background py-24 lg:py-28">
       <Container>
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-3xl">
 
           {/* HEADER */}
 
-          <div className="text-center">
+          <div className="mb-10">
 
-            <span className="mt-6 block font-semibold text-primary">
-              TU RECOMENDACIÓN PERSONALIZADA
-            </span>
-
-            <h1 className="mt-3 text-4xl font-bold text-brandDark sm:text-5xl">
-              ¡Tu evento está tomando forma! 🎉
+            <h1 className="mt-3 text-3xl font-bold text-brandDark sm:text-5xl">
+              TU RECOMENDACIÓN 
             </h1>
 
-            <p className="mx-auto mt-4 max-w-2xl text-zinc-600">
-              Calculamos una recomendación inicial basada en la información
-              que nos proporcionaste.
+            <p className="mt-2 text-zinc-600">
+              Generamos una recomendación para tu evento.
             </p>
           </div>
 
           {/* RESUMEN DEL EVENTO */}
 
-          <Card className="mt-12 p-6">
+          <Card className="mt-4 p-6">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               
               <div>
@@ -351,17 +346,13 @@ useEffect(() => {
 
           <div className="mt-12">
             <div>
-              <span className="font-semibold text-primary">
-                RECOMENDACIÓN
-              </span>
 
               <h2 className="mt-2 text-3xl font-bold text-brandDark">
-                Esto recomendamos para tu evento
+                Recomendación para tu evento
               </h2>
 
               <p className="mt-3 text-zinc-600">
-                Puedes modificar las cantidades deacuerdo a tu presupuesto o estimaciones antes de solicitar
-                tu pedido.
+                Puedes ajusta las cantidades a tu presupuesto o estimación.
               </p>
             </div> 
           </div>
@@ -390,9 +381,6 @@ useEffect(() => {
       </div>
 
       <div>
-        <p className="text-[10px] font-bold uppercase tracking-wider text-primary">
-          Categoría
-        </p>
 
         <h2 className="text-2xl font-extrabold text-brandDark">
           Cervezas
@@ -401,7 +389,7 @@ useEffect(() => {
     </div>
 
     <p className="mt-2 text-sm text-zinc-500">
-      Distribución recomendada entre las cervezas seleccionadas.
+      Distribución entre las marcas seleccionadas.
     </p>
   </div>
 
@@ -597,10 +585,6 @@ useEffect(() => {
                 
                       <p className="text-[7px] font-bold uppercase tracking-wider text-zinc-400">
                         Recomendado
-                      </p>
-                
-                      <p className="text-[8px] font-medium text-zinc-600">
-                        Para tu evento
                       </p>
                 
                     </div>
@@ -1938,19 +1922,7 @@ useEffect(() => {
               Esta es una recomendación
             </h3>
 
-            <p
-              className="
-                mt-2
-                text-xs
-                leading-5
-                text-zinc-500
-
-                sm:text-sm
-              "
-            >
-              EVENTA realiza una estimación tomando
-              como referencia la información de tu evento.
-            </p>
+            
           </div>
 
           {/* MENSAJE */}
@@ -1989,20 +1961,6 @@ useEffect(() => {
               </span>
             </p>
 
-            <p
-              className="
-                mt-3
-                text-xs
-                leading-5
-                text-zinc-500
-
-                sm:text-sm
-                sm:leading-6
-              "
-            >
-              Puedes ajustar las cantidades posteriormente
-              antes de realizar tu pedido.
-            </p>
           </div>
 
           {/* BOTÓN */}
