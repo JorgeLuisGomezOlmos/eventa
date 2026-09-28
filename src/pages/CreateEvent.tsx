@@ -941,7 +941,7 @@ function CreateEvent() {
             {/* ================= NAVEGACIÓN ================= */}
 
             <div className="sticky bottom-4 z-40 mt-10">
-              <div className="flex items-center justify-between gap-2 border-t border-zinc-100 bg-white/95 pt-6 backdrop-blur-sm">
+              <div className="flex items-center justify-between gap-2 border-zinc-100 bg-white/10 backdrop-blur-sm">
                       
                 {/* BOTÓN ANTERIOR */}
                 <Button
@@ -952,6 +952,7 @@ function CreateEvent() {
                     justify-center
                     px-4
                     py-3
+                    text-sm
                     shadow-md
                     ${currentStep === 1 ? "invisible" : ""}
                   `}
@@ -968,11 +969,12 @@ function CreateEvent() {
                     justify-center
                     px-4
                     py-3
+                    text-sm
                     shadow-md
                   "
                 >
                   {currentStep === totalSteps
-                    ? "Generar recomendación"
+                    ? "Recomendación"
                     : "Continuar"}
             
                   <ArrowRight size={18} className="ml-2" />
