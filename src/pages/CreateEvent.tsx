@@ -940,8 +940,8 @@ function CreateEvent() {
 
             {/* ================= NAVEGACIÓN ================= */}
 
-            <div className="sticky bottom-4 z-40 mt-10">
-              <div className="flex items-center justify-between gap-2 border-zinc-100 bg-white/10 backdrop-blur-sm">
+            <div className="sticky bottom-0 z-40 mt-10">
+              <div className="flex items-center justify-between gap-2 pb-6 pt-2 bg-white backdrop-blur-sm">
                       
                 {/* BOTÓN ANTERIOR */}
                 <Button
