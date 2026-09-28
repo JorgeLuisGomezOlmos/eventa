@@ -940,32 +940,45 @@ function CreateEvent() {
 
             {/* ================= NAVEGACIÓN ================= */}
 
-            <div className="mt-10 gap-2 flex items-center justify-between border-t border-zinc-100 pt-6">
-              <Button
-                variant="outline"
-                onClick={previousStep}
-                disabled={currentStep === 1}
-                className={
-                  currentStep === 1
-                    ? "invisible"
-                    : ""
-                }
-              >
-                <ArrowLeft size={18} className="mr-2" />
-                Anterior
-              </Button>
-
-              <Button
-                onClick={nextStep}
-                disabled={!isCurrentStepValid()}
-                className="text-sm sm:w-auto sm:px-4 sm:py-1 sm:text-base"
-              >
-                {currentStep === totalSteps
-                  ? "Generar recomendación"
-                  : "Continuar"}
-              
-                <ArrowRight size={18} className="ml-2" />
-              </Button>
+            <div className="sticky bottom-4 z-40 mt-10">
+              <div className="flex items-center justify-between gap-2 border-t border-zinc-100 bg-white/95 pt-6 backdrop-blur-sm">
+                      
+                {/* BOTÓN ANTERIOR */}
+                <Button
+                  variant="outline"
+                  onClick={previousStep}
+                  disabled={currentStep === 1}
+                  className={`
+                    justify-center
+                    px-4
+                    py-3
+                    shadow-md
+                    ${currentStep === 1 ? "invisible" : ""}
+                  `}
+                >
+                  <ArrowLeft size={18} className="mr-2" />
+                  Anterior
+                </Button>
+                  
+                {/* BOTÓN CONTINUAR / GENERAR */}
+                <Button
+                  onClick={nextStep}
+                  disabled={!isCurrentStepValid()}
+                  className="
+                    justify-center
+                    px-4
+                    py-3
+                    shadow-md
+                  "
+                >
+                  {currentStep === totalSteps
+                    ? "Generar recomendación"
+                    : "Continuar"}
+            
+                  <ArrowRight size={18} className="ml-2" />
+                </Button>
+                  
+              </div>
             </div>
 
           </Card>

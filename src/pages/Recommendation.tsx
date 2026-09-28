@@ -2001,32 +2001,103 @@ useEffect(() => {
 
           {!isTotalVisible && (
             <div className="fixed bottom-3 left-3 right-3 z-50 mx-auto max-w-5xl animate-in fade-in slide-in-from-bottom-4 duration-300 sm:bottom-6 sm:left-6 sm:right-6">
-            
-              <div className="rounded-2xl border border-white/20 bg-brandDark/80 p-4 shadow-2xl backdrop-blur-sm">
-                    
-                <div className="flex items-center justify-between gap-3">
-                    
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-white/50">
-                      Costo total estimado
+              <div className="rounded-2xl border border-white/20 bg-brandDark/95 p-3 shadow-2xl backdrop-blur-md sm:p-4">
+
+                {/* TOTAL MOBILE */}
+                <div className="flex items-center justify-center gap-2 sm:hidden">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-white/40">
+                    Costo total estimado
+                  </p>
+
+                  <p className="text-xl font-extrabold text-white">
+                    ${estimatedTotal.toLocaleString("es-MX")}
+                  </p>
+                </div>
+
+                {/* CONTENIDO DESKTOP */}
+                <div className="hidden items-center justify-between gap-4 sm:flex">
+
+                  {/* MODIFICAR */}
+                  <button
+                    type="button"
+                    onClick={() => navigate("/crear-evento")}
+                    className="
+                      flex
+                      items-center
+                      gap-2
+                      rounded-xl
+                      px-3
+                      py-2
+                      text-sm
+                      font-semibold
+                      text-white/60
+                      transition
+                      hover:bg-white/5
+                      hover:text-white
+                    "
+                  >
+                    <ArrowLeft size={16} />
+                    Modificar evento
+                  </button>
+
+                  {/* TOTAL */}
+                  <div className="text-center">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-white/40">
+                      Costo estimado
                     </p>
-                    
-                    <p className="mt-1 text-xl font-extrabold text-white sm:text-2xl">
+
+                    <p className="mt-0.5 text-2xl font-extrabold text-white">
                       ${estimatedTotal.toLocaleString("es-MX")}
                     </p>
                   </div>
-                    
+
+                  {/* COTIZACIÓN */}
                   <Link to="/cotizacion">
-                    <Button className="whitespace-nowrap">
-                      Continuar
-                      <ArrowRight size={16} className="ml-1" />
+                    <Button className="px-5">
+                      Resumen pedido
+                      <ArrowRight size={16} className="ml-2" />
                     </Button>
                   </Link>
-                    
                 </div>
-                    
+
+                {/* BOTONES MOBILE */}
+                <div className="mt-3 grid grid-cols-2 gap-2 sm:hidden">
+
+                  <button
+                    type="button"
+                    onClick={() => navigate("/crear-evento")}
+                    className="
+                      flex
+                      items-center
+                      justify-center
+                      gap-1.5
+                      rounded-xl
+                      border
+                      border-white/10
+                      bg-white/5
+                      px-3
+                      py-2.5
+                      text-xs
+                      font-semibold
+                      text-white
+                      transition
+                      hover:bg-white/10
+                    "
+                  >
+                    <ArrowLeft size={15} />
+                    Modificar evento
+                  </button>
+
+                  <Link to="/cotizacion">
+                    <Button className="w-full py-2.5 text-xs">
+                      Resumen pedido
+                      <ArrowRight size={15} className="ml-1.5" />
+                    </Button>
+                  </Link>
+
+                </div>
+
               </div>
-                    
             </div>
           )}
 
@@ -2042,8 +2113,7 @@ useEffect(() => {
 
                 <h2 className="mt-2 text-4xl font-bold">
                   $
-                  {estimatedTotal.toLocaleString("es-MX")}
-                  {" "}
+                  {estimatedTotal.toLocaleString("es-MX")}{" "}
                   MXN
                 </h2>
               </div>
@@ -2055,17 +2125,29 @@ useEffect(() => {
                 </Button>
               </Link>
             </div>
+
+            {/* BOTÓN REGRESAR */}
+            <button
+              type="button"
+              onClick={() => navigate("/crear-evento")}
+              className="
+                mx-auto
+                mt-6
+                flex
+                items-center
+                gap-2
+                text-sm
+                font-semibold
+                text-zinc-400
+                transition
+                hover:text-white
+                sm:mt-8
+              "
+            >
+              <ArrowLeft size={18} />
+              Regresar y modificar evento
+            </button>
           </div>
-
-          {/* BOTÓN REGRESAR */}
-
-          <button
-            onClick={() => navigate("/crear-evento")}
-            className="mx-auto mt-8 flex items-center gap-2 text-sm font-semibold text-zinc-600 hover:text-primary"
-          >
-            <ArrowLeft size={18} />
-            Regresar y modificar evento
-          </button>
 
         </div>
       </Container>
